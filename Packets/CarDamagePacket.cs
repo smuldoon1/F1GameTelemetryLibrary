@@ -1,6 +1,4 @@
-﻿using F1GameTelemetryLibrary.Packets;
-
-namespace F1GameTelemetryLibrary
+﻿namespace F1GameTelemetryLibrary.Damage
 {
     /// <summary>
     /// Car damage packet stores damage and wear data for cars in the session.

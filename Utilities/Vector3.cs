@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace F1GameTelemetryLibrary
+namespace F1GameTelemetryLibrary.Utils
 {
     /// <summary>
     /// Generic all-purpose 3-dimensional vector struct.

@@ -1,6 +1,6 @@
-﻿using F1GameTelemetryLibrary.Packets;
+﻿using F1GameTelemetryLibrary.Utils;
 
-namespace F1GameTelemetryLibrary
+namespace F1GameTelemetryLibrary.Setups
 {
     /// <summary>
     /// Car setup values for a particular car.

@@ -1,7 +1,4 @@
-﻿using F1GameTelemetryLibrary.Packets;
-using F1GameTelemetryLibrary.Packets.Structs;
-
-namespace F1GameTelemetryLibrary
+﻿namespace F1GameTelemetryLibrary.Statuses
 {
     /// <summary>
     /// Car status packet stores status information for all cars.

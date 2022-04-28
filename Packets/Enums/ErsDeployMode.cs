@@ -1,4 +1,4 @@
-﻿namespace F1GameTelemetryLibrary.Packets.Enums
+﻿namespace F1GameTelemetryLibrary.Statuses.Enums
 {
     public enum ErsDeployMode : byte
     {

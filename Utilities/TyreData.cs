@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace F1GameTelemetryLibrary
+namespace F1GameTelemetryLibrary.Utils
 {
     /// <summary>
     /// Struct for storing data about each wheel or brake on the car.

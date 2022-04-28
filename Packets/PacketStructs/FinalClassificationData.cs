@@ -1,6 +1,6 @@
-﻿using F1GameTelemetryLibrary.Packets.Enums;
+﻿using F1GameTelemetryLibrary.Enums;
 
-namespace F1GameTelemetryLibrary.Packets.Structs
+namespace F1GameTelemetryLibrary.Classifications
 {
     /// <summary>
     /// Status information about a particular car.

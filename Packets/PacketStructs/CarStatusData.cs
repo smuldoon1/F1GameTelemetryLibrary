@@ -1,6 +1,6 @@
-﻿using F1GameTelemetryLibrary.Packets.Enums;
+﻿using F1GameTelemetryLibrary.Enums;
 
-namespace F1GameTelemetryLibrary.Packets.Structs
+namespace F1GameTelemetryLibrary.Statuses
 {
     /// <summary>
     /// Status information about a particular car. For some or all data in this stuct only the player, AI cars and network players with their UDP telemetry set to Public will non-zero values.
@@ -10,7 +10,7 @@ namespace F1GameTelemetryLibrary.Packets.Structs
         /// <summary>
         /// The traction control setting on this car.
         /// </summary>
-        TractionControlMode tractionControl;
+        Enums.TractionControlMode tractionControl;
 
         /// <summary>
         /// Is the anti-lock braking system enabled on this car?
@@ -20,7 +20,7 @@ namespace F1GameTelemetryLibrary.Packets.Structs
         /// <summary>
         /// The current fuel mix the car is using.
         /// </summary>
-        FuelMix fuelMix;
+        Enums.FuelMix fuelMix;
 
         /// <summary>
         /// The brake front brake bias as a percentage.
@@ -100,7 +100,7 @@ namespace F1GameTelemetryLibrary.Packets.Structs
         /// <summary>
         /// The current deployment mode of the energy recovery system.
         /// </summary>
-        ErsDeployMode energyDeployMode;
+        Enums.ErsDeployMode energyDeployMode;
 
         /// <summary>
         /// Energy harvested this lap by the MGU-K.
@@ -124,9 +124,9 @@ namespace F1GameTelemetryLibrary.Packets.Structs
 
         public void Unpack(Unpacker unpacker)
         {
-            tractionControl = (TractionControlMode)unpacker.NextByte();
+            tractionControl = (Enums.TractionControlMode)unpacker.NextByte();
             isABSEnabled = unpacker.NextBool();
-            fuelMix = (FuelMix)unpacker.NextByte();
+            fuelMix = (Enums.FuelMix)unpacker.NextByte();
             frontBrakeBias = unpacker.NextByte();
             isPitLimiterOn = unpacker.NextBool();
             fuelInTank = unpacker.NextFloat();
@@ -142,7 +142,7 @@ namespace F1GameTelemetryLibrary.Packets.Structs
             tyreAge = unpacker.NextByte();
             vehicleFiaFlag = (Flag)unpacker.NextSbyte();
             energyStore = unpacker.NextFloat();
-            energyDeployMode = (ErsDeployMode)unpacker.NextByte();
+            energyDeployMode = (Enums.ErsDeployMode)unpacker.NextByte();
             lapMGUKineticHarvest = unpacker.NextFloat();
             lapMGUHeatHarvest = unpacker.NextFloat();
             lapEnergyDeployed = unpacker.NextFloat();

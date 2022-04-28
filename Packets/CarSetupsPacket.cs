@@ -1,6 +1,4 @@
-﻿using F1GameTelemetryLibrary.Packets;
-
-namespace F1GameTelemetryLibrary
+﻿namespace F1GameTelemetryLibrary.Setups
 {
     /// <summary>
     /// Car setups packet stores the car setups for each vehicle in the session. In network games only the players car and AI cars will have data.

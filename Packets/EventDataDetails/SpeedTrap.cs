@@ -1,6 +1,4 @@
-﻿using F1GameTelemetryLibrary.Packets.Enums;
-
-namespace F1GameTelemetryLibrary
+﻿namespace F1GameTelemetryLibrary.Events
 {
     /// <summary>
     /// Stores event details for when a car has triggered the speed trap.

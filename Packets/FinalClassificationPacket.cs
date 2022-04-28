@@ -1,8 +1,4 @@
-﻿using F1GameTelemetryLibrary.Packets;
-using F1GameTelemetryLibrary.Packets.Enums;
-using F1GameTelemetryLibrary.Packets.Structs;
-
-namespace F1GameTelemetryLibrary
+﻿namespace F1GameTelemetryLibrary.Classifications
 {
     /// <summary>
     /// Final classification packet stores details about the final classification at the end of a session.
@@ -17,7 +13,7 @@ namespace F1GameTelemetryLibrary
         /// <summary>
         /// Array of final car classification data.
         /// </summary>
-        LapData[] classificationData = new LapData[F1Globals.MAX_CARS];
+        FinalClassificationData[] classificationData = new FinalClassificationData[F1Globals.MAX_CARS];
 
         public FinalClassificationPacket(PacketHeader header, byte[] remainingData)
         {

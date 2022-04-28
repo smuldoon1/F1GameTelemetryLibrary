@@ -1,4 +1,4 @@
-﻿namespace F1GameTelemetryLibrary.Packets
+﻿namespace F1GameTelemetryLibrary
 {
     /// <summary>
     /// Each packet has a header which should be unpacked first.

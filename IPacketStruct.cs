@@ -1,4 +1,4 @@
-﻿namespace F1GameTelemetryLibrary.Packets
+﻿namespace F1GameTelemetryLibrary
 {
     internal interface IPacketStruct
     {

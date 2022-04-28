@@ -1,7 +1,6 @@
-﻿using F1GameTelemetryLibrary.Packets;
-using F1GameTelemetryLibrary.Packets.Enums;
+﻿using F1GameTelemetryLibrary.Utils;
 
-namespace F1GameTelemetryLibrary
+namespace F1GameTelemetryLibrary.Telemetry
 {
     /// <summary>
     /// Telemetry data for a particular car.
@@ -86,7 +85,7 @@ namespace F1GameTelemetryLibrary
         /// <summary>
         /// Type of surface each wheel is currently on top of.
         /// </summary>
-        TyreData<SurfaceType> surfaceTypes;
+        TyreData<Enums.SurfaceType> surfaceTypes;
 
         public void Unpack(Unpacker unpacker)
         {
@@ -129,12 +128,12 @@ namespace F1GameTelemetryLibrary
                 frontLeft = unpacker.NextFloat(),
                 frontRight = unpacker.NextFloat()
             };
-            surfaceTypes = new TyreData<SurfaceType>()
+            surfaceTypes = new TyreData<Enums.SurfaceType>()
             {
-                rearLeft = (SurfaceType)unpacker.NextByte(),
-                rearRight = (SurfaceType)unpacker.NextByte(),
-                frontLeft = (SurfaceType)unpacker.NextByte(),
-                frontRight = (SurfaceType)unpacker.NextByte()
+                rearLeft = (Enums.SurfaceType)unpacker.NextByte(),
+                rearRight = (Enums.SurfaceType)unpacker.NextByte(),
+                frontLeft = (Enums.SurfaceType)unpacker.NextByte(),
+                frontRight = (Enums.SurfaceType)unpacker.NextByte()
             };
         }
     }

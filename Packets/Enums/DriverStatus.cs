@@ -1,4 +1,4 @@
-﻿namespace F1GameTelemetryLibrary.Packets.Enums
+﻿namespace F1GameTelemetryLibrary.Laps.Enums
 {
     public enum DriverStatus : byte
     {

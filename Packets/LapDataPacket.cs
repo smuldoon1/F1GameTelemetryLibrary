@@ -1,8 +1,4 @@
-﻿using F1GameTelemetryLibrary.Packets;
-using F1GameTelemetryLibrary.Packets.Enums;
-using F1GameTelemetryLibrary.Packets.Structs;
-
-namespace F1GameTelemetryLibrary
+﻿namespace F1GameTelemetryLibrary.Laps
 {
     /// <summary>
     /// Lap data packet gives details about the laps of all cars in the session.

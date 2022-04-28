@@ -1,4 +1,4 @@
-﻿namespace F1GameTelemetryLibrary.Packets.Enums
+﻿namespace F1GameTelemetryLibrary.Lobbies.Enums
 {
     public enum ReadyStatus : byte
     {

@@ -1,7 +1,4 @@
-﻿using F1GameTelemetryLibrary.Packets;
-using F1GameTelemetryLibrary.Packets.Structs;
-
-namespace F1GameTelemetryLibrary
+﻿namespace F1GameTelemetryLibrary.SessionHistory
 {
     /// <summary>
     /// Session history packet stores lap times and tyre usage during the session for a specific car.

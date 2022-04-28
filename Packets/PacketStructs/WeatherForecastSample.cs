@@ -1,6 +1,6 @@
-﻿using F1GameTelemetryLibrary.Packets.Enums;
+﻿using F1GameTelemetryLibrary.Enums;
 
-namespace F1GameTelemetryLibrary.Packets.Structs
+namespace F1GameTelemetryLibrary.Sessions
 {
     /// <summary>
     /// A sample of weather forecast data.
@@ -10,7 +10,7 @@ namespace F1GameTelemetryLibrary.Packets.Structs
         /// <summary>
         /// The type of session.
         /// </summary>
-        SessionType sessionType;
+        Enums.SessionType sessionType;
 
         /// <summary>
         /// Time in minutes the forecast sample is scheduled for.
@@ -20,7 +20,7 @@ namespace F1GameTelemetryLibrary.Packets.Structs
         /// <summary>
         /// The weather status of the forecast sample.
         /// </summary>
-        WeatherStatus weather;
+        Enums.WeatherStatus weather;
 
         /// <summary>
         /// Track temperature in degrees Celcius.
@@ -30,7 +30,7 @@ namespace F1GameTelemetryLibrary.Packets.Structs
         /// <summary>
         /// The change in track temperature from the last forecast sample.
         /// </summary>
-        TemperatureDelta trackTemperatureChange;
+        Enums.TemperatureDelta trackTemperatureChange;
 
         /// <summary>
         /// Air temperature in degrees Celcius.
@@ -40,7 +40,7 @@ namespace F1GameTelemetryLibrary.Packets.Structs
         /// <summary>
         /// The change in air temperature from the last forecast sample.
         /// </summary>
-        TemperatureDelta airTemperatureChange;
+        Enums.TemperatureDelta airTemperatureChange;
 
         /// <summary>
         /// The percentage of rain on the track.
@@ -49,13 +49,13 @@ namespace F1GameTelemetryLibrary.Packets.Structs
 
         public void Unpack(Unpacker unpacker)
         {
-            sessionType = (SessionType)unpacker.NextByte();
+            sessionType = (Enums.SessionType)unpacker.NextByte();
             timeOffset = unpacker.NextByte();
-            weather = (WeatherStatus)unpacker.NextByte();
+            weather = (Enums.WeatherStatus)unpacker.NextByte();
             trackTemperature = unpacker.NextSbyte();
-            trackTemperatureChange = (TemperatureDelta)unpacker.NextSbyte();
+            trackTemperatureChange = (Enums.TemperatureDelta)unpacker.NextSbyte();
             airTemperature = unpacker.NextSbyte();
-            airTemperatureChange = (TemperatureDelta)unpacker.NextSbyte();
+            airTemperatureChange = (Enums.TemperatureDelta)unpacker.NextSbyte();
             rainPercentage = unpacker.NextByte();
         }
     }

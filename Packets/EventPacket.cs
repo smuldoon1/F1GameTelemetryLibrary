@@ -1,8 +1,4 @@
-﻿using F1GameTelemetryLibrary.Packets;
-using F1GameTelemetryLibrary.Packets.Enums;
-using F1GameTelemetryLibrary.Packets.Structs;
-
-namespace F1GameTelemetryLibrary
+﻿namespace F1GameTelemetryLibrary.Events
 {
     /// <summary>
     /// Event packet stores details about certain events that happen during a session.

@@ -1,8 +1,4 @@
-﻿using F1GameTelemetryLibrary.Packets;
-using F1GameTelemetryLibrary.Packets.Enums;
-using F1GameTelemetryLibrary.Packets.Structs;
-
-namespace F1GameTelemetryLibrary
+﻿namespace F1GameTelemetryLibrary.Sessions
 {
     /// <summary>
     /// Session packet stores details about a particular session.
@@ -12,7 +8,7 @@ namespace F1GameTelemetryLibrary
         /// <summary>
         /// The weather status.
         /// </summary>
-        WeatherStatus weather;
+        Enums.WeatherStatus weather;
 
         /// <summary>
         /// Track temperature in degrees Celcius.
@@ -37,7 +33,7 @@ namespace F1GameTelemetryLibrary
         /// <summary>
         /// The type of session.
         /// </summary>
-        SessionType sessionType;
+        Enums.SessionType sessionType;
 
         /// <summary>
         /// Track identifier. -1 means the track is unknown.
@@ -47,7 +43,7 @@ namespace F1GameTelemetryLibrary
         /// <summary>
         /// The series/class of cars used in the session.
         /// </summary>
-        Formula formula;
+        Enums.Formula formula;
 
         /// <summary>
         /// Time remaining in the session in seconds.
@@ -97,7 +93,7 @@ namespace F1GameTelemetryLibrary
         /// <summary>
         /// The current status of the safety car.
         /// </summary>
-        SafetyCarStatus safetyCarStatus;
+        Enums.SafetyCarStatus safetyCarStatus;
 
         /// <summary>
         /// Is the session a network game?
@@ -157,7 +153,7 @@ namespace F1GameTelemetryLibrary
         /// <summary>
         /// The assists allowed in the session.
         /// </summary>
-        Assists allowedAssists = new();
+        Assists allowedAssists;
 
         public SessionPacket(PacketHeader header, byte[] remainingData)
         {
@@ -169,14 +165,14 @@ namespace F1GameTelemetryLibrary
         {
             Unpacker unpacker = new(packedData);
 
-            weather = (WeatherStatus)unpacker.NextByte();
+            weather = (Enums.WeatherStatus)unpacker.NextByte();
             trackTemperature = unpacker.NextSbyte();
             airTemperature = unpacker.NextSbyte();
             totalLaps = unpacker.NextByte();
             trackLength = unpacker.NextUshort();
-            sessionType = (SessionType)unpacker.NextByte();
+            sessionType = (Enums.SessionType)unpacker.NextByte();
             trackId = unpacker.NextSbyte();
-            formula = (Formula)unpacker.NextByte();
+            formula = (Enums.Formula)unpacker.NextByte();
             sessionTimeLeft = unpacker.NextUshort();
             sessionDuration = unpacker.NextUshort();
             pitSpeedLimit = unpacker.NextByte();
@@ -189,7 +185,7 @@ namespace F1GameTelemetryLibrary
             {
                 marshallZones[i].Unpack(unpacker);
             }
-            safetyCarStatus = (SafetyCarStatus)unpacker.NextByte();
+            safetyCarStatus = (Enums.SafetyCarStatus)unpacker.NextByte();
             isNetworkGame = unpacker.NextBool();
             weatherForecastSampleCount = unpacker.NextByte();
             for (int i = 0; i < weatherForecastSamples.Length; i++)

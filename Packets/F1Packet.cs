@@ -1,6 +1,4 @@
-﻿using F1GameTelemetryLibrary.Packets;
-
-namespace F1GameTelemetryLibrary
+﻿namespace F1GameTelemetryLibrary
 {
     /// <summary>
     /// All unpacked packets derive from this class.
@@ -19,29 +17,29 @@ namespace F1GameTelemetryLibrary
             switch (header.packetId)
             {
                 case 0:
-                    return new MotionPacket(header, remainingData);
+                    return new Motion.MotionPacket(header, remainingData);
                 case 1:
-                    return new SessionPacket(header, remainingData);
+                    return new Sessions.SessionPacket(header, remainingData);
                 case 2:
-                    return new LapDataPacket(header, remainingData);
+                    return new Laps.LapDataPacket(header, remainingData);
                 case 3:
-                    return new EventPacket(header, remainingData);
+                    return new Events.EventPacket(header, remainingData);
                 case 4:
-                    return new ParticipantsPacket(header, remainingData);
+                    return new Participants.ParticipantsPacket(header, remainingData);
                 case 5:
-                    return new CarSetupsPacket(header, remainingData);
+                    return new Setups.CarSetupsPacket(header, remainingData);
                 case 6:
-                    return new CarTelemetryPacket(header, remainingData);
+                    return new Telemetry.CarTelemetryPacket(header, remainingData);
                 case 7:
-                    return new CarStatusPacket(header, remainingData);
+                    return new Statuses.CarStatusPacket(header, remainingData);
                 case 8:
-                    return new FinalClassificationPacket(header, remainingData);
+                    return new Classifications.FinalClassificationPacket(header, remainingData);
                 case 9:
-                    return new LobbyInfoPacket(header, remainingData);
+                    return new Lobbies.LobbyInfoPacket(header, remainingData);
                 case 10:
-                    return new CarDamagePacket(header, remainingData);
+                    return new Damage.CarDamagePacket(header, remainingData);
                 case 11:
-                    return new SessionHistoryPacket(header, remainingData);
+                    return new SessionHistory.SessionHistoryPacket(header, remainingData);
             }
             throw new InvalidPacketException(header.packetId);
         }

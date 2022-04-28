@@ -1,6 +1,4 @@
-﻿using F1GameTelemetryLibrary.Packets;
-
-namespace F1GameTelemetryLibrary
+﻿namespace F1GameTelemetryLibrary.Participants
 {
     /// <summary>
     /// Participant data for a particular car.

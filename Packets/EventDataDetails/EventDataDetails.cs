@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace F1GameTelemetryLibrary
+namespace F1GameTelemetryLibrary.Events
 {
     /// <summary>
     /// Superclass for details about each type of event data.
