@@ -159,6 +159,12 @@ namespace F1GameTelemetryLibrary
         /// </summary>
         Assists allowedAssists = new();
 
+        public SessionPacket(PacketHeader header, byte[] remainingData)
+        {
+            this.header = header;
+            Unpack(remainingData);
+        }
+
         public void Unpack(byte[] packedData)
         {
             Unpacker unpacker = new(packedData);

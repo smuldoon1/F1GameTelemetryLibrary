@@ -13,6 +13,12 @@ namespace F1GameTelemetryLibrary
         /// </summary>
         CarStatusData[] carStatusData = new CarStatusData[F1Globals.MAX_CARS];
 
+        public CarStatusPacket(PacketHeader header, byte[] remainingData)
+        {
+            this.header = header;
+            Unpack(remainingData);
+        }
+
         public void Unpack(byte[] packedData)
         {
             Unpacker unpacker = new Unpacker(packedData);

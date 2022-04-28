@@ -19,6 +19,12 @@ namespace F1GameTelemetryLibrary
         /// </summary>
         ParticipantData[] participants = new ParticipantData[F1Globals.MAX_CARS];
 
+        public ParticipantsPacket(PacketHeader header, byte[] remainingData)
+        {
+            this.header = header;
+            Unpack(remainingData);
+        }
+
         public void Unpack(byte[] packedData)
         {
             Unpacker unpacker = new Unpacker(packedData);

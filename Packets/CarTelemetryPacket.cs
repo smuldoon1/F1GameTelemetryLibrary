@@ -27,6 +27,12 @@ namespace F1GameTelemetryLibrary
         /// </summary>
         sbyte suggestedGear;
 
+        public CarTelemetryPacket(PacketHeader header, byte[] remainingData)
+        {
+            this.header = header;
+            Unpack(remainingData);
+        }
+
         public void Unpack(byte[] packedData)
         {
             Unpacker unpacker = new Unpacker(packedData);

@@ -53,6 +53,12 @@ namespace F1GameTelemetryLibrary
         /// </summary>
         TyreStintsHistoryData[] tyreStintsHistoryData = new TyreStintsHistoryData[F1Globals.MAX_TYRE_STINTS_HISTORY_DATA];
 
+        public SessionHistoryPacket(PacketHeader header, byte[] remainingData)
+        {
+            this.header = header;
+            Unpack(remainingData);
+        }
+
         public void Unpack(byte[] packedData)
         {
             Unpacker unpacker = new Unpacker(packedData);

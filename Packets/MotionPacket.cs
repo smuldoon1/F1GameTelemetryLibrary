@@ -26,6 +26,12 @@ namespace F1GameTelemetryLibrary
         /// </summary>
         float frontWheelsAngle;
 
+        public MotionPacket(PacketHeader header, byte[] remainingData)
+        {
+            this.header = header;
+            Unpack(remainingData);
+        }
+
         public void Unpack(byte[] packedData)
         {
             Unpacker unpacker = new Unpacker(packedData);

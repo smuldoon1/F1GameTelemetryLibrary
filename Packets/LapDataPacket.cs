@@ -14,6 +14,12 @@ namespace F1GameTelemetryLibrary
         /// </summary>
         LapData[] lapData = new LapData[F1Globals.MAX_CARS];
 
+        public LapDataPacket(PacketHeader header, byte[] remainingData)
+        {
+            this.header = header;
+            Unpack(remainingData);
+        }
+
         public void Unpack(byte[] packedData)
         {
             Unpacker unpacker = new Unpacker(packedData);

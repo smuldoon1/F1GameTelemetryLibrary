@@ -3,7 +3,7 @@
     /// <summary>
     /// Each packet has a header which should be unpacked first.
     /// </summary>
-    internal struct PacketHeader : IPacket
+    internal struct PacketHeader
     {
         /// <summary>
         /// Edition of the F1 game this packet is being sent by.
@@ -28,7 +28,7 @@
         /// <summary>
         /// Identifier for this packet type. See documentation for information about each packet type.
         /// </summary>
-        byte packetId;
+        internal byte packetId;
 
         /// <summary>
         /// Unique identifier for the session. Each session generates a new identifier.
@@ -55,20 +55,22 @@
         /// </summary>
         byte secondaryPlayerCarIndex;
 
-        public void Unpack(byte[] packedData)
+        public byte[] Unpack(byte[] packedData)
         {
-            Unpacker u = new Unpacker(packedData);
+            Unpacker unpacker = new Unpacker(packedData);
 
-            packetFormat = u.NextUlong();
-            gameMajorVersion = u.NextByte();
-            gameMinorVersion = u.NextByte();
-            packetVersion = u.NextByte();
-            packetId = u.NextByte();
-            sessionUID = u.NextUlong();
-            sessionTime = u.NextFloat();
-            frameIdentifier = u.NextUint();
-            playerCarIndex = u.NextByte();
-            secondaryPlayerCarIndex = u.NextByte();
+            packetFormat = unpacker.NextUlong();
+            gameMajorVersion = unpacker.NextByte();
+            gameMinorVersion = unpacker.NextByte();
+            packetVersion = unpacker.NextByte();
+            packetId = unpacker.NextByte();
+            sessionUID = unpacker.NextUlong();
+            sessionTime = unpacker.NextFloat();
+            frameIdentifier = unpacker.NextUint();
+            playerCarIndex = unpacker.NextByte();
+            secondaryPlayerCarIndex = unpacker.NextByte();
+
+            return unpacker.RetrieveUnconvertedBytes();
         }
     }
 }
