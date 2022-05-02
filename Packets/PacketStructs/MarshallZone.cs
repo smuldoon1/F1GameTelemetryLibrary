@@ -17,7 +17,7 @@ namespace F1GameTelemetryLibrary.Sessions
         /// </summary>
         Flag zoneFlag;
 
-        void IPacketStruct.Unpack(Unpacker unpacker)
+        public void Unpack(Unpacker unpacker)
         {
             zoneStart = unpacker.NextByte();
             zoneFlag = (Flag)unpacker.NextSbyte();

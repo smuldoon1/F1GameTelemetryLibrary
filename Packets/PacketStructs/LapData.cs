@@ -127,7 +127,7 @@ namespace F1GameTelemetryLibrary.Laps
         /// </summary>
         bool shouldCarServePenalty;
 
-        void IPacketStruct.Unpack(Unpacker unpacker)
+        public void Unpack(Unpacker unpacker)
         {
             lastlapTime = unpacker.NextUint();
             currentLapTime = unpacker.NextUint();

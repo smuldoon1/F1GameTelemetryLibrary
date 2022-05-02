@@ -45,7 +45,7 @@
         /// </summary>
         bool isTelemetryPublic;
 
-        void IPacketStruct.Unpack(Unpacker unpacker)
+        public void Unpack(Unpacker unpacker)
         {
             isAiControlled = unpacker.NextBool();
             driverId = unpacker.NextByte();

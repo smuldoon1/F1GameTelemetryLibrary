@@ -87,7 +87,7 @@ namespace F1GameTelemetryLibrary.Telemetry
         /// </summary>
         TyreData<Enums.SurfaceType> surfaceTypes;
 
-        void IPacketStruct.Unpack(Unpacker unpacker)
+        public void Unpack(Unpacker unpacker)
         {
             speed = unpacker.NextUshort();
             throttle = unpacker.NextFloat();

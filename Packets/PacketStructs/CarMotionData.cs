@@ -57,7 +57,7 @@ namespace F1GameTelemetryLibrary.Motion
         /// </summary>
         float roll;
 
-        void IPacketStruct.Unpack(Unpacker unpacker)
+        public void Unpack(Unpacker unpacker)
         {
             worldPosition = new Vector3<float>()
             {

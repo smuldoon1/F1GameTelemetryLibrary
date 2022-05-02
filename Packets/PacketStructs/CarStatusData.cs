@@ -122,7 +122,7 @@ namespace F1GameTelemetryLibrary.Statuses
         /// </summary>
         bool isNetworkPaused;
 
-        void IPacketStruct.Unpack(Unpacker unpacker)
+        public void Unpack(Unpacker unpacker)
         {
             tractionControl = (Enums.TractionControlMode)unpacker.NextByte();
             isABSEnabled = unpacker.NextBool();

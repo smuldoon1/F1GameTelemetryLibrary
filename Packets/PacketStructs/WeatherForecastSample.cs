@@ -47,7 +47,7 @@ namespace F1GameTelemetryLibrary.Sessions
         /// </summary>
         byte rainPercentage;
 
-        void IPacketStruct.Unpack(Unpacker unpacker)
+        public void Unpack(Unpacker unpacker)
         {
             sessionType = (Enums.SessionType)unpacker.NextByte();
             timeOffset = unpacker.NextByte();

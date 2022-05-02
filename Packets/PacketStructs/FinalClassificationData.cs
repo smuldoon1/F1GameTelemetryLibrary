@@ -89,7 +89,7 @@ namespace F1GameTelemetryLibrary.Classifications
             visualTyreStints = new VisualTyreCompound[F1Globals.MAX_TYRE_STINTS_HISTORY_DATA];
         }
 
-        void IPacketStruct.Unpack(Unpacker unpacker)
+        public void Unpack(Unpacker unpacker)
         {
             position = unpacker.NextByte();
             lapsCompleted = unpacker.NextByte();
