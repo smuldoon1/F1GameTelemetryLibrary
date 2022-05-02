@@ -102,7 +102,7 @@ namespace F1GameTelemetryLibrary.Setups
         /// </summary>
         float fuelLoad;
 
-        public void Unpack(Unpacker unpacker)
+        void IPacketStruct.Unpack(Unpacker unpacker)
         {
             frontWing = unpacker.NextByte();
             rearWing = unpacker.NextByte();

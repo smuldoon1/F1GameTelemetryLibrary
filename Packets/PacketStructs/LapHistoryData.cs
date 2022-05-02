@@ -30,7 +30,7 @@
         /// </summary>
         Enums.LapValidityFlags lapValidBitFlags;
 
-        public void Unpack(Unpacker unpacker)
+        void IPacketStruct.Unpack(Unpacker unpacker)
         {
             lapTime = unpacker.NextUint();
             sectorOneTime = unpacker.NextUshort();

@@ -22,7 +22,7 @@ namespace F1GameTelemetryLibrary.SessionHistory
         /// </summary>
         VisualTyreCompound visualTyreCompound;
 
-        public void Unpack(Unpacker unpacker)
+        void IPacketStruct.Unpack(Unpacker unpacker)
         {
             endLap = unpacker.NextByte();
             tyreCompound = (ActualTyreCompound)unpacker.NextByte();

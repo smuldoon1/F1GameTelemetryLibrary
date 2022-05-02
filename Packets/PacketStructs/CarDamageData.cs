@@ -97,7 +97,7 @@ namespace F1GameTelemetryLibrary.Damage
         /// </summary>
         byte engineTCWear;
 
-        public void Unpack(Unpacker unpacker)
+        void IPacketStruct.Unpack(Unpacker unpacker)
         {
             tyreWear = new TyreData<float>()
             {

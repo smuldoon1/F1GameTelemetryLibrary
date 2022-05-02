@@ -50,7 +50,7 @@
         /// </summary>
         bool isDynamicRacingLine3D;
 
-        public void Unpack(Unpacker unpacker)
+        void IPacketStruct.Unpack(Unpacker unpacker)
         {
             steeringAssist = unpacker.NextBool();
             brakingAssist = (Enums.BrakingAssistMode)unpacker.NextByte();

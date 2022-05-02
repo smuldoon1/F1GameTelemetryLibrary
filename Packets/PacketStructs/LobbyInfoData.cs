@@ -35,7 +35,7 @@
         /// </summary>
         Enums.ReadyStatus readyStatus;
 
-        public void Unpack(Unpacker unpacker)
+        void IPacketStruct.Unpack(Unpacker unpacker)
         {
             isAiControlled = unpacker.NextBool();
             teamId = unpacker.NextByte();
