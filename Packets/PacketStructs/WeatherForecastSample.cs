@@ -5,7 +5,7 @@ namespace F1GameTelemetryLibrary.Sessions
     /// <summary>
     /// A sample of weather forecast data.
     /// </summary>
-    internal struct WeatherForecastSample : IPacketStruct
+    internal class WeatherForecastSample : IPacketStruct
     {
         /// <summary>
         /// The type of session.

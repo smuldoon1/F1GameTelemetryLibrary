@@ -5,7 +5,7 @@ namespace F1GameTelemetryLibrary.Statuses
     /// <summary>
     /// Status information about a particular car. For some or all data in this stuct only the player, AI cars and network players with their UDP telemetry set to Public will non-zero values.
     /// </summary>
-    internal struct CarStatusData : IPacketStruct
+    internal class CarStatusData : IPacketStruct
     {
         /// <summary>
         /// The traction control setting on this car.

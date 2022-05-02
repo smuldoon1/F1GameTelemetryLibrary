@@ -5,7 +5,7 @@ namespace F1GameTelemetryLibrary.Sessions
     /// <summary>
     /// Data about a particlar marshall zone at the track.
     /// </summary>
-    internal struct MarshallZone : IPacketStruct
+    internal class MarshallZone : IPacketStruct
     {
         /// <summary>
         /// Distance through the lap the marshall zone starts represented as a fraction between 0 and 1.

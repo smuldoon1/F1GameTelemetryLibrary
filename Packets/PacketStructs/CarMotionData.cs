@@ -5,7 +5,7 @@ namespace F1GameTelemetryLibrary.Motion
     /// <summary>
     /// Motion data for a particular car.
     /// </summary>
-    internal struct CarMotionData : IPacketStruct
+    internal class CarMotionData : IPacketStruct
     {
         /// <summary>
         /// Position in world space.

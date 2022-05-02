@@ -5,7 +5,7 @@ namespace F1GameTelemetryLibrary.SessionHistory
     /// <summary>
     /// Stores historical data for each tyre stint done by a particular car.
     /// </summary>
-    internal struct TyreStintsHistoryData : IPacketStruct
+    internal class TyreStintsHistoryData : IPacketStruct
     {
         /// <summary>
         /// Lap that the tyre stint ends on. 255 if this is the current stint.

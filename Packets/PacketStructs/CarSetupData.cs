@@ -5,7 +5,7 @@ namespace F1GameTelemetryLibrary.Setups
     /// <summary>
     /// Car setup values for a particular car.
     /// </summary>
-    internal struct CarSetupData  : IPacketStruct
+    internal class CarSetupData  : IPacketStruct
     {
         /// <summary>
         /// Front wing aero angle.

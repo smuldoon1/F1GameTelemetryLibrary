@@ -3,7 +3,7 @@
     /// <summary>
     /// Participant data for a particular car.
     /// </summary>
-    internal struct ParticipantData : IPacketStruct
+    internal class ParticipantData : IPacketStruct
     {
         /// <summary>
         /// Is the car being controlled by the AI?

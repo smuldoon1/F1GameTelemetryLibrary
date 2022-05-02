@@ -3,7 +3,7 @@
     /// <summary>
     /// Lobby info about a particular player.
     /// </summary>
-    internal struct LobbyInfoData : IPacketStruct
+    internal class LobbyInfoData : IPacketStruct
     {
         /// <summary>
         /// Is the car being controlled by the AI?

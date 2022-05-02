@@ -3,7 +3,7 @@
     /// <summary>
     /// Used to store assist data.
     /// </summary>
-    internal struct Assists : IPacketStruct
+    internal class Assists : IPacketStruct
     {
         /// <summary>
         /// Is steering assist enabled?

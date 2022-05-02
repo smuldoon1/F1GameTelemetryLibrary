@@ -5,7 +5,7 @@ namespace F1GameTelemetryLibrary.Telemetry
     /// <summary>
     /// Telemetry data for a particular car.
     /// </summary>
-    internal struct CarTelemetryData : IPacketStruct
+    internal class CarTelemetryData : IPacketStruct
     {
         /// <summary>
         /// Speed of the car in kilometres per hour.

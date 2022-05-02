@@ -3,7 +3,7 @@
     /// <summary>
     /// Stores historical data for each lap done by a particular car.
     /// </summary>
-    internal struct LapHistoryData : IPacketStruct
+    internal class LapHistoryData : IPacketStruct
     {
         /// <summary>
         /// Lap time in milliseconds.

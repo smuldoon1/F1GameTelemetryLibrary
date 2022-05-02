@@ -5,7 +5,7 @@ namespace F1GameTelemetryLibrary.Classifications
     /// <summary>
     /// Status information about a particular car.
     /// </summary>
-    internal struct FinalClassificationData : IPacketStruct
+    internal class FinalClassificationData : IPacketStruct
     {
         /// <summary>
         /// Finishing position of the car.

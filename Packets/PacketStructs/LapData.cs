@@ -5,7 +5,7 @@ namespace F1GameTelemetryLibrary.Laps
     /// <summary>
     /// Lap data about a particlar car.
     /// </summary>
-    internal struct LapData : IPacketStruct
+    internal class LapData : IPacketStruct
     {
         /// <summary>
         /// The previous lap time in milliseconds.
