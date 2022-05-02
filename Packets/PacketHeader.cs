@@ -8,7 +8,7 @@
         /// <summary>
         /// Edition of the F1 game this packet is being sent by.
         /// </summary>
-        ulong packetFormat;
+        ushort packetFormat;
 
         /// <summary>
         /// Game major version (x.00).
@@ -38,7 +38,7 @@
         /// <summary>
         /// Session timestamp in seconds.
         /// </summary>
-        float sessionTime;
+        internal float sessionTime;
 
         /// <summary>
         /// Identifier for the frame the packet was retrieved on.
@@ -59,7 +59,7 @@
         {
             Unpacker unpacker = new Unpacker(packedData);
 
-            packetFormat = unpacker.NextUlong();
+            packetFormat = unpacker.NextUshort();
             gameMajorVersion = unpacker.NextByte();
             gameMinorVersion = unpacker.NextByte();
             packetVersion = unpacker.NextByte();

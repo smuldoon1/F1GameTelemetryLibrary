@@ -42,7 +42,7 @@ namespace F1GameTelemetryLibrary
         {
             if (packedData == null)
                 throw new UnpackingException();
-            return packedData[pointer++];
+            return packedData[pointer++]; 
         }
 
         /// <summary>
@@ -66,7 +66,9 @@ namespace F1GameTelemetryLibrary
         {
             if (packedData == null)
                 throw new UnpackingException();
-            return BitConverter.ToUInt16(packedData, pointer += 2);
+            ushort value = BitConverter.ToUInt16(packedData, pointer);
+            pointer += 2;
+            return value;
         }
 
         /// <summary>
@@ -78,7 +80,9 @@ namespace F1GameTelemetryLibrary
         {
             if (packedData == null)
                 throw new UnpackingException();
-            return BitConverter.ToInt16(packedData, pointer += 2);
+            short value = BitConverter.ToInt16(packedData, pointer);
+            pointer += 2;
+            return value;
         }
 
         /// <summary>
@@ -90,7 +94,9 @@ namespace F1GameTelemetryLibrary
         {
             if (packedData == null)
                 throw new UnpackingException();
-            return BitConverter.ToUInt32(packedData, pointer += 4);
+            uint value = BitConverter.ToUInt32(packedData, pointer);
+            pointer += 4;
+            return value;
         }
 
         /// <summary>
@@ -102,7 +108,9 @@ namespace F1GameTelemetryLibrary
         {
             if (packedData == null)
                 throw new UnpackingException();
-            return BitConverter.ToSingle(packedData, pointer += 4);
+            float value = BitConverter.ToSingle(packedData, pointer);
+            pointer += 4;
+            return value;
         }
 
         /// <summary>
@@ -114,7 +122,9 @@ namespace F1GameTelemetryLibrary
         {
             if (packedData == null)
                 throw new UnpackingException();
-            return BitConverter.ToUInt64(packedData, pointer += 8);
+            ulong value = BitConverter.ToUInt64(packedData, pointer);
+            pointer += 8;
+            return value;
         }
 
         /// <summary>
@@ -126,7 +136,9 @@ namespace F1GameTelemetryLibrary
         {
             if (packedData == null)
                 throw new UnpackingException();
-            return BitConverter.ToDouble(packedData, pointer += 8);
+            double value = BitConverter.ToDouble(packedData, pointer);
+            pointer += 8;
+            return value;
         }
 
         /// <summary>
