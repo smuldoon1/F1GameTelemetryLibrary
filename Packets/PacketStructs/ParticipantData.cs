@@ -38,7 +38,7 @@
         /// <summary>
         /// Name of the participant.
         /// </summary>
-        string name;
+        string name = "";
 
         /// <summary>
         /// Is the participants UDP telemetry setting unrestricted?

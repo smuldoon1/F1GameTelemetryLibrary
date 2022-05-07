@@ -20,6 +20,12 @@ namespace F1GameTelemetryLibrary
             this.packedData = packedData;
         }
 
+        //~Unpacker()
+        //{
+        //    if (packedData != null)
+        //        throw new UnpackingException("Unpacker was freed with unpacked data still remaining. The Finish() method must be called before the Unpacker object goes out of scope.");
+        //}
+
         /// <summary>
         /// Returns all bytes remaining in packedData that have not not been converted yet.
         /// </summary>
@@ -27,10 +33,20 @@ namespace F1GameTelemetryLibrary
         public byte[] RetrieveUnconvertedBytes()
         {
             if (packedData == null)
-                throw new UnpackingException();
-            byte[] stolenData = packedData.Skip(pointer).Take(packedData.Length - pointer - 1).ToArray();
+                throw NullError();    
+            byte[] data = packedData.Skip(pointer).Take(packedData.Length - pointer - 1).ToArray();
             packedData = null;
-            return stolenData;
+            return data;
+        }
+
+        /// <summary>
+        /// Should be called whenever the unpacker has finished unpacking. Will throw an error if there are bytes remaining.
+        /// </summary>
+        public void Finish()
+        {
+            if (packedData != null && packedData.Length > 0)
+                throw new UnpackingException($"Cannot finish unpacking until { packedData } is empty. There are still { packedData.Length } bytes left to unpack.");
+            packedData = null;
         }
 
         /// <summary>
@@ -41,7 +57,7 @@ namespace F1GameTelemetryLibrary
         public byte NextByte()
         {
             if (packedData == null)
-                throw new UnpackingException();
+                throw NullError();
             return packedData[pointer++]; 
         }
 
@@ -53,7 +69,7 @@ namespace F1GameTelemetryLibrary
         public sbyte NextSbyte()
         {
             if (packedData == null)
-                throw new UnpackingException();
+                throw NullError();
             return unchecked((sbyte)packedData[pointer++]);
         }
 
@@ -65,7 +81,7 @@ namespace F1GameTelemetryLibrary
         public ushort NextUshort()
         {
             if (packedData == null)
-                throw new UnpackingException();
+                throw NullError();
             ushort value = BitConverter.ToUInt16(packedData, pointer);
             pointer += 2;
             return value;
@@ -79,7 +95,7 @@ namespace F1GameTelemetryLibrary
         public short NextShort()
         {
             if (packedData == null)
-                throw new UnpackingException();
+                throw NullError();
             short value = BitConverter.ToInt16(packedData, pointer);
             pointer += 2;
             return value;
@@ -93,7 +109,7 @@ namespace F1GameTelemetryLibrary
         public uint NextUint()
         {
             if (packedData == null)
-                throw new UnpackingException();
+                throw NullError();
             uint value = BitConverter.ToUInt32(packedData, pointer);
             pointer += 4;
             return value;
@@ -107,7 +123,7 @@ namespace F1GameTelemetryLibrary
         public float NextFloat()
         {
             if (packedData == null)
-                throw new UnpackingException();
+                throw NullError();
             float value = BitConverter.ToSingle(packedData, pointer);
             pointer += 4;
             return value;
@@ -121,7 +137,7 @@ namespace F1GameTelemetryLibrary
         public ulong NextUlong()
         {
             if (packedData == null)
-                throw new UnpackingException();
+                throw NullError();
             ulong value = BitConverter.ToUInt64(packedData, pointer);
             pointer += 8;
             return value;
@@ -135,7 +151,7 @@ namespace F1GameTelemetryLibrary
         public double NextDouble()
         {
             if (packedData == null)
-                throw new UnpackingException();
+                throw NullError();
             double value = BitConverter.ToDouble(packedData, pointer);
             pointer += 8;
             return value;
@@ -150,11 +166,13 @@ namespace F1GameTelemetryLibrary
         public bool NextBool()
         {
             if (packedData == null)
-                throw new UnpackingException();
+                throw NullError();
             byte b = packedData[pointer++];
-            if (b == 0) return false;
-            if (b == 1) return true;
-            throw new ArithmeticException($"{ b } cannot be converted into type bool.");
+            if (b == 0)
+                return false;
+            if (b == 1)
+                return true;
+            throw new UnpackingException($"{ b } cannot be converted into type bool.");
         }
 
         /// <summary>
@@ -165,13 +183,18 @@ namespace F1GameTelemetryLibrary
         public string NextString(int length)
         {
             if (packedData == null)
-                throw new UnpackingException();
+                throw NullError();
             char[] chars = new char[length];
             for (int i = 0; i < length; i++)
             {
                 chars[i] = BitConverter.ToChar(packedData, pointer++);
             }
             return new string(chars);
+        }
+
+        UnpackingException NullError()
+        {
+            return new UnpackingException($"{ packedData } cannot be accessed because it is null. Make sure { packedData } has been passed into the Unpacker and that there is still bytes left to convert.");
         }
     }
 }

@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 namespace F1GameTelemetryLibrary
 {
     /// <summary>
-    /// The exception that is thrown whenever Unpacker attempts to access a null byte array.
+    /// The exception that is thrown whenever an error occurs with the unpacker.
     /// </summary>
     public class UnpackingException : Exception
     {
@@ -20,11 +20,10 @@ namespace F1GameTelemetryLibrary
         }
 
         /// <summary>
-        /// Initialises a new instance of the UnpackingException class with an error message containing the name of the null byte array.
+        /// Initialises a new instance of the UnpackingException class with an error message.
         /// </summary>
         /// <param name="packedData"></param>
-        public UnpackingException(string packedData) :
-            base($"{ packedData } cannot be accessed because it is null. Make sure { packedData } has been passed into the Unpacker and that there is still bytes left to convert.")
+        public UnpackingException(string message) : base(message)
         {
 
         }

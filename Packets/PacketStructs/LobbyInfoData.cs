@@ -23,7 +23,7 @@
         /// <summary>
         /// Name of the participant.
         /// </summary>
-        string name;
+        string name = "";
 
         /// <summary>
         /// Race number of the car.
