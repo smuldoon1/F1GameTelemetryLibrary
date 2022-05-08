@@ -26,6 +26,11 @@
         byte teamId;
 
         /// <summary>
+        /// Is the driver driving for the custom team in the MyTeam mode?
+        /// </summary>
+        bool isMyTeam;
+
+        /// <summary>
         /// Race number of the car.
         /// </summary>
         byte raceNumber;
@@ -51,6 +56,7 @@
             driverId = unpacker.NextByte();
             networkId = unpacker.NextByte();
             teamId = unpacker.NextByte();
+            isMyTeam = unpacker.NextBool();
             raceNumber = unpacker.NextByte();
             nationalityId = unpacker.NextByte();
             name = unpacker.NextString(48);
