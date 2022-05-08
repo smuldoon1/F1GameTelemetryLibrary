@@ -8,22 +8,22 @@
         /// <summary>
         /// Edition of the F1 game this packet is being sent by.
         /// </summary>
-        ushort packetFormat;
+        internal ushort packetFormat;
 
         /// <summary>
         /// Game major version (x.00).
         /// </summary>
-        byte gameMajorVersion;
+        internal byte gameMajorVersion;
 
         /// <summary>
         /// Game minor version (1.xx).
         /// </summary>
-        byte gameMinorVersion;
+        internal byte gameMinorVersion;
 
         /// <summary>
         /// Version of this packet type.
         /// </summary>
-        byte packetVersion;
+        internal byte packetVersion;
 
         /// <summary>
         /// Identifier for this packet type. See documentation for information about each packet type.
@@ -33,7 +33,7 @@
         /// <summary>
         /// Unique identifier for the session. Each session generates a new identifier.
         /// </summary>
-        ulong sessionUID;
+        internal ulong sessionUID;
 
         /// <summary>
         /// Session timestamp in seconds.
@@ -43,17 +43,17 @@
         /// <summary>
         /// Identifier for the frame the packet was retrieved on.
         /// </summary>
-        uint frameIdentifier;
+        internal uint frameIdentifier;
 
         /// <summary>
         /// Index of the players car.
         /// </summary>
-        byte playerCarIndex;
+        internal byte playerCarIndex;
 
         /// <summary>
         /// Index of the secondary players car (splitscreen player). 255 if there is no secondary player.
         /// </summary>
-        byte secondaryPlayerCarIndex;
+        internal byte secondaryPlayerCarIndex;
 
         public byte[] Unpack(byte[] packedData)
         {

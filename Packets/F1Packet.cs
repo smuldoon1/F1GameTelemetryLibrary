@@ -10,6 +10,10 @@
         /// </summary>
         internal PacketHeader header;
 
+        public byte PlayerCar { get { return header.playerCarIndex; } }
+
+        public float SessionTime { get { return header.sessionTime; } }
+
         public static F1Packet CreatePacket(byte[] udpPacket)
         {
             PacketHeader header = new PacketHeader();
