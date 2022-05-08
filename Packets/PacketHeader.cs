@@ -3,7 +3,7 @@
     /// <summary>
     /// Each packet has a header which should be unpacked first.
     /// </summary>
-    internal struct PacketHeader
+    public struct PacketHeader
     {
         /// <summary>
         /// Edition of the F1 game this packet is being sent by.

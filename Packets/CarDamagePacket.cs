@@ -5,7 +5,7 @@ namespace F1GameTelemetryLibrary.Damage
     /// <summary>
     /// Car damage packet stores damage and wear data for cars in the session.
     /// </summary>
-    internal class CarDamagePacket : F1Packet, IPacket
+    partial class CarDamagePacket : F1Packet, IPacket
     {
         /// <summary>
         /// Array of car damage data.
