@@ -22,8 +22,11 @@
 
             for (int i = 0; i < lapData.Length; i++)
             {
+                lapData[i] = new LapData();
                 lapData[i].Unpack(unpacker);
             }
+
+            unpacker.Finish();
         }
     }
 }

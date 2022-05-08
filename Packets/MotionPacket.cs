@@ -38,6 +38,7 @@ namespace F1GameTelemetryLibrary.Motion
 
             for (int i = 0; i < carMotionData.Length; i++)
             {
+                carMotionData[i] = new CarMotionData();
                 carMotionData[i].Unpack(unpacker);
             }
             suspensionPosition = new TyreData<float>()
@@ -94,6 +95,8 @@ namespace F1GameTelemetryLibrary.Motion
                 z = unpacker.NextFloat()
             };
             frontWheelsAngle = unpacker.NextFloat();
+
+            unpacker.Finish();
         }
     }
 }

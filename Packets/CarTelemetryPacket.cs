@@ -37,11 +37,14 @@
 
             for (int i = 0; i < carTelemetryData.Length; i++)
             {
+                carTelemetryData[i] = new CarTelemetryData();
                 carTelemetryData[i].Unpack(unpacker);
             }
             mfdPanelIndex = unpacker.NextByte();
             mfdPanelIndexSecondaryPlayer = unpacker.NextByte();
             suggestedGear = unpacker.NextSbyte();
+
+            unpacker.Finish();
         }
     }
 }

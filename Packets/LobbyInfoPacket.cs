@@ -28,8 +28,11 @@
             numberOfPlayers = unpacker.NextByte();
             for (int i = 0; i < lobbyPlayers.Length; i++)
             {
+                lobbyPlayers[i] = new LobbyInfoData();
                 lobbyPlayers[i].Unpack(unpacker);
             }
+
+            unpacker.Finish();
         }
     }
 }

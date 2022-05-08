@@ -153,7 +153,7 @@
         /// <summary>
         /// The assists allowed in the session.
         /// </summary>
-        Assists allowedAssists;
+        Assists allowedAssists = new Assists();
 
         public SessionPacket(PacketHeader header, byte[] remainingData)
         {
@@ -183,6 +183,7 @@
             marshallZoneCount = unpacker.NextByte();
             for (int i = 0; i < marshallZones.Length; i++)
             {
+                marshallZones[i] = new MarshallZone();
                 marshallZones[i].Unpack(unpacker);
             }
             safetyCarStatus = (Enums.SafetyCarStatus)unpacker.NextByte();
@@ -190,6 +191,7 @@
             weatherForecastSampleCount = unpacker.NextByte();
             for (int i = 0; i < weatherForecastSamples.Length; i++)
             {
+                weatherForecastSamples[i] = new WeatherForecastSample();
                 weatherForecastSamples[i].Unpack(unpacker);
             }
             isForecastApproximate = unpacker.NextBool();
@@ -201,6 +203,8 @@
             pitStopWindowLatestLap = unpacker.NextByte();
             pitStopRejoinPosition = unpacker.NextByte();
             allowedAssists.Unpack(unpacker);
+
+            unpacker.Finish();
         }
     }
 }

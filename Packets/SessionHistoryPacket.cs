@@ -69,12 +69,16 @@
             bestSectorThreeLap = unpacker.NextByte();
             for (int i = 0; i < lapHistoryData.Length; i++)
             {
+                lapHistoryData[i] = new LapHistoryData();
                 lapHistoryData[i].Unpack(unpacker);
             }
             for (int i = 0; i < tyreStintsHistoryData.Length; i++)
             {
+                tyreStintsHistoryData[i] = new TyreStintsHistoryData();
                 tyreStintsHistoryData[i].Unpack(unpacker);
             }
+
+            unpacker.Finish();
         }
     }
 }

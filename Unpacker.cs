@@ -34,7 +34,7 @@ namespace F1GameTelemetryLibrary
         {
             if (packedData == null)
                 throw NullError();    
-            byte[] data = packedData.Skip(pointer).Take(packedData.Length - pointer - 1).ToArray();
+            byte[] data = packedData.Skip(pointer).ToArray();
             packedData = null;
             return data;
         }
@@ -44,7 +44,7 @@ namespace F1GameTelemetryLibrary
         /// </summary>
         public void Finish()
         {
-            if (packedData != null && packedData.Length > 0)
+            if (packedData != null && pointer < packedData.Length)
                 throw new UnpackingException($"Cannot finish unpacking until { packedData } is empty. There are still { packedData.Length } bytes left to unpack.");
             packedData = null;
         }
@@ -58,7 +58,14 @@ namespace F1GameTelemetryLibrary
         {
             if (packedData == null)
                 throw NullError();
-            return packedData[pointer++]; 
+            try
+            {
+                return packedData[pointer++];
+            }
+            catch (ArgumentException)
+            {
+                throw NoDataError(1);
+            }
         }
 
         /// <summary>
@@ -70,7 +77,18 @@ namespace F1GameTelemetryLibrary
         {
             if (packedData == null)
                 throw NullError();
-            return unchecked((sbyte)packedData[pointer++]);
+            try
+            {
+                return unchecked((sbyte)packedData[pointer++]);
+            }
+            catch (ArgumentException)
+            {
+                throw NoDataError(1);
+            }
+            catch (IndexOutOfRangeException)
+            {
+                throw IndexError();
+            }
         }
 
         /// <summary>
@@ -82,9 +100,20 @@ namespace F1GameTelemetryLibrary
         {
             if (packedData == null)
                 throw NullError();
-            ushort value = BitConverter.ToUInt16(packedData, pointer);
-            pointer += 2;
-            return value;
+            try
+            {
+                ushort value = BitConverter.ToUInt16(packedData, pointer);
+                pointer += 2;
+                return value;
+            }
+            catch (ArgumentException)
+            {
+                throw NoDataError(2);
+            }
+            catch (IndexOutOfRangeException)
+            {
+                throw IndexError();
+            }
         }
 
         /// <summary>
@@ -96,9 +125,20 @@ namespace F1GameTelemetryLibrary
         {
             if (packedData == null)
                 throw NullError();
-            short value = BitConverter.ToInt16(packedData, pointer);
-            pointer += 2;
-            return value;
+            try
+            {
+                short value = BitConverter.ToInt16(packedData, pointer);
+                pointer += 2;
+                return value;
+            }
+            catch (ArgumentException)
+            {
+                throw NoDataError(2);
+            }
+            catch (IndexOutOfRangeException)
+            {
+                throw IndexError();
+            }
         }
 
         /// <summary>
@@ -110,9 +150,20 @@ namespace F1GameTelemetryLibrary
         {
             if (packedData == null)
                 throw NullError();
-            uint value = BitConverter.ToUInt32(packedData, pointer);
-            pointer += 4;
-            return value;
+            try
+            {
+                uint value = BitConverter.ToUInt32(packedData, pointer);
+                pointer += 4;
+                return value;
+            }
+            catch (ArgumentException)
+            {
+                throw NoDataError(4);
+            }
+            catch (IndexOutOfRangeException)
+            {
+                throw IndexError();
+            }
         }
 
         /// <summary>
@@ -124,9 +175,20 @@ namespace F1GameTelemetryLibrary
         {
             if (packedData == null)
                 throw NullError();
-            float value = BitConverter.ToSingle(packedData, pointer);
-            pointer += 4;
-            return value;
+            try
+            {
+                float value = BitConverter.ToSingle(packedData, pointer);
+                pointer += 4;
+                return value;
+            }
+            catch (ArgumentException)
+            {
+                throw NoDataError(4);
+            }
+            catch (IndexOutOfRangeException)
+            {
+                throw IndexError();
+            }
         }
 
         /// <summary>
@@ -138,9 +200,20 @@ namespace F1GameTelemetryLibrary
         {
             if (packedData == null)
                 throw NullError();
-            ulong value = BitConverter.ToUInt64(packedData, pointer);
-            pointer += 8;
-            return value;
+            try
+            {
+                ulong value = BitConverter.ToUInt64(packedData, pointer);
+                pointer += 8;
+                return value;
+            }
+            catch (ArgumentException)
+            {
+                throw NoDataError(8);
+            }
+            catch (IndexOutOfRangeException)
+            {
+                throw IndexError();
+            }
         }
 
         /// <summary>
@@ -152,9 +225,20 @@ namespace F1GameTelemetryLibrary
         {
             if (packedData == null)
                 throw NullError();
-            double value = BitConverter.ToDouble(packedData, pointer);
-            pointer += 8;
-            return value;
+            try
+            {
+                double value = BitConverter.ToDouble(packedData, pointer);
+                pointer += 8;
+                return value;
+            }
+            catch (ArgumentException)
+            {
+                throw NoDataError(8);
+            }
+            catch (IndexOutOfRangeException)
+            {
+                throw IndexError();
+            }
         }
 
         /// <summary>
@@ -167,12 +251,23 @@ namespace F1GameTelemetryLibrary
         {
             if (packedData == null)
                 throw NullError();
-            byte b = packedData[pointer++];
-            if (b == 0)
-                return false;
-            if (b == 1)
-                return true;
-            throw new UnpackingException($"{ b } cannot be converted into type bool.");
+            try
+            {
+                byte b = packedData[pointer++];
+                if (b == 0)
+                    return false;
+                if (b == 1)
+                    return true;
+                throw new UnpackingException($"Value { b } cannot be converted into type bool.");
+            }
+            catch (ArgumentException)
+            {
+                throw NoDataError(1);
+            }
+            catch (IndexOutOfRangeException)
+            {
+                throw IndexError();
+            }
         }
 
         /// <summary>
@@ -184,17 +279,38 @@ namespace F1GameTelemetryLibrary
         {
             if (packedData == null)
                 throw NullError();
-            char[] chars = new char[length];
-            for (int i = 0; i < length; i++)
+            try
             {
-                chars[i] = BitConverter.ToChar(packedData, pointer++);
+                char[] chars = new char[length];
+                for (int i = 0; i < length; i++)
+                {
+                    chars[i] = BitConverter.ToChar(packedData, pointer++);
+                }
+                return new string(chars);
             }
-            return new string(chars);
+            catch (ArgumentException)
+            {
+                throw NoDataError(length);
+            }
+            catch (IndexOutOfRangeException)
+            {
+                throw IndexError();
+            }
         }
 
         UnpackingException NullError()
         {
             return new UnpackingException($"{ packedData } cannot be accessed because it is null. Make sure { packedData } has been passed into the Unpacker and that there is still bytes left to convert.");
+        }
+
+        UnpackingException NoDataError(int bytesRequired)
+        {
+            return new UnpackingException($"Not enough bytes left in { packedData } to unpack. { bytesRequired } bytes are required but there are only { packedData.Length - pointer } bytes remaining.");
+        }
+
+        UnpackingException IndexError()
+        {
+            return new UnpackingException($"Unpacker pointer ({ pointer }) is out of range. { packedData } has { packedData.Length } bytes.");
         }
     }
 }

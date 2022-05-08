@@ -24,11 +24,15 @@
         public void Unpack(byte[] packedData)
         {
             Unpacker unpacker = new Unpacker(packedData);
+
             activeCars = unpacker.NextByte();
             for (int i = 0; i < participants.Length; i++)
             {
+                participants[i] = new ParticipantData();
                 participants[i].Unpack(unpacker);
             }
+
+            unpacker.Finish();
         }
     }
 }

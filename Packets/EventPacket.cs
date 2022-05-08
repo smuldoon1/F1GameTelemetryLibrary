@@ -31,6 +31,8 @@
             {
                 eventDataDetails.Unpack(unpacker);
             }
+
+            unpacker.Finish();
         }
     }
 }

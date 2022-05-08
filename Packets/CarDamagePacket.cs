@@ -22,8 +22,11 @@
 
             for (int i = 0; i < carDamageData.Length; i++)
             {
+                carDamageData[i] = new CarDamageData();
                 carDamageData[i].Unpack(unpacker);
             }
+
+            unpacker.Finish();
         }
     }
 }

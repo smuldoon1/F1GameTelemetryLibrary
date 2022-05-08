@@ -10,21 +10,21 @@
         /// </summary>
         internal PacketHeader header;
 
-        public static F1Packet? CreatePacket(byte[] udpPacket)
+        public static F1Packet CreatePacket(byte[] udpPacket)
         {
             PacketHeader header = new PacketHeader();
             byte[] remainingData = header.Unpack(udpPacket);
             switch (header.packetId)
             {
-                case 0: // Packet too big for data p = 1436, byte[1439]
+                case 0:
                     return new Motion.MotionPacket(header, remainingData);
                 case 1: // 63 cant be converted into type bool
                     return new Sessions.SessionPacket(header, remainingData);
-                case 2: // Index was outside bounds of array p = 946, byte[945]
+                case 2:
                     return new Laps.LapDataPacket(header, remainingData);
                 case 3: // Event code strings are corrupted
                     return new Events.EventPacket(header, remainingData);
-                case 4: // Working
+                case 4:
                     return new Participants.ParticipantsPacket(header, remainingData);
                 case 5:
                     return new Setups.CarSetupsPacket(header, remainingData);
@@ -41,8 +41,7 @@
                 case 11:
                     return new SessionHistory.SessionHistoryPacket(header, remainingData);
             }
-            return null;
-            //throw new InvalidPacketException(header.packetId);
+            throw new InvalidPacketException(header.packetId);
         }
     }
 }

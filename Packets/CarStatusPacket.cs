@@ -22,8 +22,11 @@
 
             for (int i = 0; i < carStatusData.Length; i++)
             {
+                carStatusData[i] = new CarStatusData();
                 carStatusData[i].Unpack(unpacker);
             }
+
+            unpacker.Finish();
         }
     }
 }

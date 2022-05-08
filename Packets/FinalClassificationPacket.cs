@@ -28,8 +28,11 @@
             numberOfCars = unpacker.NextByte();
             for (int i = 0; i < classificationData.Length; i++)
             {
+                classificationData[i] = new FinalClassificationData();
                 classificationData[i].Unpack(unpacker);
             }
+
+            unpacker.Finish();
         }
     }
 }
