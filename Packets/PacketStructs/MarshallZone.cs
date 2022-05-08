@@ -19,7 +19,7 @@ namespace F1GameTelemetryLibrary.Sessions
 
         public void Unpack(Unpacker unpacker)
         {
-            zoneStart = unpacker.NextByte();
+            zoneStart = unpacker.NextFloat();
             zoneFlag = (Flag)unpacker.NextSbyte();
         }
     }
