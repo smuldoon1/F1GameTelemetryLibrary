@@ -13,6 +13,8 @@
         public override void Unpack(Unpacker unpacker)
         {
             buttonStatus = (Enums.ButtonFlags)unpacker.NextUint();
+
+            unpacker.Dump(4);
         }
     }
 }

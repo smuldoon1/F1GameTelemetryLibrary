@@ -31,6 +31,8 @@
             speed = unpacker.NextFloat();
             isOverallFastestInSession = unpacker.NextBool();
             isDriverFastestInSession = unpacker.NextBool();
+
+            unpacker.Dump(1);
         }
     }
 }

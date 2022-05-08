@@ -19,6 +19,8 @@
         {
             vehicleIndex = unpacker.NextByte();
             lapTime = unpacker.NextFloat();
+
+            unpacker.Dump(3);
         }
     }
 }

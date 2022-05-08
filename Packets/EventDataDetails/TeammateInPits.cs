@@ -13,6 +13,8 @@
         public override void Unpack(Unpacker unpacker)
         {
             vehicleIndex = unpacker.NextByte();
+
+            unpacker.Dump(7);
         }
     }
 }

@@ -45,7 +45,17 @@ namespace F1GameTelemetryLibrary
         public void Finish()
         {
             if (packedData != null && pointer < packedData.Length)
-                throw new UnpackingException($"Cannot finish unpacking until { packedData } is empty. There are still { packedData.Length } bytes left to unpack.");
+                throw new UnpackingException($"Cannot finish unpacking until { packedData } is empty. There are still { packedData.Length - pointer } bytes left to unpack.");
+            packedData = null;
+        }
+
+        /// <summary>
+        /// Should be called when the unpacker has finished unpacking and the remaining bytes are to be lost.
+        /// </summary>
+        public void Dump(int numberOfBytesToDump)
+        {
+            if (packedData != null && packedData.Length - pointer != numberOfBytesToDump)
+                throw new UnpackingException($"Cannot dump { packedData }. The specified number of bytes ({ numberOfBytesToDump }) to dump does not match the remaining unpacked bytes ({ packedData.Length - pointer }).");
             packedData = null;
         }
 

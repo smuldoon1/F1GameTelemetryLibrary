@@ -49,6 +49,8 @@
             time = unpacker.NextByte();
             lapNumber = unpacker.NextByte();
             placesGained = unpacker.NextByte();
+
+            unpacker.Finish();
         }
     }
 }
