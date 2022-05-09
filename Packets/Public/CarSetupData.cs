@@ -5,130 +5,101 @@ namespace F1GameTelemetryLibrary.Setups
     /// <summary>
     /// Car setup values for a particular car.
     /// </summary>
-    partial class CarSetupData  : IPacketStruct
+    public partial class CarSetupData  : IPacketStruct
     {
         /// <summary>
         /// Front wing aero angle.
         /// </summary>
-        byte frontWing;
+        public byte FrontWing { get { return frontWing; } }
 
         /// <summary>
         /// Rear wing aero angle.
         /// </summary>
-        byte rearWing;
+        public byte RearWing { get { return rearWing; } }
 
         /// <summary>
         /// Differential adjustment on throttle as a percentage.
         /// </summary>
-        byte onThrottle;
+        public byte OnThrottle { get { return onThrottle; } }
 
         /// <summary>
         /// Differential adjustment off throttle as a percentage.
         /// </summary>
-        byte offThrottle;
+        public byte OffThrottle { get { return offThrottle; } }
 
         /// <summary>
         /// Front camber angle of suspension geometry.
         /// </summary>
-        float frontCamber;
+        public float FrontCamber { get { return frontCamber; } }
 
         /// <summary>
         /// Rear camber angle of suspension geometry.
         /// </summary>
-        float rearCamber;
+        public float RearCamber { get { return rearCamber; } }
 
         /// <summary>
         /// Front toe angle of suspension geometry.
         /// </summary>
-        float frontToe;
+        public float FrontToe { get { return frontToe; } }
 
         /// <summary>
         /// Rear toe angle of suspension geometry.
         /// </summary>
-        float rearToe;
+        public float RearToe { get { return rearToe; } }
 
         /// <summary>
         /// Front suspension amount.
         /// </summary>
-        byte frontSuspension;
+        public byte FrontSuspension { get { return frontSuspension; } }
 
         /// <summary>
         /// Rear suspension amount.
         /// </summary>
-        byte rearSuspension;
+        public byte RearSuspension { get { return rearSuspension; } }
 
         /// <summary>
         /// Front anti-roll bar amount.
         /// </summary>
-        byte frontAntiRollBar;
+        public byte FrontAntiRollBar { get { return frontAntiRollBar; } }
 
         /// <summary>
         /// Rear anti-roll bar amount.
         /// </summary>
-        byte rearAntiRollBar;
+        public byte RearAntiRollBar { get { return rearAntiRollBar; } }
 
         /// <summary>
         /// Front ride height.
         /// </summary>
-        byte frontSuspensionHeight;
+        public byte FrontSuspensionHeight { get { return frontSuspensionHeight; } }
 
         /// <summary>
         /// Rear ride height.
         /// </summary>
-        byte rearSuspensionHeight;
+        public byte RearSuspensionHeight { get { return rearSuspensionHeight; } }
 
         /// <summary>
         /// Brake pressure as a percentage.
         /// </summary>
-        byte brakePressure;
+        public byte BrakePressure { get { return brakePressure; } }
 
         /// <summary>
         /// Brake bias as a percentage.
         /// </summary>
-        byte brakeBias;
+        public byte BrakeBias { get { return brakeBias; } }
 
         /// <summary>
         /// Tyre pressures in pounds per square inch.
         /// </summary>
-        TyreData<float> tyrePressures;
+        public TyreData<float> TyrePressures { get { return tyrePressures; } }
 
         /// <summary>
         /// The amount of ballast.
         /// </summary>
-        byte ballast;
+        public byte Ballast { get { return ballast; } }
 
         /// <summary>
         /// The amount of fuel in litres.
         /// </summary>
-        float fuelLoad;
-
-        public void Unpack(Unpacker unpacker)
-        {
-            frontWing = unpacker.NextByte();
-            rearWing = unpacker.NextByte();
-            onThrottle = unpacker.NextByte();
-            offThrottle = unpacker.NextByte();
-            frontCamber = unpacker.NextFloat();
-            rearCamber = unpacker.NextFloat();
-            frontToe = unpacker.NextFloat();
-            rearToe = unpacker.NextFloat();
-            frontSuspension = unpacker.NextByte();
-            rearSuspension = unpacker.NextByte();
-            frontAntiRollBar = unpacker.NextByte();
-            rearAntiRollBar = unpacker.NextByte();
-            frontSuspensionHeight = unpacker.NextByte();
-            rearSuspensionHeight = unpacker.NextByte();
-            brakePressure = unpacker.NextByte();
-            brakeBias = unpacker.NextByte();
-            tyrePressures = new TyreData<float>()
-            {
-                rearLeft = unpacker.NextFloat(),
-                rearRight = unpacker.NextFloat(),
-                frontLeft = unpacker.NextFloat(),
-                frontRight = unpacker.NextFloat()
-            };
-            ballast = unpacker.NextByte();
-            fuelLoad = unpacker.NextFloat();
-        }
+        public float FuelLoad { get { return fuelLoad; } }
     }
 }
