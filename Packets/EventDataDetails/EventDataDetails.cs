@@ -9,7 +9,7 @@ namespace F1GameTelemetryLibrary.Events
     /// <summary>
     /// Superclass for details about each type of event data.
     /// </summary>
-    internal abstract class EventDataDetails
+    public abstract partial class EventDataDetails
     {
         abstract public void Unpack(Unpacker unpacker);
 

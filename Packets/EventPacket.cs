@@ -3,7 +3,7 @@
     /// <summary>
     /// Event packet stores details about certain events that happen during a session.
     /// </summary>
-    internal class EventPacket : F1Packet, IPacket
+    partial class EventPacket : F1Packet, IPacket
     {
         /// <summary>
         /// Event code is used to determine what type of EventDataDetails should be stored.
