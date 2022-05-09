@@ -3,7 +3,7 @@
     /// <summary>
     /// Car status packet stores status information for all cars.
     /// </summary>
-    internal class CarStatusPacket : F1Packet, IPacket
+    partial class CarStatusPacket : F1Packet, IPacket
     {
         /// <summary>
         /// Array of car statuses.
