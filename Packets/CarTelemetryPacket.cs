@@ -3,7 +3,7 @@
     /// <summary>
     /// Car setups packet stores the car setups for each vehicle in the session. In network games only the players car and AI cars will have data.
     /// </summary>
-    internal class CarTelemetryPacket : F1Packet, IPacket
+    partial class CarTelemetryPacket : F1Packet, IPacket
     {
         /// <summary>
         /// Array of car telemetry data.
