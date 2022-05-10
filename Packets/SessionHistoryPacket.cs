@@ -3,7 +3,7 @@
     /// <summary>
     /// Session history packet stores lap times and tyre usage during the session for a specific car.
     /// </summary>
-    internal class SessionHistoryPacket : F1Packet, IPacket
+    partial class SessionHistoryPacket : F1Packet, IPacket
     {
         /// <summary>
         /// Index of the car this data relates to.

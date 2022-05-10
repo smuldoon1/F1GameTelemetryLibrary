@@ -3,40 +3,31 @@
     /// <summary>
     /// Stores historical data for each lap done by a particular car.
     /// </summary>
-    partial class LapHistoryData : IPacketStruct
+    public partial class LapHistoryData : IPacketStruct
     {
         /// <summary>
         /// Lap time in milliseconds.
         /// </summary>
-        uint lapTime;
+        public uint LapTime { get { return lapTime; } }
 
         /// <summary>
         /// The current sector one time in milliseconds.
         /// </summary>
-        ushort sectorOneTime;
+        public ushort SectorOneTime { get { return sectorOneTime; } }
 
         /// <summary>
         /// The current sector two time in milliseconds.
         /// </summary>
-        ushort sectorTwoTime;
+        public ushort SectorTwoTime { get { return sectorTwoTime; } }
 
         /// <summary>
         /// The current sector three time in milliseconds.
         /// </summary>
-        ushort sectorThreeTime;
+        public ushort SectorThreeTime { get { return sectorThreeTime; } }
 
         /// <summary>
         /// Bit flags for the validity of the lap and for each sector.
         /// </summary>
-        Enums.LapValidityFlags lapValidBitFlags;
-
-        public void Unpack(Unpacker unpacker)
-        {
-            lapTime = unpacker.NextUint();
-            sectorOneTime = unpacker.NextUshort();
-            sectorTwoTime = unpacker.NextUshort();
-            sectorThreeTime = unpacker.NextUshort();
-            lapValidBitFlags = (Enums.LapValidityFlags)unpacker.NextByte();
-        }
+        public Enums.LapValidityFlags LapValidBitFlags { get { return lapValidBitFlags; } }
     }
 }
