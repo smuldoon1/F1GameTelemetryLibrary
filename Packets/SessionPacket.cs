@@ -3,7 +3,7 @@
     /// <summary>
     /// Session packet stores details about a particular session.
     /// </summary>
-    internal class SessionPacket : F1Packet, IPacket
+    partial class SessionPacket : F1Packet, IPacket
     {
         /// <summary>
         /// The weather status.
