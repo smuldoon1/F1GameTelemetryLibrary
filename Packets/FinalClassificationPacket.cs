@@ -3,7 +3,7 @@
     /// <summary>
     /// Final classification packet stores details about the final classification at the end of a session.
     /// </summary>
-    internal class FinalClassificationPacket : F1Packet, IPacket
+    partial class FinalClassificationPacket : F1Packet, IPacket
     {
         /// <summary>
         /// The number of cars in the final classification.
