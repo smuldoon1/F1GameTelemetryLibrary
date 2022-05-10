@@ -3,17 +3,19 @@
     /// <summary>
     /// All unpacked packets derive from this class.
     /// </summary>
-    public abstract class F1Packet
+    partial class F1Packet
     {
         /// <summary>
         /// Struct that stores header values of every UDP packet that is sent.
         /// </summary>
         internal PacketHeader header;
 
-        public byte PlayerCar { get { return header.playerCarIndex; } }
-
-        public float SessionTime { get { return header.sessionTime; } }
-
+        /// <summary>
+        /// Wrapper for unpacking a UDP packet and returning a packet class depending on the packet type.
+        /// </summary>
+        /// <param name="udpPacket"></param>
+        /// <returns></returns>
+        /// <exception cref="InvalidPacketException"></exception>
         public static F1Packet CreatePacket(byte[] udpPacket)
         {
             PacketHeader header = new PacketHeader();
