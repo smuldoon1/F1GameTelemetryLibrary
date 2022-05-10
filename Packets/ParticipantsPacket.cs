@@ -3,7 +3,7 @@
     /// <summary>
     /// Partipants data packet stores data about all participants in the session.
     /// </summary>
-    internal class ParticipantsPacket : F1Packet, IPacket
+    partial class ParticipantsPacket : F1Packet, IPacket
     {
         /// <summary>
         /// The number of active cars in the session.

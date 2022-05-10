@@ -13,6 +13,6 @@
         /// <summary>
         /// Array of lobby info for players in the lobby.
         /// </summary>
-        public LobbyInfoData[] LobbyPlayers = new LobbyInfoData[F1Globals.MAX_CARS];
+        public LobbyInfoData[] LobbyPlayers { get { return lobbyPlayers; } }
     }
 }

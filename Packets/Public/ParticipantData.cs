@@ -3,64 +3,51 @@
     /// <summary>
     /// Participant data for a particular car.
     /// </summary>
-    partial class ParticipantData : IPacketStruct
+    public partial class ParticipantData : IPacketStruct
     {
         /// <summary>
         /// Is the car being controlled by the AI?
         /// </summary>
-        bool isAiControlled;
+        public bool IsAiControlled { get { return isAiControlled; } }
 
         /// <summary>
         /// Id of the cars driver.
         /// </summary>
-        byte driverId;
+        public byte DriverId { get { return driverId; } }
 
         /// <summary>
         /// Unique identifier for network players.
         /// </summary>
-        byte networkId;
+        public byte NetworkId { get { return networkId; } }
 
         /// <summary>
         /// Id of the cars team.
         /// </summary>
-        byte teamId;
+        public byte TeamId { get { return teamId; } }
 
         /// <summary>
         /// Is the driver driving for the custom team in the MyTeam mode?
         /// </summary>
-        bool isMyTeam;
+        public bool IsMyTeam { get { return isMyTeam; } }
 
         /// <summary>
         /// Race number of the car.
         /// </summary>
-        byte raceNumber;
+        public byte RaceNumber { get { return raceNumber; } }
 
         /// <summary>
         /// Id of the paticipants nationality.
         /// </summary>
-        byte nationalityId;
+        public byte NationalityId { get { return nationalityId; } }
 
         /// <summary>
         /// Name of the participant.
         /// </summary>
-        string name = "";
+        public string Name { get { return name; } }
 
         /// <summary>
         /// Is the participants UDP telemetry setting unrestricted?
         /// </summary>
-        bool isTelemetryPublic;
-
-        public void Unpack(Unpacker unpacker)
-        {
-            isAiControlled = unpacker.NextBool();
-            driverId = unpacker.NextByte();
-            networkId = unpacker.NextByte();
-            teamId = unpacker.NextByte();
-            isMyTeam = unpacker.NextBool();
-            raceNumber = unpacker.NextByte();
-            nationalityId = unpacker.NextByte();
-            name = unpacker.NextString(48);
-            isTelemetryPublic = unpacker.NextBool();
-        }
+        public bool IsTelemetryPublic { get { return isTelemetryPublic; } }
     }
 }
