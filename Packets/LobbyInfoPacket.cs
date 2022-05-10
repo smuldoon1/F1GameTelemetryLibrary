@@ -3,7 +3,7 @@
     /// <summary>
     /// Lobby info packet stores details of the players currently in a multiplayer lobby.
     /// </summary>
-    internal class LobbyInfoPacket : F1Packet, IPacket
+    partial class LobbyInfoPacket : F1Packet, IPacket
     {
         /// <summary>
         /// Number of players in the lobby.
