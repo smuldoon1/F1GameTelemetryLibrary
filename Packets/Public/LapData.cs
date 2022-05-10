@@ -5,154 +5,126 @@ namespace F1GameTelemetryLibrary.Laps
     /// <summary>
     /// Lap data about a particlar car.
     /// </summary>
-    partial class LapData : IPacketStruct
+    public partial class LapData : IPacketStruct
     {
         /// <summary>
         /// The previous lap time in milliseconds.
         /// </summary>
-        uint lastlapTime;
+        public uint LastlapTime { get { return lastlapTime; } }
 
         /// <summary>
         /// The current lap time in milliseconds.
         /// </summary>
-        uint currentLapTime;
+        public uint CurrentLapTime { get { return currentLapTime; } }
 
         /// <summary>
         /// The current sector one time in milliseconds.
         /// </summary>
-        ushort sectorOneTime;
+        public ushort SectorOneTime { get { return sectorOneTime; } }
 
         /// <summary>
         /// The current sector two time in milliseconds.
         /// </summary>
-        ushort sectorTwoTime;
+        public ushort SectorTwoTime { get { return sectorTwoTime; } }
 
         /// <summary>
         /// Distance the car has travelled on the current lap in metres. May be negative if the car has not crossed the start line yet.
         /// </summary>
-        float lapDistance;
+        public float LapDistance { get { return lapDistance; } }
 
         /// <summary>
         /// Total distance the car has travelled in the session in metres. May be negative if the car has not crossed the start line yet.
         /// </summary>
-        float totalDistance;
+        public float TotalDistance { get { return totalDistance; } }
 
         /// <summary>
         /// Delta in seconds for the safety car.
         /// </summary>
-        float safetyCarDelta;
+        public float SafetyCarDelta { get { return safetyCarDelta; } }
 
         /// <summary>
         /// The current position of the car.
         /// </summary>
-        byte carPosition;
+        public byte CarPosition { get { return carPosition; } }
 
         /// <summary>
         /// The current lap number of the car.
         /// </summary>
-        byte currentLap;
+        public byte CurrentLap { get { return currentLap; } }
 
         /// <summary>
         /// The current pit status of the car.
         /// </summary>
-        Enums.PitStatus pitStatus;
+        public Enums.PitStatus PitStatus { get { return pitStatus; } }
 
         /// <summary>
         /// Total number of pit stops the car has made this race.
         /// </summary>
-        byte totalPitStops;
+        public byte TotalPitStops { get { return totalPitStops; } }
 
         /// <summary>
         /// The current sector the car is in.
         /// </summary>
-        byte sector;
+        public byte Sector { get { return sector; } }
 
         /// <summary>
         /// Is the cars current lap invalid?
         /// </summary>
-        bool isCurrentLapInvalid;
+        public bool IsCurrentLapInvalid { get { return isCurrentLapInvalid; } }
 
         /// <summary>
         /// Accumulated time penalties in seconds to be added to the cars time at the end of the race.
         /// </summary>
-        byte penalties;
+        public byte Penalties { get { return penalties; } }
 
         /// <summary>
         /// Accumulated number of warnings that have been issued to the car.
         /// </summary>
-        byte warnings;
+        public byte Warnings { get { return warnings; } }
 
         /// <summary>
         /// The amount of drive-through penalties left for the car to serve.
         /// </summary>
-        byte unservedDriveThroughs;
+        public byte UnservedDriveThroughs { get { return unservedDriveThroughs; } }
 
         /// <summary>
         /// The amount of stop-go penalties left for the car to serve.
         /// </summary>
-        byte unservedStopGos;
+        public byte UnservedStopGos { get { return unservedStopGos; } }
 
         /// <summary>
         /// The grid position that the car started the race in.
         /// </summary>
-        byte gridPosition;
+        public byte GridPosition { get { return gridPosition; } }
 
         /// <summary>
         /// The current status of the car.
         /// </summary>
-        Enums.DriverStatus driverStatus;
+        public Enums.DriverStatus DriverStatus { get { return driverStatus; } }
 
         /// <summary>
         /// Result status of the car.
         /// </summary>
-        ResultStatus resultStatus;
+        public ResultStatus ResultStatus { get { return resultStatus; } }
 
         /// <summary>
         /// Is the pit lane timer currently active?
         /// </summary>
-        bool isPitLaneTimerActive;
+        public bool IsPitLaneTimerActive { get { return isPitLaneTimerActive; } }
 
         /// <summary>
         /// The current amount of time the car has spent in the pit lane in milliseconds.
         /// </summary>
-        ushort pitLaneTime;
+        public ushort PitLaneTime { get { return pitLaneTime; } }
 
         /// <summary>
         /// The current amount of time the car has been stopped in the pit box in milliseconds.
         /// </summary>
-        ushort pitStopTime;
+        public ushort PitStopTime { get { return pitStopTime; } }
 
         /// <summary>
         /// Will the car serve a penalty at the next pit stop?
         /// </summary>
-        bool shouldCarServePenalty;
-
-        public void Unpack(Unpacker unpacker)
-        {
-            lastlapTime = unpacker.NextUint();
-            currentLapTime = unpacker.NextUint();
-            sectorOneTime = unpacker.NextUshort();
-            sectorTwoTime = unpacker.NextUshort();
-            lapDistance = unpacker.NextFloat();
-            totalDistance = unpacker.NextFloat();
-            safetyCarDelta = unpacker.NextFloat();
-            carPosition = unpacker.NextByte();
-            currentLap = unpacker.NextByte();
-            pitStatus = (Enums.PitStatus)unpacker.NextByte();
-            totalPitStops = unpacker.NextByte();
-            sector = unpacker.NextByte();
-            isCurrentLapInvalid = unpacker.NextBool();
-            penalties = unpacker.NextByte();
-            warnings = unpacker.NextByte();
-            unservedDriveThroughs = unpacker.NextByte();
-            unservedStopGos = unpacker.NextByte();
-            gridPosition = unpacker.NextByte();
-            driverStatus = (Enums.DriverStatus)unpacker.NextByte();
-            resultStatus = (ResultStatus)unpacker.NextByte();
-            isPitLaneTimerActive = unpacker.NextBool();
-            pitLaneTime = unpacker.NextUshort();
-            pitStopTime = unpacker.NextUshort();
-            shouldCarServePenalty = unpacker.NextBool();
-        }
+        public bool ShouldCarServePenalty { get { return shouldCarServePenalty; } }
     }
 }

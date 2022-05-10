@@ -3,7 +3,7 @@
     /// <summary>
     /// Lap data packet gives details about the laps of all cars in the session.
     /// </summary>
-    internal class LapDataPacket : F1Packet, IPacket
+    partial class LapDataPacket : F1Packet, IPacket
     {
         /// <summary>
         /// Array of lap data for each car.
