@@ -5,7 +5,7 @@ namespace F1GameTelemetryLibrary.Motion
     /// <summary>
     /// Motion packet gives stores physics data for all cars. There is additional data available for the player car.
     /// </summary>
-    internal class MotionPacket : F1Packet, IPacket
+    partial class MotionPacket : F1Packet, IPacket
     {
         /// <summary>
         /// Array of car motion data.
