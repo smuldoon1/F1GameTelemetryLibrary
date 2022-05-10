@@ -5,58 +5,46 @@ namespace F1GameTelemetryLibrary.Sessions
     /// <summary>
     /// A sample of weather forecast data.
     /// </summary>
-    partial class WeatherForecastSample : IPacketStruct
+    public partial class WeatherForecastSample : IPacketStruct
     {
         /// <summary>
         /// The type of session.
         /// </summary>
-        Enums.SessionType sessionType;
+        public Enums.SessionType SessionType { get { return sessionType; } }
 
         /// <summary>
         /// Time in minutes the forecast sample is scheduled for.
         /// </summary>
-        byte timeOffset;
+        public byte TimeOffset { get { return timeOffset; } }
 
         /// <summary>
         /// The weather status of the forecast sample.
         /// </summary>
-        Enums.WeatherStatus weather;
+        public Enums.WeatherStatus Weather { get { return weather; } }
 
         /// <summary>
         /// Track temperature in degrees Celcius.
         /// </summary>
-        sbyte trackTemperature;
+        public sbyte TrackTemperature { get { return trackTemperature; } }
 
         /// <summary>
         /// The change in track temperature from the last forecast sample.
         /// </summary>
-        Enums.TemperatureDelta trackTemperatureChange;
+        public Enums.TemperatureDelta TrackTemperatureChange { get { return trackTemperatureChange; } }
 
         /// <summary>
         /// Air temperature in degrees Celcius.
         /// </summary>
-        sbyte airTemperature;
+        public sbyte AirTemperature { get { return airTemperature; } }
 
         /// <summary>
         /// The change in air temperature from the last forecast sample.
         /// </summary>
-        Enums.TemperatureDelta airTemperatureChange;
+        public Enums.TemperatureDelta AirTemperatureChange { get { return airTemperatureChange; } }
 
         /// <summary>
         /// The percentage of rain on the track.
         /// </summary>
-        byte rainPercentage;
-
-        public void Unpack(Unpacker unpacker)
-        {
-            sessionType = (Enums.SessionType)unpacker.NextByte();
-            timeOffset = unpacker.NextByte();
-            weather = (Enums.WeatherStatus)unpacker.NextByte();
-            trackTemperature = unpacker.NextSbyte();
-            trackTemperatureChange = (Enums.TemperatureDelta)unpacker.NextSbyte();
-            airTemperature = unpacker.NextSbyte();
-            airTemperatureChange = (Enums.TemperatureDelta)unpacker.NextSbyte();
-            rainPercentage = unpacker.NextByte();
-        }
+        public byte RainPercentage { get { return rainPercentage; } }
     }
 }

@@ -3,7 +3,7 @@
     /// <summary>
     /// Used to store assist data.
     /// </summary>
-    internal class Assists : IPacketStruct
+    partial class Assists : IPacketStruct
     {
         /// <summary>
         /// Is steering assist enabled?
@@ -33,12 +33,12 @@
         /// <summary>
         /// Is ERS assist enabled?
         /// </summary>
-        bool ERSAssist;
+        bool ersAssist;
 
         /// <summary>
         /// Is DRS assist enabled?
         /// </summary>
-        bool DRSAssist;
+        bool drsAssist;
 
         /// <summary>
         /// Dynamic racing line assist mode.
@@ -57,8 +57,8 @@
             gearboxAssist = (Enums.GearboxAssistMode)unpacker.NextByte();
             pitAssist = unpacker.NextBool();
             pitReleaseAssist = unpacker.NextBool();
-            ERSAssist = unpacker.NextBool();
-            DRSAssist = unpacker.NextBool();
+            ersAssist = unpacker.NextBool();
+            drsAssist = unpacker.NextBool();
             dynamicRacingLine = (Enums.RacingLineAssistMode)unpacker.NextByte();
             isDynamicRacingLine3D = unpacker.NextBool();
         }
