@@ -7,7 +7,10 @@ namespace F1GameTelemetryLibrary
 {
     public class UDPListener
     {
-        public static void Listen(IPAddress address, int port)
+        public delegate void OnGetPacket(F1Packet packet);
+        public OnGetPacket? onGetPacket;
+
+        public UDPListener(IPAddress address, int port)
         {
             Task.Run(async () =>
             {
@@ -16,6 +19,7 @@ namespace F1GameTelemetryLibrary
                 {
                     var udpResult = await client.ReceiveAsync();
                     F1Packet packet = F1Packet.CreatePacket(udpResult.Buffer);
+                    onGetPacket?.Invoke(packet);
                 }
             });
         }
