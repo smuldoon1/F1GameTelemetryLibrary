@@ -4,13 +4,13 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace F1GameTelemetryLibrary.Util
+namespace F1GameTelemetryLibrary.Utils
 {
     public class Utilities
     {
-        public static float KphToMph(float kph)
+        public static int KphToMph(int kph)
         {
-            return kph * 0.621371f;
+            return (int)Math.Round(kph * 0.621371f);
         }
 
         public static float PsiToBar(float psi)
