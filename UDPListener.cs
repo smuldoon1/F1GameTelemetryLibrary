@@ -8,7 +8,7 @@ namespace F1GameTelemetryLibrary
     public class UDPListener
     {
         public delegate void OnGetPacket(F1Packet packet);
-        public OnGetPacket? onGetPacket;
+        OnGetPacket? onGetPacket;
 
         public UDPListener(IPAddress address, int port)
         {
@@ -22,6 +22,18 @@ namespace F1GameTelemetryLibrary
                     onGetPacket?.Invoke(packet);
                 }
             });
+        }
+
+        public void Subscribe(params OnGetPacket[] delegates)
+        {
+            foreach (var d in delegates)
+                onGetPacket += d;
+        }
+
+        public void Unsubscribe(params OnGetPacket[] delegates)
+        {
+            foreach (var d in delegates)
+                onGetPacket -= d;
         }
     }
 }
