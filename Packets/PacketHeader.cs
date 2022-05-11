@@ -28,7 +28,7 @@
         /// <summary>
         /// Identifier for this packet type. See documentation for information about each packet type.
         /// </summary>
-        internal byte packetId;
+        internal PacketId packetId;
 
         /// <summary>
         /// Unique identifier for the session. Each session generates a new identifier.
@@ -63,7 +63,7 @@
             gameMajorVersion = unpacker.NextByte();
             gameMinorVersion = unpacker.NextByte();
             packetVersion = unpacker.NextByte();
-            packetId = unpacker.NextByte();
+            packetId = (PacketId)unpacker.NextByte();
             sessionUID = unpacker.NextUlong();
             sessionTime = unpacker.NextFloat();
             frameIdentifier = unpacker.NextUint();

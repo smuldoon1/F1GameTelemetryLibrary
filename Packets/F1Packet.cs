@@ -22,32 +22,32 @@
             byte[] remainingData = header.Unpack(udpPacket);
             switch (header.packetId)
             {
-                case 0:
+                case PacketId.MOTION:
                     return new Motion.MotionPacket(header, remainingData);
-                case 1: // 63 cant be converted into type bool
+                case PacketId.SESSION:
                     return new Sessions.SessionPacket(header, remainingData);
-                case 2:
+                case PacketId.LAP_DATA:
                     return new Laps.LapDataPacket(header, remainingData);
-                case 3: // Event code strings are corrupted
+                case PacketId.EVENT:
                     return new Events.EventPacket(header, remainingData);
-                case 4:
+                case PacketId.PARTICIPANTS:
                     return new Participants.ParticipantsPacket(header, remainingData);
-                case 5:
+                case PacketId.CAR_SETUPS:
                     return new Setups.CarSetupsPacket(header, remainingData);
-                case 6:
+                case PacketId.CAR_TELEMETRY:
                     return new Telemetry.CarTelemetryPacket(header, remainingData);
-                case 7:
+                case PacketId.CAR_STATUS:
                     return new Statuses.CarStatusPacket(header, remainingData);
-                case 8:
+                case PacketId.FINAL_CLASSIFICATION:
                     return new Classifications.FinalClassificationPacket(header, remainingData);
-                case 9:
+                case PacketId.LOBBY_INFO:
                     return new Lobbies.LobbyInfoPacket(header, remainingData);
-                case 10:
+                case PacketId.CAR_DAMAGE:
                     return new Damage.CarDamagePacket(header, remainingData);
-                case 11:
+                case PacketId.SESSION_HISTORY:
                     return new SessionHistory.SessionHistoryPacket(header, remainingData);
             }
-            throw new InvalidPacketException(header.packetId);
+            throw new InvalidPacketException((byte)header.packetId);
         }
     }
 }
