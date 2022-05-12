@@ -6,54 +6,9 @@
     partial class F1Packet
     {
         /// <summary>
-        /// Edition of the F1 game this packet is being sent by.
+        /// Struct that stores header values of every UDP packet that is sent.
         /// </summary>
-        ushort packetFormat;
-
-        /// <summary>
-        /// Game major version (x.00).
-        /// </summary>
-        byte gameMajorVersion;
-
-        /// <summary>
-        /// Game minor version (1.xx).
-        /// </summary>
-        byte gameMinorVersion;
-
-        /// <summary>
-        /// Version of this packet type.
-        /// </summary>
-        byte packetVersion;
-
-        /// <summary>
-        /// Identifier for this packet type. See documentation for information about each packet type.
-        /// </summary>
-        PacketId packetId;
-
-        /// <summary>
-        /// Unique identifier for the session. Each session generates a new identifier.
-        /// </summary>
-        ulong sessionUID;
-
-        /// <summary>
-        /// Session timestamp in seconds.
-        /// </summary>
-        float sessionTime;
-
-        /// <summary>
-        /// Identifier for the frame the packet was retrieved on.
-        /// </summary>
-        uint frameIdentifier;
-
-        /// <summary>
-        /// Index of the players car.
-        /// </summary>
-        byte playerCarIndex;
-
-        /// <summary>
-        /// Index of the secondary players car (splitscreen player). 255 if there is no secondary player.
-        /// </summary>
-        byte secondaryPlayerCarIndex;
+        internal PacketHeader header;
 
         /// <summary>
         /// Wrapper for unpacking a UDP packet and returning a packet class depending on the packet type.
@@ -61,55 +16,38 @@
         /// <param name="udpPacket"></param>
         /// <returns></returns>
         /// <exception cref="InvalidPacketException"></exception>
-        public F1Packet(byte[] udpPacket)
+        public static F1Packet CreatePacket(byte[] udpPacket)
         {
-            byte[] remainingData = Unpack(udpPacket);
-            switch (packetId)
+            PacketHeader header = new PacketHeader();
+            byte[] remainingData = header.Unpack(udpPacket);
+            switch (header.packetId)
             {
                 case PacketId.MOTION:
-                    return new Motion.MotionPacket(remainingData);
+                    return new Motion.MotionPacket(header, remainingData);
                 case PacketId.SESSION:
-                    return new Sessions.SessionPacket(remainingData);
+                    return new Sessions.SessionPacket(header, remainingData);
                 case PacketId.LAP_DATA:
-                    return new Laps.LapDataPacket(remainingData);
+                    return new Laps.LapDataPacket(header, remainingData);
                 case PacketId.EVENT:
-                    return new Events.EventPacket(remainingData);
+                    return new Events.EventPacket(header, remainingData);
                 case PacketId.PARTICIPANTS:
-                    return new Participants.ParticipantsPacket(remainingData);
+                    return new Participants.ParticipantsPacket(header, remainingData);
                 case PacketId.CAR_SETUPS:
-                    return new Setups.CarSetupsPacket(remainingData);
+                    return new Setups.CarSetupsPacket(header, remainingData);
                 case PacketId.CAR_TELEMETRY:
-                    return new Telemetry.CarTelemetryPacket(remainingData);
+                    return new Telemetry.CarTelemetryPacket(header, remainingData);
                 case PacketId.CAR_STATUS:
-                    return new Statuses.CarStatusPacket(remainingData);
+                    return new Statuses.CarStatusPacket(header, remainingData);
                 case PacketId.FINAL_CLASSIFICATION:
-                    return new Classifications.FinalClassificationPacket(remainingData);
+                    return new Classifications.FinalClassificationPacket(header, remainingData);
                 case PacketId.LOBBY_INFO:
-                    return new Lobbies.LobbyInfoPacket(remainingData);
+                    return new Lobbies.LobbyInfoPacket(header, remainingData);
                 case PacketId.CAR_DAMAGE:
-                    return new Damage.CarDamagePacket(remainingData);
+                    return new Damage.CarDamagePacket(header, remainingData);
                 case PacketId.SESSION_HISTORY:
-                    return new SessionHistory.SessionHistoryPacket(remainingData);
+                    return new SessionHistory.SessionHistoryPacket(header, remainingData);
             }
             throw new InvalidPacketException((byte)header.packetId);
-        }
-
-        public byte[] Unpack(byte[] packedData)
-        {
-            Unpacker unpacker = new Unpacker(packedData);
-
-            packetFormat = unpacker.NextUshort();
-            gameMajorVersion = unpacker.NextByte();
-            gameMinorVersion = unpacker.NextByte();
-            packetVersion = unpacker.NextByte();
-            packetId = (PacketId)unpacker.NextByte();
-            sessionUID = unpacker.NextUlong();
-            sessionTime = unpacker.NextFloat();
-            frameIdentifier = unpacker.NextUint();
-            playerCarIndex = unpacker.NextByte();
-            secondaryPlayerCarIndex = unpacker.NextByte();
-
-            return unpacker.RetrieveUnconvertedBytes();
         }
     }
 }
