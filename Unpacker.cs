@@ -294,7 +294,7 @@ namespace F1GameTelemetryLibrary
                 char[] chars = new char[length];
                 for (int i = 0; i < length; i++)
                 {
-                    chars[i] = BitConverter.ToChar(packedData, pointer++);
+                    chars[i] = (char)packedData[pointer++];
                 }
                 return new string(chars);
             }
