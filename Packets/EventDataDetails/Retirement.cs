@@ -3,16 +3,16 @@
     /// <summary>
     /// Stores event details for when a car is retiring.
     /// </summary>
-    internal class Retirement : EventDataDetails
+    public class Retirement : EventDataDetails
     {
         /// <summary>
         /// Vehicle index of the car that is retiring.
         /// </summary>
-        byte vehicleIndex;
+        public byte VehicleIndex { get; }
 
-        public override void Unpack(Unpacker unpacker)
+        public Retirement(Unpacker unpacker)
         {
-            vehicleIndex = unpacker.NextByte();
+            VehicleIndex = unpacker.NextByte();
 
             unpacker.Dump(7);
         }

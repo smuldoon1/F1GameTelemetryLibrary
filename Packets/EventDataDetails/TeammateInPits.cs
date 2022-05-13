@@ -3,16 +3,16 @@
     /// <summary>
     /// Stores event details for when the players teammate is pitting.
     /// </summary>
-    internal class TeammateInPits : EventDataDetails
+    public class TeammateInPits : EventDataDetails
     {
         /// <summary>
         /// Vehicle index of teammate.
         /// </summary>
-        byte vehicleIndex;
+        public byte VehicleIndex { get; }
 
-        public override void Unpack(Unpacker unpacker)
+        public TeammateInPits(Unpacker unpacker)
         {
-            vehicleIndex = unpacker.NextByte();
+            VehicleIndex = unpacker.NextByte();
 
             unpacker.Dump(7);
         }

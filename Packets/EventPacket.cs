@@ -26,11 +26,7 @@
             Unpacker unpacker = new Unpacker(packedData);
 
             eventCode = unpacker.NextString(4);
-            eventDataDetails = EventDataDetails.CreateEventDataDetails(new string(eventCode));
-            if (eventDataDetails != null)
-                eventDataDetails.Unpack(unpacker);
-            else
-                unpacker.Dump(8);
+            eventDataDetails = EventDataDetails.CreateEventDataDetails(eventCode, unpacker);
 
             unpacker.Finish();
         }

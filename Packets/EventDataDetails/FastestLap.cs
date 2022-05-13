@@ -3,22 +3,22 @@
     /// <summary>
     /// Stores event details for when a new fastest lap is set.
     /// </summary>
-    internal class FastestLap : EventDataDetails
+    public class FastestLap : EventDataDetails
     {
         /// <summary>
         /// Vehicle index of the car that set the fastest lap.
         /// </summary>
-        byte vehicleIndex;
+        public byte VehicleIndex { get; }
 
         /// <summary>
         /// The lap time of the fastest lap in milliseconds.
         /// </summary>
-        float lapTime;
+        public float LapTime { get; }
 
-        public override void Unpack(Unpacker unpacker)
+        public FastestLap(Unpacker unpacker)
         {
-            vehicleIndex = unpacker.NextByte();
-            lapTime = unpacker.NextFloat();
+            VehicleIndex = unpacker.NextByte();
+            LapTime = unpacker.NextFloat();
 
             unpacker.Dump(3);
         }

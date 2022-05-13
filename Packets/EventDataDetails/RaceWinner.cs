@@ -3,16 +3,16 @@
     /// <summary>
     /// Stores event details for when a car has won the race.
     /// </summary>
-    internal class RaceWinner : EventDataDetails
+    public class RaceWinner : EventDataDetails
     {
         /// <summary>
         /// Vehicle index of the race winner.
         /// </summary>
-        byte vehicleIndex;
+        public byte VehicleIndex { get; }
 
-        public override void Unpack(Unpacker unpacker)
+        public RaceWinner(Unpacker unpacker)
         {
-            vehicleIndex = unpacker.NextByte();
+            VehicleIndex = unpacker.NextByte();
 
             unpacker.Dump(7);
         }

@@ -11,40 +11,39 @@ namespace F1GameTelemetryLibrary.Events
     /// </summary>
     public abstract partial class EventDataDetails
     {
-        abstract public void Unpack(Unpacker unpacker);
-
         /// <summary>
         /// Returns a new instance of an EventDataDetails subclass depending on the event code given.
         /// </summary>
         /// <param name="eventCode"></param>
         /// <returns></returns>
-        public static EventDataDetails? CreateEventDataDetails(string eventCode)
+        public static EventDataDetails? CreateEventDataDetails(string eventCode, Unpacker unpacker)
         {
             switch (eventCode)
             {
                 case "FTLP":
-                    return new FastestLap();
+                    return new FastestLap(unpacker);
                 case "RTMT":
-                    return new Retirement();
+                    return new Retirement(unpacker);
                 case "TMPT":
-                    return new TeammateInPits();
+                    return new TeammateInPits(unpacker);
                 case "RCWN":
-                    return new RaceWinner();
+                    return new RaceWinner(unpacker);
                 case "PENA":
-                    return new Penalty();
+                    return new Penalty(unpacker);
                 case "SPTP":
-                    return new SpeedTrap();
+                    return new SpeedTrap(unpacker);
                 case "STLG":
-                    return new StartLights();
+                    return new StartLights(unpacker);
                 case "DTSV":
-                    return new DriveThroughPenaltyServed();
+                    return new DriveThroughPenaltyServed(unpacker);
                 case "SGSV":
-                    return new StopGoPenaltyServed();
+                    return new StopGoPenaltyServed(unpacker);
                 case "FLBK":
-                    return new Flashback();
+                    return new Flashback(unpacker);
                 case "BUTN":
-                    return new Buttons();
+                    return new Buttons(unpacker);
             }
+            unpacker.Dump(8);
             return null;
         }
     }

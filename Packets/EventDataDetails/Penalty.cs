@@ -3,52 +3,52 @@
     /// <summary>
     /// Stores event details for when a car has been given a penalty.
     /// </summary>
-    internal class Penalty : EventDataDetails
+    public class Penalty : EventDataDetails
     {
         /// <summary>
         /// The index of the type of penalty being given.
         /// </summary>
-        byte penaltyType;
+        public byte PenaltyType { get; }
 
         /// <summary>
         /// The index of the infringement type.
         /// </summary>
-        byte infringementType;
+        public byte InfringementType { get; }
 
         /// <summary>
         /// Vehicle index of the offending car.
         /// </summary>
-        byte vehicleIndex;
+        public byte VehicleIndex { get; }
 
         /// <summary>
         /// Vehicle index of the other car involved if there is one.
         /// </summary>
-        byte otherVehicleIndex;
+        public byte OtherVehicleIndex { get; }
 
         /// <summary>
         /// Time gained or time spent infringing in seconds.
         /// </summary>
-        byte time;
+        public byte Time { get; }
 
         /// <summary>
         /// The lap number that the penalty occurred on.
         /// </summary>
-        byte lapNumber;
+        public byte LapNumber { get; }
 
         /// <summary>
         /// Number of places gained because of the infringement.
         /// </summary>
-        byte placesGained;
+        public byte PlacesGained { get; }
 
-        public override void Unpack(Unpacker unpacker)
+        public Penalty(Unpacker unpacker)
         {
-            penaltyType = unpacker.NextByte();
-            infringementType = unpacker.NextByte();
-            vehicleIndex = unpacker.NextByte();
-            otherVehicleIndex = unpacker.NextByte();
-            time = unpacker.NextByte();
-            lapNumber = unpacker.NextByte();
-            placesGained = unpacker.NextByte();
+            PenaltyType = unpacker.NextByte();
+            InfringementType = unpacker.NextByte();
+            VehicleIndex = unpacker.NextByte();
+            OtherVehicleIndex = unpacker.NextByte();
+            Time = unpacker.NextByte();
+            LapNumber = unpacker.NextByte();
+            PlacesGained = unpacker.NextByte();
 
             unpacker.Finish();
         }
