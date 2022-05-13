@@ -1,4 +1,4 @@
-﻿namespace F1GameTelemetryLibrary.Sessions
+﻿namespace F1GameTelemetry
 {
     /// <summary>
     /// Session packet stores details about a particular session.
@@ -8,7 +8,7 @@
         /// <summary>
         /// The weather status.
         /// </summary>
-        public Enums.WeatherStatus Weather { get { return weather; } }
+        public WeatherStatus Weather { get { return weather; } }
 
         /// <summary>
         /// Track temperature in degrees Celcius.
@@ -33,7 +33,7 @@
         /// <summary>
         /// The type of session.
         /// </summary>
-        public Enums.SessionType SessionType { get { return sessionType; } }
+        public SessionType SessionType { get { return sessionType; } }
 
         /// <summary>
         /// Track identifier. -1 means the track is unknown.
@@ -43,7 +43,7 @@
         /// <summary>
         /// The series/class of cars used in the session.
         /// </summary>
-        public Enums.Formula Formula { get { return formula; } }
+        public Formula Formula { get { return formula; } }
 
         /// <summary>
         /// Time remaining in the session in seconds.
@@ -93,7 +93,7 @@
         /// <summary>
         /// The current status of the safety car.
         /// </summary>
-        public Enums.SafetyCarStatus SafetyCarStatus { get { return safetyCarStatus; } }
+        public SafetyCarStatus SafetyCarStatus { get { return safetyCarStatus; } }
 
         /// <summary>
         /// Is the session a network game?

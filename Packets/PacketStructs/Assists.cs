@@ -1,4 +1,4 @@
-﻿namespace F1GameTelemetryLibrary.Sessions
+﻿namespace F1GameTelemetry
 {
     /// <summary>
     /// Used to store assist data.
@@ -13,12 +13,12 @@
         /// <summary>
         /// Braking assist mode.
         /// </summary>
-        Enums.BrakingAssistMode brakingAssist;
+        BrakingAssistMode brakingAssist;
 
         /// <summary>
         /// Gearbox assist mode.
         /// </summary>
-        Enums.GearboxAssistMode gearboxAssist;
+        GearboxAssistMode gearboxAssist;
 
         /// <summary>
         /// Is pit assist enabled?
@@ -43,7 +43,7 @@
         /// <summary>
         /// Dynamic racing line assist mode.
         /// </summary>
-        Enums.RacingLineAssistMode dynamicRacingLine;
+        RacingLineAssistMode dynamicRacingLine;
 
         /// <summary>
         /// Is the dynamic racing line set to 3D?
@@ -53,13 +53,13 @@
         public void Unpack(Unpacker unpacker)
         {
             steeringAssist = unpacker.NextBool();
-            brakingAssist = (Enums.BrakingAssistMode)unpacker.NextByte();
-            gearboxAssist = (Enums.GearboxAssistMode)unpacker.NextByte();
+            brakingAssist = (BrakingAssistMode)unpacker.NextByte();
+            gearboxAssist = (GearboxAssistMode)unpacker.NextByte();
             pitAssist = unpacker.NextBool();
             pitReleaseAssist = unpacker.NextBool();
             ersAssist = unpacker.NextBool();
             drsAssist = unpacker.NextBool();
-            dynamicRacingLine = (Enums.RacingLineAssistMode)unpacker.NextByte();
+            dynamicRacingLine = (RacingLineAssistMode)unpacker.NextByte();
             isDynamicRacingLine3D = unpacker.NextBool();
         }
     }

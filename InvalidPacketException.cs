@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace F1GameTelemetryLibrary
+﻿namespace F1GameTelemetry
 {
     /// <summary>
     /// Exception that is thrown whenever an invalid packet index is retrieved from the packet header.

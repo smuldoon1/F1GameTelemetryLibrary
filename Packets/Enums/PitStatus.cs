@@ -1,4 +1,4 @@
-﻿namespace F1GameTelemetryLibrary.Laps.Enums
+﻿namespace F1GameTelemetry
 {
     public enum PitStatus : byte
     {

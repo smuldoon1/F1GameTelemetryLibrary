@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace F1GameTelemetryLibrary.Utils
+﻿namespace F1GameTelemetry
 {
     /// <summary>
     /// Struct for storing data about each wheel or brake on the car.

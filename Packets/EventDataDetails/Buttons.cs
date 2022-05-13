@@ -1,4 +1,4 @@
-﻿namespace F1GameTelemetryLibrary.Events
+﻿namespace F1GameTelemetry
 {
     /// <summary>
     /// Stores event details for when the player is pressing buttons.
@@ -8,11 +8,11 @@
         /// <summary>
         /// Bit flags specifying which buttons are currently being pressed.
         /// </summary>
-        public Enums.ButtonFlags ButtonStatus { get; }
+        public ButtonFlags ButtonStatus { get; }
 
         public Buttons(Unpacker unpacker)
         {
-            ButtonStatus = (Enums.ButtonFlags)unpacker.NextUint();
+            ButtonStatus = (ButtonFlags)unpacker.NextUint();
 
             unpacker.Dump(4);
         }

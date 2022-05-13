@@ -1,24 +1,22 @@
-﻿using System;
-using System.Net;
+﻿using System.Net;
 using System.Net.Sockets;
-using System.Threading.Tasks;
 
-namespace F1GameTelemetryLibrary
+namespace F1GameTelemetry
 {
     public class UDPListener
     {
-        public delegate void OnGetMotionPacket(Motion.MotionPacket packet);
-        public delegate void OnGetSessionPacket(Sessions.SessionPacket packet);
-        public delegate void OnGetLapDataPacket(Laps.LapDataPacket packet);
-        public delegate void OnGetEventPacket(Events.EventPacket packet);
-        public delegate void OnGetParticipantsPacket(Participants.ParticipantsPacket packet);
-        public delegate void OnGetCarSetupsPacket(Setups.CarSetupsPacket packet);
-        public delegate void OnGetCarTelemetryPacket(Telemetry.CarTelemetryPacket packet);
-        public delegate void OnGetCarStatusPacket(Statuses.CarStatusPacket packet);
-        public delegate void OnGetFinalClassificationPacket(Classifications.FinalClassificationPacket packet);
-        public delegate void OnGetLobbyInfoPacket(Lobbies.LobbyInfoPacket packet);
-        public delegate void OnGetCarDamagePacket(Damage.CarDamagePacket packet);
-        public delegate void OnGetSessionHistoryPacket(SessionHistory.SessionHistoryPacket packet);
+        public delegate void OnGetMotionPacket(MotionPacket packet);
+        public delegate void OnGetSessionPacket(SessionPacket packet);
+        public delegate void OnGetLapDataPacket(LapDataPacket packet);
+        public delegate void OnGetEventPacket(EventPacket packet);
+        public delegate void OnGetParticipantsPacket(ParticipantsPacket packet);
+        public delegate void OnGetCarSetupsPacket(CarSetupsPacket packet);
+        public delegate void OnGetCarTelemetryPacket(CarTelemetryPacket packet);
+        public delegate void OnGetCarStatusPacket(CarStatusPacket packet);
+        public delegate void OnGetFinalClassificationPacket(FinalClassificationPacket packet);
+        public delegate void OnGetLobbyInfoPacket(LobbyInfoPacket packet);
+        public delegate void OnGetCarDamagePacket(CarDamagePacket packet);
+        public delegate void OnGetSessionHistoryPacket(SessionHistoryPacket packet);
 
         OnGetMotionPacket? onGetMotionPacket;
         OnGetSessionPacket? onGetSessionPacket;
@@ -45,40 +43,40 @@ namespace F1GameTelemetryLibrary
                     switch (packet.PacketId)
                     {
                         case PacketId.MOTION:
-                            onGetMotionPacket?.Invoke((Motion.MotionPacket)packet);
+                            onGetMotionPacket?.Invoke((MotionPacket)packet);
                             break;
                         case PacketId.SESSION:
-                            onGetSessionPacket?.Invoke((Sessions.SessionPacket)packet);
+                            onGetSessionPacket?.Invoke((SessionPacket)packet);
                             break;
                         case PacketId.LAP_DATA:
-                            onGetLapDataPacket?.Invoke((Laps.LapDataPacket)packet);
+                            onGetLapDataPacket?.Invoke((LapDataPacket)packet);
                             break;
                         case PacketId.EVENT:
-                            onGetEventPacket?.Invoke((Events.EventPacket)packet);
+                            onGetEventPacket?.Invoke((EventPacket)packet);
                             break;
                         case PacketId.PARTICIPANTS:
-                            onGetParticipantsPacket?.Invoke((Participants.ParticipantsPacket)packet);
+                            onGetParticipantsPacket?.Invoke((ParticipantsPacket)packet);
                             break;
                         case PacketId.CAR_SETUPS:
-                            onGetCarSetupsPacket?.Invoke((Setups.CarSetupsPacket)packet);
+                            onGetCarSetupsPacket?.Invoke((CarSetupsPacket)packet);
                             break;
                         case PacketId.CAR_TELEMETRY:
-                            onGetCarTelemetryPacket?.Invoke((Telemetry.CarTelemetryPacket)packet);
+                            onGetCarTelemetryPacket?.Invoke((CarTelemetryPacket)packet);
                             break;
                         case PacketId.CAR_STATUS:
-                            onGetCarStatusPacket?.Invoke((Statuses.CarStatusPacket)packet);
+                            onGetCarStatusPacket?.Invoke((CarStatusPacket)packet);
                             break;
                         case PacketId.FINAL_CLASSIFICATION:
-                            onGetFinalClassificationPacket?.Invoke((Classifications.FinalClassificationPacket)packet);
+                            onGetFinalClassificationPacket?.Invoke((FinalClassificationPacket)packet);
                             break;
                         case PacketId.LOBBY_INFO:
-                            onGetLobbyInfoPacket?.Invoke((Lobbies.LobbyInfoPacket)packet);
+                            onGetLobbyInfoPacket?.Invoke((LobbyInfoPacket)packet);
                             break;
                         case PacketId.CAR_DAMAGE:
-                            onGetCarDamagePacket?.Invoke((Damage.CarDamagePacket)packet);
+                            onGetCarDamagePacket?.Invoke((CarDamagePacket)packet);
                             break;
                         case PacketId.SESSION_HISTORY:
-                            onGetSessionHistoryPacket?.Invoke((SessionHistory.SessionHistoryPacket)packet);
+                            onGetSessionHistoryPacket?.Invoke((SessionHistoryPacket)packet);
                             break;
                     }
                 }

@@ -1,4 +1,4 @@
-﻿namespace F1GameTelemetryLibrary.Sessions.Enums
+﻿namespace F1GameTelemetry
 {
     public enum RacingLineAssistMode : byte
     {

@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace F1GameTelemetryLibrary.Events
+﻿namespace F1GameTelemetry
 {
     /// <summary>
     /// Superclass for details about each type of event data.

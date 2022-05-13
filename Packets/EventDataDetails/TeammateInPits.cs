@@ -1,4 +1,4 @@
-﻿namespace F1GameTelemetryLibrary.Events
+﻿namespace F1GameTelemetry
 {
     /// <summary>
     /// Stores event details for when the players teammate is pitting.

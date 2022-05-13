@@ -1,4 +1,4 @@
-﻿namespace F1GameTelemetryLibrary.Lobbies
+﻿namespace F1GameTelemetry
 {
     /// <summary>
     /// Lobby info packet stores details of the players currently in a multiplayer lobby.

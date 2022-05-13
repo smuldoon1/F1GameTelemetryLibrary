@@ -1,6 +1,4 @@
-﻿using F1GameTelemetryLibrary.Utils;
-
-namespace F1GameTelemetryLibrary.Motion
+﻿namespace F1GameTelemetry
 {
     /// <summary>
     /// Motion packet gives stores physics data for all cars. There is additional data available for the player car.

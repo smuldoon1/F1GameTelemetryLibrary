@@ -1,4 +1,4 @@
-﻿namespace F1GameTelemetryLibrary.SessionHistory.Enums
+﻿namespace F1GameTelemetry
 {
     [Flags]
     public enum LapValidityFlags : byte

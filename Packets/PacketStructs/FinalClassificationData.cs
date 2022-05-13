@@ -1,6 +1,4 @@
-﻿using F1GameTelemetryLibrary.Enums;
-
-namespace F1GameTelemetryLibrary.Classifications
+﻿namespace F1GameTelemetry
 {
     /// <summary>
     /// Status information about a particular car.

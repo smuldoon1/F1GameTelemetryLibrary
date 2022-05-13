@@ -1,4 +1,4 @@
-﻿namespace F1GameTelemetryLibrary.Telemetry.Enums
+﻿namespace F1GameTelemetry
 {
     public enum SurfaceType : byte
     {

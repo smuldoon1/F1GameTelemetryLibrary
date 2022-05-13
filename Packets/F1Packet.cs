@@ -1,4 +1,4 @@
-﻿namespace F1GameTelemetryLibrary
+﻿namespace F1GameTelemetry
 {
     /// <summary>
     /// All unpacked packets derive from this class.
@@ -23,29 +23,29 @@
             switch (header.packetId)
             {
                 case PacketId.MOTION:
-                    return new Motion.MotionPacket(header, remainingData);
+                    return new MotionPacket(header, remainingData);
                 case PacketId.SESSION:
-                    return new Sessions.SessionPacket(header, remainingData);
+                    return new SessionPacket(header, remainingData);
                 case PacketId.LAP_DATA:
-                    return new Laps.LapDataPacket(header, remainingData);
+                    return new LapDataPacket(header, remainingData);
                 case PacketId.EVENT:
-                    return new Events.EventPacket(header, remainingData);
+                    return new EventPacket(header, remainingData);
                 case PacketId.PARTICIPANTS:
-                    return new Participants.ParticipantsPacket(header, remainingData);
+                    return new ParticipantsPacket(header, remainingData);
                 case PacketId.CAR_SETUPS:
-                    return new Setups.CarSetupsPacket(header, remainingData);
+                    return new CarSetupsPacket(header, remainingData);
                 case PacketId.CAR_TELEMETRY:
-                    return new Telemetry.CarTelemetryPacket(header, remainingData);
+                    return new CarTelemetryPacket(header, remainingData);
                 case PacketId.CAR_STATUS:
-                    return new Statuses.CarStatusPacket(header, remainingData);
+                    return new CarStatusPacket(header, remainingData);
                 case PacketId.FINAL_CLASSIFICATION:
-                    return new Classifications.FinalClassificationPacket(header, remainingData);
+                    return new FinalClassificationPacket(header, remainingData);
                 case PacketId.LOBBY_INFO:
-                    return new Lobbies.LobbyInfoPacket(header, remainingData);
+                    return new LobbyInfoPacket(header, remainingData);
                 case PacketId.CAR_DAMAGE:
-                    return new Damage.CarDamagePacket(header, remainingData);
+                    return new CarDamagePacket(header, remainingData);
                 case PacketId.SESSION_HISTORY:
-                    return new SessionHistory.SessionHistoryPacket(header, remainingData);
+                    return new SessionHistoryPacket(header, remainingData);
             }
             throw new InvalidPacketException((byte)header.packetId);
         }

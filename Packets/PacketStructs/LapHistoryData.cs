@@ -1,4 +1,4 @@
-﻿namespace F1GameTelemetryLibrary.SessionHistory
+﻿namespace F1GameTelemetry
 {
     /// <summary>
     /// Stores historical data for each lap done by a particular car.
@@ -28,7 +28,7 @@
         /// <summary>
         /// Bit flags for the validity of the lap and for each sector.
         /// </summary>
-        Enums.LapValidityFlags lapValidBitFlags;
+        LapValidityFlags lapValidBitFlags;
 
         public void Unpack(Unpacker unpacker)
         {
@@ -36,7 +36,7 @@
             sectorOneTime = unpacker.NextUshort();
             sectorTwoTime = unpacker.NextUshort();
             sectorThreeTime = unpacker.NextUshort();
-            lapValidBitFlags = (Enums.LapValidityFlags)unpacker.NextByte();
+            lapValidBitFlags = (LapValidityFlags)unpacker.NextByte();
         }
     }
 }

@@ -1,6 +1,4 @@
-﻿using F1GameTelemetryLibrary.Enums;
-
-namespace F1GameTelemetryLibrary.Sessions
+﻿namespace F1GameTelemetry
 {
     /// <summary>
     /// Data about a particlar marshall zone at the track.

@@ -1,6 +1,4 @@
-﻿using F1GameTelemetryLibrary.Enums;
-
-namespace F1GameTelemetryLibrary.Laps
+﻿namespace F1GameTelemetry
 {
     /// <summary>
     /// Lap data about a particlar car.
@@ -55,7 +53,7 @@ namespace F1GameTelemetryLibrary.Laps
         /// <summary>
         /// The current pit status of the car.
         /// </summary>
-        public Enums.PitStatus PitStatus { get { return pitStatus; } }
+        public PitStatus PitStatus { get { return pitStatus; } }
 
         /// <summary>
         /// Total number of pit stops the car has made this race.
@@ -100,7 +98,7 @@ namespace F1GameTelemetryLibrary.Laps
         /// <summary>
         /// The current status of the car.
         /// </summary>
-        public Enums.DriverStatus DriverStatus { get { return driverStatus; } }
+        public DriverStatus DriverStatus { get { return driverStatus; } }
 
         /// <summary>
         /// Result status of the car.

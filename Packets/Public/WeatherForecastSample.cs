@@ -1,6 +1,4 @@
-﻿using F1GameTelemetryLibrary.Enums;
-
-namespace F1GameTelemetryLibrary.Sessions
+﻿namespace F1GameTelemetry
 {
     /// <summary>
     /// A sample of weather forecast data.
@@ -10,7 +8,12 @@ namespace F1GameTelemetryLibrary.Sessions
         /// <summary>
         /// The type of session.
         /// </summary>
-        public Enums.SessionType SessionType { get { return sessionType; } }
+        public 
+            
+            
+            
+            
+            SessionType SessionType { get { return sessionType; } }
 
         /// <summary>
         /// Time in minutes the forecast sample is scheduled for.
@@ -20,7 +23,7 @@ namespace F1GameTelemetryLibrary.Sessions
         /// <summary>
         /// The weather status of the forecast sample.
         /// </summary>
-        public Enums.WeatherStatus Weather { get { return weather; } }
+        public WeatherStatus Weather { get { return weather; } }
 
         /// <summary>
         /// Track temperature in degrees Celcius.
@@ -30,7 +33,7 @@ namespace F1GameTelemetryLibrary.Sessions
         /// <summary>
         /// The change in track temperature from the last forecast sample.
         /// </summary>
-        public Enums.TemperatureDelta TrackTemperatureChange { get { return trackTemperatureChange; } }
+        public TemperatureDelta TrackTemperatureChange { get { return trackTemperatureChange; } }
 
         /// <summary>
         /// Air temperature in degrees Celcius.
@@ -40,7 +43,7 @@ namespace F1GameTelemetryLibrary.Sessions
         /// <summary>
         /// The change in air temperature from the last forecast sample.
         /// </summary>
-        public Enums.TemperatureDelta AirTemperatureChange { get { return airTemperatureChange; } }
+        public TemperatureDelta AirTemperatureChange { get { return airTemperatureChange; } }
 
         /// <summary>
         /// The percentage of rain on the track.

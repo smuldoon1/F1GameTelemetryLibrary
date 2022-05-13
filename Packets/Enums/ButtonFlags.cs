@@ -1,4 +1,4 @@
-﻿namespace F1GameTelemetryLibrary.Events.Enums
+﻿namespace F1GameTelemetry
 {
     [Flags]
     public enum ButtonFlags : uint

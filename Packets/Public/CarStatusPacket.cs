@@ -1,4 +1,4 @@
-﻿namespace F1GameTelemetryLibrary.Statuses
+﻿namespace F1GameTelemetry
 {
     /// <summary>
     /// Car status packet stores status information for all cars.

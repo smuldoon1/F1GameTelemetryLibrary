@@ -1,4 +1,4 @@
-﻿namespace F1GameTelemetryLibrary.Participants
+﻿namespace F1GameTelemetry
 {
     /// <summary>
     /// Participant data for a particular car.

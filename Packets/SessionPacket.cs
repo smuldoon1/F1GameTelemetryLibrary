@@ -1,4 +1,4 @@
-﻿namespace F1GameTelemetryLibrary.Sessions
+﻿namespace F1GameTelemetry
 {
     /// <summary>
     /// Session packet stores details about a particular session.
@@ -8,7 +8,7 @@
         /// <summary>
         /// The weather status.
         /// </summary>
-        Enums.WeatherStatus weather;
+        WeatherStatus weather;
 
         /// <summary>
         /// Track temperature in degrees Celcius.
@@ -33,7 +33,7 @@
         /// <summary>
         /// The type of session.
         /// </summary>
-        Enums.SessionType sessionType;
+        SessionType sessionType;
 
         /// <summary>
         /// Track identifier. -1 means the track is unknown.
@@ -43,7 +43,7 @@
         /// <summary>
         /// The series/class of cars used in the session.
         /// </summary>
-        Enums.Formula formula;
+        Formula formula;
 
         /// <summary>
         /// Time remaining in the session in seconds.
@@ -93,7 +93,7 @@
         /// <summary>
         /// The current status of the safety car.
         /// </summary>
-        Enums.SafetyCarStatus safetyCarStatus;
+        SafetyCarStatus safetyCarStatus;
 
         /// <summary>
         /// Is the session a network game?
@@ -165,14 +165,14 @@
         {
             Unpacker unpacker = new(packedData);
 
-            weather = (Enums.WeatherStatus)unpacker.NextByte();
+            weather = (WeatherStatus)unpacker.NextByte();
             trackTemperature = unpacker.NextSbyte();
             airTemperature = unpacker.NextSbyte();
             totalLaps = unpacker.NextByte();
             trackLength = unpacker.NextUshort();
-            sessionType = (Enums.SessionType)unpacker.NextByte();
+            sessionType = (SessionType)unpacker.NextByte();
             trackId = unpacker.NextSbyte();
-            formula = (Enums.Formula)unpacker.NextByte();
+            formula = (Formula)unpacker.NextByte();
             sessionTimeLeft = unpacker.NextUshort();
             sessionDuration = unpacker.NextUshort();
             pitSpeedLimit = unpacker.NextByte();
@@ -186,7 +186,7 @@
                 marshallZones[i] = new MarshallZone();
                 marshallZones[i].Unpack(unpacker);
             }
-            safetyCarStatus = (Enums.SafetyCarStatus)unpacker.NextByte();
+            safetyCarStatus = (SafetyCarStatus)unpacker.NextByte();
             isNetworkGame = unpacker.NextBool();
             weatherForecastSampleCount = unpacker.NextByte();
             for (int i = 0; i < weatherForecastSamples.Length; i++)

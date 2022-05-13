@@ -1,4 +1,4 @@
-﻿namespace F1GameTelemetryLibrary.Statuses.Enums
+﻿namespace F1GameTelemetry
 {
     public enum TractionControlMode : byte
     {

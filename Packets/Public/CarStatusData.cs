@@ -1,6 +1,4 @@
-﻿using F1GameTelemetryLibrary.Enums;
-
-namespace F1GameTelemetryLibrary.Statuses
+﻿namespace F1GameTelemetry
 {
     /// <summary>
     /// Status information about a particular car. For some or all data in this stuct only the player, AI cars and network players with their UDP telemetry set to Public will non-zero values.
@@ -10,7 +8,7 @@ namespace F1GameTelemetryLibrary.Statuses
         /// <summary>
         /// The traction control setting on this car.
         /// </summary>
-        public Enums.TractionControlMode TractionControl { get { return tractionControl; } }
+        public TractionControlMode TractionControl { get { return tractionControl; } }
 
         /// <summary>
         /// Is the anti-lock braking system enabled on this car?
@@ -20,7 +18,7 @@ namespace F1GameTelemetryLibrary.Statuses
         /// <summary>
         /// The current fuel mix the car is using.
         /// </summary>
-        public Enums.FuelMix FuelMix { get { return fuelMix; } }
+        public FuelMix FuelMix { get { return fuelMix; } }
 
         /// <summary>
         /// The brake front brake bias as a percentage.
@@ -100,7 +98,7 @@ namespace F1GameTelemetryLibrary.Statuses
         /// <summary>
         /// The current deployment mode of the energy recovery system.
         /// </summary>
-        public Enums.ErsDeployMode EnergyDeployMode { get { return energyDeployMode; } }
+        public ErsDeployMode EnergyDeployMode { get { return energyDeployMode; } }
 
         /// <summary>
         /// Energy harvested this lap by the MGU-K.

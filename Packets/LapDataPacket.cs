@@ -1,4 +1,4 @@
-﻿namespace F1GameTelemetryLibrary.Laps
+﻿namespace F1GameTelemetry
 {
     /// <summary>
     /// Lap data packet gives details about the laps of all cars in the session.

@@ -1,4 +1,4 @@
-﻿namespace F1GameTelemetryLibrary.Enums
+﻿namespace F1GameTelemetry
 {
     public enum ActualTyreCompound : byte
     {

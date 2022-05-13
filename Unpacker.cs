@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace F1GameTelemetryLibrary
+﻿namespace F1GameTelemetry
 {
     public class Unpacker
     {
@@ -315,12 +309,12 @@ namespace F1GameTelemetryLibrary
 
         UnpackingException NoDataError(int bytesRequired)
         {
-            return new UnpackingException($"Not enough bytes left in { packedData } to unpack. { bytesRequired } bytes are required but there are only { packedData.Length - pointer } bytes remaining.");
+            return new UnpackingException($"Not enough bytes left in { packedData } to unpack. { bytesRequired } bytes are required but there are only { packedData?.Length - pointer } bytes remaining.");
         }
 
         UnpackingException IndexError()
         {
-            return new UnpackingException($"Unpacker pointer ({ pointer }) is out of range. { packedData } has { packedData.Length } bytes.");
+            return new UnpackingException($"Unpacker pointer ({ pointer }) is out of range. { packedData } has { packedData?.Length } bytes.");
         }
     }
 }

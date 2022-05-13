@@ -1,4 +1,4 @@
-﻿namespace F1GameTelemetryLibrary.Events
+﻿namespace F1GameTelemetry
 {
     /// <summary>
     /// Event packet stores details about certain events that happen during a session.

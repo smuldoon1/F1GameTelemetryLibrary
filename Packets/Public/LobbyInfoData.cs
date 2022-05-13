@@ -1,4 +1,4 @@
-﻿namespace F1GameTelemetryLibrary.Lobbies
+﻿namespace F1GameTelemetry
 {
     /// <summary>
     /// Lobby info about a particular player.
@@ -33,6 +33,6 @@
         /// <summary>
         /// Ready status of the player.
         /// </summary>
-        public Enums.ReadyStatus ReadyStatus { get { return readyStatus; } }
+        public ReadyStatus ReadyStatus { get { return readyStatus; } }
     }
 }

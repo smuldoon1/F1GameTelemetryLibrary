@@ -1,6 +1,4 @@
-﻿using F1GameTelemetryLibrary.Utils;
-
-namespace F1GameTelemetryLibrary.Telemetry
+﻿namespace F1GameTelemetry
 {
     /// <summary>
     /// Telemetry data for a particular car.
@@ -85,6 +83,6 @@ namespace F1GameTelemetryLibrary.Telemetry
         /// <summary>
         /// Type of surface each wheel is currently on top of.
         /// </summary>
-        public TyreData<Enums.SurfaceType> SurfaceTypes { get { return surfaceTypes; } }
+        public TyreData<SurfaceType> SurfaceTypes { get { return surfaceTypes; } }
     }
 }

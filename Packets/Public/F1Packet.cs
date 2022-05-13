@@ -1,4 +1,4 @@
-﻿namespace F1GameTelemetryLibrary
+﻿namespace F1GameTelemetry
 {
     /// <summary>
     /// All unpacked packets derive from this class.

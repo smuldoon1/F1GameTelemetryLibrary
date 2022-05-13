@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace F1GameTelemetryLibrary
+﻿namespace F1GameTelemetry
 {
     /// <summary>
     /// The exception that is thrown whenever an error occurs with the unpacker.

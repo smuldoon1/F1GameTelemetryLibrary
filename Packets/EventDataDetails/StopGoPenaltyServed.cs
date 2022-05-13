@@ -1,4 +1,4 @@
-﻿namespace F1GameTelemetryLibrary.Events
+﻿namespace F1GameTelemetry
 {
     /// <summary>
     /// Stores event details for when a car has served a stop go penalty.

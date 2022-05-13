@@ -1,4 +1,4 @@
-﻿namespace F1GameTelemetryLibrary.Lobbies
+﻿namespace F1GameTelemetry
 {
     /// <summary>
     /// Lobby info about a particular player.
@@ -33,7 +33,7 @@
         /// <summary>
         /// Ready status of the player.
         /// </summary>
-        Enums.ReadyStatus readyStatus;
+        ReadyStatus readyStatus;
 
         public void Unpack(Unpacker unpacker)
         {
@@ -42,7 +42,7 @@
             nationalityId = unpacker.NextByte();
             name = unpacker.NextString(48);
             carNumber = unpacker.NextByte();
-            readyStatus = (Enums.ReadyStatus)unpacker.NextByte();
+            readyStatus = (ReadyStatus)unpacker.NextByte();
         }
     }
 }

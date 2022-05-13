@@ -1,6 +1,4 @@
-﻿using F1GameTelemetryLibrary.Enums;
-
-namespace F1GameTelemetryLibrary.Laps
+﻿namespace F1GameTelemetry
 {
     /// <summary>
     /// Lap data about a particlar car.
@@ -55,7 +53,7 @@ namespace F1GameTelemetryLibrary.Laps
         /// <summary>
         /// The current pit status of the car.
         /// </summary>
-        Enums.PitStatus pitStatus;
+        PitStatus pitStatus;
 
         /// <summary>
         /// Total number of pit stops the car has made this race.
@@ -100,7 +98,7 @@ namespace F1GameTelemetryLibrary.Laps
         /// <summary>
         /// The current status of the car.
         /// </summary>
-        Enums.DriverStatus driverStatus;
+        DriverStatus driverStatus;
 
         /// <summary>
         /// Result status of the car.
@@ -138,7 +136,7 @@ namespace F1GameTelemetryLibrary.Laps
             safetyCarDelta = unpacker.NextFloat();
             carPosition = unpacker.NextByte();
             currentLap = unpacker.NextByte();
-            pitStatus = (Enums.PitStatus)unpacker.NextByte();
+            pitStatus = (PitStatus)unpacker.NextByte();
             totalPitStops = unpacker.NextByte();
             sector = unpacker.NextByte();
             isCurrentLapInvalid = unpacker.NextBool();
@@ -147,7 +145,7 @@ namespace F1GameTelemetryLibrary.Laps
             unservedDriveThroughs = unpacker.NextByte();
             unservedStopGos = unpacker.NextByte();
             gridPosition = unpacker.NextByte();
-            driverStatus = (Enums.DriverStatus)unpacker.NextByte();
+            driverStatus = (DriverStatus)unpacker.NextByte();
             resultStatus = (ResultStatus)unpacker.NextByte();
             isPitLaneTimerActive = unpacker.NextBool();
             pitLaneTime = unpacker.NextUshort();

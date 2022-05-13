@@ -1,6 +1,4 @@
-﻿using F1GameTelemetryLibrary.Utils;
-
-namespace F1GameTelemetryLibrary.Damage
+﻿namespace F1GameTelemetry
 {
     /// <summary>
     /// Damage and wear data for a particular car with numeric data stored as a percentage. For some or all data in this struct only the player, AI cars and network players with their UDP telemetry set to Public will have non-zero values.

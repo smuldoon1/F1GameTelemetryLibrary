@@ -1,6 +1,4 @@
-﻿using F1GameTelemetryLibrary.Utils;
-
-namespace F1GameTelemetryLibrary.Motion
+﻿namespace F1GameTelemetry
 {
     /// <summary>
     /// Motion data for a particular car.

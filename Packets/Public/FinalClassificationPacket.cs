@@ -1,4 +1,4 @@
-﻿namespace F1GameTelemetryLibrary.Classifications
+﻿namespace F1GameTelemetry
 {
     /// <summary>
     /// Final classification packet stores details about the final classification at the end of a session.

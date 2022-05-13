@@ -1,4 +1,4 @@
-﻿namespace F1GameTelemetryLibrary
+﻿namespace F1GameTelemetry
 {
     public enum PacketId : byte
     {

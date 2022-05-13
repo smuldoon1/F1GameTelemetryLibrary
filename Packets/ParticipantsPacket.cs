@@ -1,4 +1,4 @@
-﻿namespace F1GameTelemetryLibrary.Participants
+﻿namespace F1GameTelemetry
 {
     /// <summary>
     /// Partipants data packet stores data about all participants in the session.

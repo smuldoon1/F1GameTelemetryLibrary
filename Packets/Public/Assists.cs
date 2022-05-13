@@ -1,4 +1,4 @@
-﻿namespace F1GameTelemetryLibrary.Sessions
+﻿namespace F1GameTelemetry
 {
     /// <summary>
     /// Used to store assist data.
@@ -13,12 +13,12 @@
         /// <summary>
         /// Braking assist mode.
         /// </summary>
-        public Enums.BrakingAssistMode BrakingAssist { get { return brakingAssist; } }
+        public BrakingAssistMode BrakingAssist { get { return brakingAssist; } }
 
         /// <summary>
         /// Gearbox assist mode.
         /// </summary>
-        public Enums.GearboxAssistMode GearboxAssist { get { return gearboxAssist; } }
+        public GearboxAssistMode GearboxAssist { get { return gearboxAssist; } }
 
         /// <summary>
         /// Is pit assist enabled?
@@ -43,7 +43,7 @@
         /// <summary>
         /// Dynamic racing line assist mode.
         /// </summary>
-        public Enums.RacingLineAssistMode DynamicRacingLine { get { return dynamicRacingLine; } }
+        public RacingLineAssistMode DynamicRacingLine { get { return dynamicRacingLine; } }
 
         /// <summary>
         /// Is the dynamic racing line set to 3D?

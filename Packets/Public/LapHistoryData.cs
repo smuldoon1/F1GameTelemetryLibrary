@@ -1,4 +1,4 @@
-﻿namespace F1GameTelemetryLibrary.SessionHistory
+﻿namespace F1GameTelemetry
 {
     /// <summary>
     /// Stores historical data for each lap done by a particular car.
@@ -28,6 +28,6 @@
         /// <summary>
         /// Bit flags for the validity of the lap and for each sector.
         /// </summary>
-        public Enums.LapValidityFlags LapValidBitFlags { get { return lapValidBitFlags; } }
+        public LapValidityFlags LapValidBitFlags { get { return lapValidBitFlags; } }
     }
 }

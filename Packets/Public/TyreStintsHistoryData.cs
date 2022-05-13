@@ -1,6 +1,4 @@
-﻿using F1GameTelemetryLibrary.Enums;
-
-namespace F1GameTelemetryLibrary.SessionHistory
+﻿namespace F1GameTelemetry
 {
     /// <summary>
     /// Stores historical data for each tyre stint done by a particular car.
