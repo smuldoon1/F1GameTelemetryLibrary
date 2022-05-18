@@ -94,10 +94,6 @@ namespace F1RacingHub
                         Gear = telemetryPacket.CarTelemetryData[i].Gear
                     };
                     lapFrames.Add(frame);
-                    if (frame.CarIndex == telemetryPacket.PlayerCarIndex)
-                    {
-                        //Console.WriteLine(frame.Speed);
-                    }
                 }
                 lapDataPackets.Remove(telemetryPacket.FrameIdentifier);
             }
