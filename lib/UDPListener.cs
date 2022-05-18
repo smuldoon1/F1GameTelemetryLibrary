@@ -38,46 +38,54 @@ namespace F1GameTelemetry
                 using UdpClient client = new UdpClient(new IPEndPoint(address, port));
                 while (true)
                 {
-                    var udpResult = await client.ReceiveAsync();
-                    F1Packet packet = F1Packet.CreatePacket(udpResult.Buffer);
-                    switch (packet.PacketId)
+                    try
                     {
-                        case PacketId.MOTION:
-                            onGetMotionPacket?.Invoke((MotionPacket)packet);
-                            break;
-                        case PacketId.SESSION:
-                            onGetSessionPacket?.Invoke((SessionPacket)packet);
-                            break;
-                        case PacketId.LAP_DATA:
-                            onGetLapDataPacket?.Invoke((LapDataPacket)packet);
-                            break;
-                        case PacketId.EVENT:
-                            onGetEventPacket?.Invoke((EventPacket)packet);
-                            break;
-                        case PacketId.PARTICIPANTS:
-                            onGetParticipantsPacket?.Invoke((ParticipantsPacket)packet);
-                            break;
-                        case PacketId.CAR_SETUPS:
-                            onGetCarSetupsPacket?.Invoke((CarSetupsPacket)packet);
-                            break;
-                        case PacketId.CAR_TELEMETRY:
-                            onGetCarTelemetryPacket?.Invoke((CarTelemetryPacket)packet);
-                            break;
-                        case PacketId.CAR_STATUS:
-                            onGetCarStatusPacket?.Invoke((CarStatusPacket)packet);
-                            break;
-                        case PacketId.FINAL_CLASSIFICATION:
-                            onGetFinalClassificationPacket?.Invoke((FinalClassificationPacket)packet);
-                            break;
-                        case PacketId.LOBBY_INFO:
-                            onGetLobbyInfoPacket?.Invoke((LobbyInfoPacket)packet);
-                            break;
-                        case PacketId.CAR_DAMAGE:
-                            onGetCarDamagePacket?.Invoke((CarDamagePacket)packet);
-                            break;
-                        case PacketId.SESSION_HISTORY:
-                            onGetSessionHistoryPacket?.Invoke((SessionHistoryPacket)packet);
-                            break;
+                        var udpResult = await client.ReceiveAsync();
+                        F1Packet packet = F1Packet.CreatePacket(udpResult.Buffer);
+                        switch (packet.PacketId)
+                        {
+                            case PacketId.MOTION:
+                                onGetMotionPacket?.Invoke((MotionPacket)packet);
+                                break;
+                            case PacketId.SESSION:
+                                onGetSessionPacket?.Invoke((SessionPacket)packet);
+                                break;
+                            case PacketId.LAP_DATA:
+                                onGetLapDataPacket?.Invoke((LapDataPacket)packet);
+                                break;
+                            case PacketId.EVENT:
+                                onGetEventPacket?.Invoke((EventPacket)packet);
+                                break;
+                            case PacketId.PARTICIPANTS:
+                                onGetParticipantsPacket?.Invoke((ParticipantsPacket)packet);
+                                break;
+                            case PacketId.CAR_SETUPS:
+                                onGetCarSetupsPacket?.Invoke((CarSetupsPacket)packet);
+                                break;
+                            case PacketId.CAR_TELEMETRY:
+                                onGetCarTelemetryPacket?.Invoke((CarTelemetryPacket)packet);
+                                break;
+                            case PacketId.CAR_STATUS:
+                                onGetCarStatusPacket?.Invoke((CarStatusPacket)packet);
+                                break;
+                            case PacketId.FINAL_CLASSIFICATION:
+                                onGetFinalClassificationPacket?.Invoke((FinalClassificationPacket)packet);
+                                break;
+                            case PacketId.LOBBY_INFO:
+                                onGetLobbyInfoPacket?.Invoke((LobbyInfoPacket)packet);
+                                break;
+                            case PacketId.CAR_DAMAGE:
+                                onGetCarDamagePacket?.Invoke((CarDamagePacket)packet);
+                                break;
+                            case PacketId.SESSION_HISTORY:
+                                onGetSessionHistoryPacket?.Invoke((SessionHistoryPacket)packet);
+                                break;
+                        }
+                    }
+                    catch (Exception ex)
+                    {
+                        Console.WriteLine(ex.Message);
+                        Console.WriteLine(ex.StackTrace);
                     }
                 }
             });
