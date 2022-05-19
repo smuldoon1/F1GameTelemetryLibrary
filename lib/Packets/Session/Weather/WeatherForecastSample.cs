@@ -8,12 +8,7 @@
         /// <summary>
         /// The type of session.
         /// </summary>
-        public 
-            
-            
-            
-            
-            SessionType SessionType { get { return sessionType; } }
+        public SessionType SessionType { get { return sessionType; } }
 
         /// <summary>
         /// Time in minutes the forecast sample is scheduled for.

@@ -3,51 +3,56 @@
     /// <summary>
     /// All unpacked packets derive from this class.
     /// </summary>
-    partial class F1Packet
+    public abstract partial class F1Packet
     {
         /// <summary>
-        /// Struct that stores header values of every UDP packet that is sent.
+        /// Edition of the F1 game this packet is being sent by.
         /// </summary>
-        internal PacketHeader header;
+        public ushort PacketFormat { get { return header.packetFormat; } }
 
         /// <summary>
-        /// Wrapper for unpacking a UDP packet and returning a packet class depending on the packet type.
+        /// Game major version (x.00).
         /// </summary>
-        /// <param name="udpPacket"></param>
-        /// <returns></returns>
-        /// <exception cref="InvalidPacketException"></exception>
-        public static F1Packet CreatePacket(byte[] udpPacket)
-        {
-            PacketHeader header = new PacketHeader();
-            byte[] remainingData = header.Unpack(udpPacket);
-            switch (header.packetId)
-            {
-                case PacketId.MOTION:
-                    return new MotionPacket(header, remainingData);
-                case PacketId.SESSION:
-                    return new SessionPacket(header, remainingData);
-                case PacketId.LAP_DATA:
-                    return new LapDataPacket(header, remainingData);
-                case PacketId.EVENT:
-                    return new EventPacket(header, remainingData);
-                case PacketId.PARTICIPANTS:
-                    return new ParticipantsPacket(header, remainingData);
-                case PacketId.CAR_SETUPS:
-                    return new CarSetupsPacket(header, remainingData);
-                case PacketId.CAR_TELEMETRY:
-                    return new CarTelemetryPacket(header, remainingData);
-                case PacketId.CAR_STATUS:
-                    return new CarStatusPacket(header, remainingData);
-                case PacketId.FINAL_CLASSIFICATION:
-                    return new FinalClassificationPacket(header, remainingData);
-                case PacketId.LOBBY_INFO:
-                    return new LobbyInfoPacket(header, remainingData);
-                case PacketId.CAR_DAMAGE:
-                    return new CarDamagePacket(header, remainingData);
-                case PacketId.SESSION_HISTORY:
-                    return new SessionHistoryPacket(header, remainingData);
-            }
-            throw new InvalidPacketException((byte)header.packetId);
-        }
+        public byte GameMajorVersion { get { return header.gameMajorVersion; } }
+
+        /// <summary>
+        /// Game minor version (1.xx).
+        /// </summary>
+        public byte GameMinorVersion { get { return header.gameMinorVersion; } }
+
+        /// <summary>
+        /// Version of this packet type.
+        /// </summary>
+        public byte PacketVersion { get { return header.packetVersion; } }
+
+        /// <summary>
+        /// Identifier for this packet type. See documentation for information about each packet type.
+        /// </summary>
+        public PacketId PacketId { get { return header.packetId; } }
+
+        /// <summary>
+        /// Unique identifier for the session. Each session generates a new identifier.
+        /// </summary>
+        public ulong SessionUID { get { return header.sessionUID; } }
+
+        /// <summary>
+        /// Session timestamp in seconds.
+        /// </summary>
+        public float SessionTime { get { return header.sessionTime; } }
+
+        /// <summary>
+        /// Identifier for the frame the packet was retrieved on.
+        /// </summary>
+        public uint FrameIdentifier { get { return header.frameIdentifier; } }
+
+        /// <summary>
+        /// Index of the players car.
+        /// </summary>
+        public byte PlayerCarIndex { get { return header.playerCarIndex; } }
+
+        /// <summary>
+        /// Index of the secondary players car (splitscreen player). 255 if there is no secondary player.
+        /// </summary>
+        public byte SecondaryPlayerCarIndex { get { return header.secondaryPlayerCarIndex; } }
     }
 }
