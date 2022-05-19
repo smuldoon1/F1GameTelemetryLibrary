@@ -3,13 +3,14 @@
   <PropertyGroup>
     <OutputType>Exe</OutputType>
     <TargetFramework>net6.0</TargetFramework>
-    <RootNamespace>Recording_App</RootNamespace>
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\lib\F1GameTelemetryLibrary.csproj" />
+    <Reference Include="F1GameTelemetryLibrary">
+      <HintPath>..\lib\obj\Debug\net6.0\F1GameTelemetryLibrary.dll</HintPath>
+    </Reference>
   </ItemGroup>
 
 </Project>

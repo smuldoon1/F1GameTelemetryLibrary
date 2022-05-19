@@ -6,9 +6,9 @@ using System.Text;
 using System.Threading.Tasks;
 using F1GameTelemetry;
 
-namespace F1RacingHub
+namespace F1_Racing_Hub
 {
-    public class Program
+    public class ListenerObject
     {
         public List<LapFrame> lapFrames = new List<LapFrame>();
 
@@ -18,14 +18,9 @@ namespace F1RacingHub
 
         private LapHistory[,] lapHistories = new LapHistory[22, 100];
 
-        private UDPListener listener;
+        private UdpListener listener;
 
-        public static void Main(params string[] args)
-        {
-            Program program = new Program();
-        }
-
-        public Program()
+        public ListenerObject()
         {
             for (int i = 0; i < participants.Length; i++)
                 participants[i] = new Participants();
@@ -38,20 +33,11 @@ namespace F1RacingHub
                 }
             }
 
-            listener = new UDPListener(IPAddress.Any, 20777);
+            listener = new UdpListener(IPAddress.Any, 20777);
             listener.Subscribe(HandleLapData);
             listener.Subscribe(HandleTelemetryData);
             listener.Subscribe(HandleParticipantsData);
             listener.Subscribe(HandleSessionHistoryData);
-
-            while (true)
-            {
-                if (lapFrames.Count > 100000)
-                {
-                    //SendLapFrames();
-                    lapFrames.Clear();
-                }
-            }
         }
 
         public void HandleParticipantsData(ParticipantsPacket participantsPacket)

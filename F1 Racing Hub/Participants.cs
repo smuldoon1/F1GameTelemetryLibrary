@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace F1RacingHub
+namespace F1_Racing_Hub
 {
     public class Participants
     {

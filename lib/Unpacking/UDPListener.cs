@@ -3,7 +3,7 @@ using System.Net.Sockets;
 
 namespace F1GameTelemetry
 {
-    public class UDPListener
+    public class UdpListener
     {
         public delegate void OnGetMotionPacket(MotionPacket packet);
         public delegate void OnGetSessionPacket(SessionPacket packet);
@@ -31,7 +31,7 @@ namespace F1GameTelemetry
         OnGetCarDamagePacket? onGetCarDamagePacket;
         OnGetSessionHistoryPacket? onGetSessionHistoryPacket;
 
-        public UDPListener(IPAddress address, int port)
+        public UdpListener(IPAddress address, int port)
         {
             Task.Run(async () =>
             {
