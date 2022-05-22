@@ -18,7 +18,7 @@ namespace F1_Racing_Hub.Stored_Procedures
 
         static SqlCommand ExecuteCommand(string procedureName, params (string key, object value)[] parameters)
         {
-            using var connection = new SqlConnection("");
+            using var connection = new SqlConnection("Data Source=localhost;Integrated Security=True;Connect Timeout=30;Encrypt=False;TrustServerCertificate=False;ApplicationIntent=ReadWrite;MultiSubnetFailover=False");
             using var command = new SqlCommand(procedureName, connection)
             {
                 CommandType = CommandType.StoredProcedure,
