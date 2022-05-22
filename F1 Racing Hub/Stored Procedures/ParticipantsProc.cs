@@ -12,7 +12,7 @@ namespace F1_Racing_Hub.Stored_Procedures
         {
             foreach (Participants p in participants)
             {
-                StoredProcedure.CallProcedure("SetParticipant",
+                StoredProcedure.CallProcedure("CreateParticipant",
                     ("sessionId", p.SessionId),
                     ("carIndex", p.CarIndex),
                     ("aiDriverId", p.DriverId),
