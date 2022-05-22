@@ -32,10 +32,5 @@ namespace F1_Racing_Hub
             Nationality = 0;
             RaceNumber = 0;
         }
-
-        bool ExistsInDatabase()
-        {
-
-        }
     }
 }
