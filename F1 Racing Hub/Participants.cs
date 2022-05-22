@@ -10,6 +10,8 @@ namespace F1_Racing_Hub
     {
         public ulong SessionId { get; set; }
 
+        public byte CarIndex { get; set; }
+
         public byte DriverId { get; set; }
 
         public string Name { get; set; }
@@ -23,6 +25,7 @@ namespace F1_Racing_Hub
         public Participants()
         {
             SessionId = 0;
+            CarIndex = 0;
             DriverId = 0;
             Name = "NONAME";
             TeamId = 0;

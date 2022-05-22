@@ -42,9 +42,10 @@ namespace F1_Racing_Hub
 
         public void HandleParticipantsData(ParticipantsPacket participantsPacket)
         {
-            for (int i = 0; i < participantsPacket.Participants.Length; i++)
+            for (byte i = 0; i < participantsPacket.Participants.Length; i++)
             {
                 participants[i].SessionId = participantsPacket.SessionUID;
+                participants[i].CarIndex = i;
                 participants[i].DriverId = participantsPacket.Participants[i].DriverId;
                 participants[i].Name = participantsPacket.Participants[i].Name;
                 participants[i].TeamId = participantsPacket.Participants[i].TeamId;
