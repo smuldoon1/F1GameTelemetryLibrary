@@ -10,6 +10,10 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="System.Data.SqlClient" Version="4.8.3" />
+  </ItemGroup>
+
+  <ItemGroup>
     <Reference Include="F1GameTelemetryLibrary">
       <HintPath>..\lib\obj\Debug\net6.0\F1GameTelemetryLibrary.dll</HintPath>
     </Reference>
