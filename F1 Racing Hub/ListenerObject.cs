@@ -5,6 +5,7 @@ using System.Net;
 using System.Text;
 using System.Threading.Tasks;
 using F1GameTelemetry;
+using F1_Racing_Hub.Stored_Procedures;
 
 namespace F1_Racing_Hub
 {
@@ -14,7 +15,7 @@ namespace F1_Racing_Hub
 
         private Dictionary<uint,LapDataPacket> lapDataPackets = new Dictionary<uint, LapDataPacket>();
 
-        private Participants[] participants = new Participants[22];
+        private Participant[] participants = new Participant[22];
 
         private LapHistory[,] lapHistories = new LapHistory[22, 100];
 
@@ -23,7 +24,7 @@ namespace F1_Racing_Hub
         public ListenerObject()
         {
             for (int i = 0; i < participants.Length; i++)
-                participants[i] = new Participants();
+                participants[i] = new Participant();
 
             for (int i = 0; i < lapHistories.GetLength(0); i++)
             {
@@ -51,6 +52,10 @@ namespace F1_Racing_Hub
                 participants[i].TeamId = participantsPacket.Participants[i].TeamId;
                 participants[i].Nationality = participantsPacket.Participants[i].NationalityId;
                 participants[i].RaceNumber = participantsPacket.Participants[i].RaceNumber;
+                if (!ParticipantsProc.CheckParticipantExists(participants[i]))
+                {
+                    ParticipantsProc.CreateParticipant(participants[i]);
+                }
             }
         }
 

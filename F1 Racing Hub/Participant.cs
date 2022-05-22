@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace F1_Racing_Hub
 {
-    public class Participants
+    public class Participant
     {
         public ulong SessionId { get; set; }
 
@@ -22,7 +22,7 @@ namespace F1_Racing_Hub
 
         public byte RaceNumber { get; set; }
 
-        public Participants()
+        public Participant()
         {
             SessionId = 0;
             CarIndex = 0;
@@ -31,6 +31,11 @@ namespace F1_Racing_Hub
             TeamId = 0;
             Nationality = 0;
             RaceNumber = 0;
+        }
+
+        bool ExistsInDatabase()
+        {
+
         }
     }
 }
