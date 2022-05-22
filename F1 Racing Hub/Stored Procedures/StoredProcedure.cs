@@ -10,13 +10,13 @@ namespace F1_Racing_Hub.Stored_Procedures
 {
     internal static class StoredProcedure
     {
-        public static SqlDataReader CallProcedure(string procedureName, params (string key, object value)[] parameters)
+        public static object CallProcedure(string procedureName, params (string key, object value)[] parameters)
         {
-            using SqlDataReader reader = ExecuteCommand(procedureName, parameters).ExecuteReader();
-            return reader;
+            object returnValue = ExecuteCommand(procedureName, parameters);
+            return returnValue;
         }
 
-        static SqlCommand ExecuteCommand(string procedureName, params (string key, object value)[] parameters)
+        static object ExecuteCommand(string procedureName, params (string key, object value)[] parameters)
         {
             using var connection = new SqlConnection("Data Source=localhost;Integrated Security=True;Connect Timeout=30;Encrypt=False;TrustServerCertificate=False;ApplicationIntent=ReadWrite;MultiSubnetFailover=False");
             using var command = new SqlCommand(procedureName, connection)
@@ -27,9 +27,11 @@ namespace F1_Racing_Hub.Stored_Procedures
             {
                 command.Parameters.AddWithValue(parameter.key, parameter.value);
             }
+            var returnValue = command.Parameters.Add("returnValue", SqlDbType.Variant);
+            returnValue.Direction = ParameterDirection.ReturnValue;
             connection.Open();
             command.ExecuteNonQuery();
-            return command;
+            return returnValue.Value;
         }
     }
 }

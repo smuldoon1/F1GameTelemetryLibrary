@@ -11,8 +11,8 @@ namespace F1_Racing_Hub.Stored_Procedures
     {
         public static void CreateParticipant(Participant participants)
         {
-            StoredProcedure.CallProcedure("CreateParticipant",
-                ("sessionId", participants.SessionId),
+            StoredProcedure.CallProcedure("[F1App].[dbo].[CreateParticipant]",
+                ("sessionId", participants.SessionId.MapToLong()),
                 ("carIndex", participants.CarIndex),
                 ("aiDriverId", participants.DriverId),
                 ("name", participants.Name),
@@ -24,11 +24,12 @@ namespace F1_Racing_Hub.Stored_Procedures
 
         public static bool CheckParticipantExists(Participant participant)
         {
-            SqlDataReader reader = StoredProcedure.CallProcedure("CheckParticipantExists",
-                ("sessionId", participant.SessionId),
+            int intValue = (int)StoredProcedure.CallProcedure("[F1App].[dbo].[CheckParticipantExists]",
+                ("sessionId", participant.SessionId.MapToLong()),
                 ("carIndex", participant.CarIndex)
             );
-            return reader.GetBoolean(0);
+            if (intValue == 0) return false;
+            return true;
         }
     }
 }
