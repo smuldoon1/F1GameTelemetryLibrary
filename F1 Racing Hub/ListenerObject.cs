@@ -52,7 +52,7 @@ namespace F1_Racing_Hub
                 participants[i].TeamId = participantsPacket.Participants[i].TeamId;
                 participants[i].Nationality = participantsPacket.Participants[i].NationalityId;
                 participants[i].RaceNumber = participantsPacket.Participants[i].RaceNumber;
-                if (!ParticipantsProc.CheckParticipantExists(participants[i]))
+                if (participants[i].RaceNumber > 0 && !ParticipantsProc.CheckParticipantExists(participants[i]))
                 {
                     ParticipantsProc.CreateParticipant(participants[i]);
                 }

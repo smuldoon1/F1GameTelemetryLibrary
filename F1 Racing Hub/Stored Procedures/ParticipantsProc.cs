@@ -12,7 +12,7 @@ namespace F1_Racing_Hub.Stored_Procedures
         public static void CreateParticipant(Participant participants)
         {
             StoredProcedure.CallProcedure("[F1App].[dbo].[CreateParticipant]",
-                ("sessionId", participants.SessionId.ToBigint()),
+                ("sessionId", participants.SessionId.ToSql()),
                 ("carIndex", participants.CarIndex),
                 ("aiDriverId", participants.DriverId),
                 ("name", (!participants.Name.Trim('\0').Equals("Player")) ? participants.Name : $"Car #{ participants.RaceNumber }"),
@@ -25,7 +25,7 @@ namespace F1_Racing_Hub.Stored_Procedures
         public static bool CheckParticipantExists(Participant participant)
         {
             int intValue = (int)StoredProcedure.CallProcedure("[F1App].[dbo].[CheckParticipantExists]",
-                ("sessionId", participant.SessionId.ToBigint()),
+                ("sessionId", participant.SessionId.ToSql()),
                 ("carIndex", participant.CarIndex)
             );
             if (intValue == 0) return false;
