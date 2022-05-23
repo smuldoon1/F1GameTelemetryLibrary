@@ -85,7 +85,8 @@ namespace F1_Racing_Hub
                         Brake = telemetryPacket.CarTelemetryData[i].Brake,
                         Gear = telemetryPacket.CarTelemetryData[i].Gear
                     };
-                    lapFrames.Add(frame);
+                    //lapFrames.Add(frame);
+                    LapFrameProc.CreateLapFrame(frame);
                 }
                 lapDataPackets.Remove(telemetryPacket.FrameIdentifier);
             }
