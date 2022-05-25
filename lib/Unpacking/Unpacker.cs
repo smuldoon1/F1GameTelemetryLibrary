@@ -290,7 +290,7 @@
                 {
                     chars[i] = (char)packedData[pointer++];
                 }
-                return new string(chars);
+                return new string(chars).Trim('\0');
             }
             catch (ArgumentException)
             {
