@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace F1_Racing_Hub
 {
-    public class LapHistory
+    public class LapHistoryData
     {
         public ulong SessionId { get; set; }
 
@@ -24,7 +24,7 @@ namespace F1_Racing_Hub
 
         public ushort SectorThreeTime { get; set; }
 
-        public LapHistory()
+        public LapHistoryData()
         {
             SessionId = 0;
             CarIndex = 0;

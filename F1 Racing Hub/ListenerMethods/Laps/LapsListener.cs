@@ -12,7 +12,7 @@ namespace F1_Racing_Hub
     public partial class RacingHubListener
     {
         private Dictionary<uint,LapDataPacket> lapDataPackets = new Dictionary<uint, LapDataPacket>();
-        private LapHistory[,] lapHistories = new LapHistory[22, 100];
+        private LapHistoryData[,] lapHistories = new LapHistoryData[22, 100];
 
         private LapFrame[] previousLapFrames = new LapFrame[22];
 
@@ -22,7 +22,7 @@ namespace F1_Racing_Hub
             {
                 for (int j = 0; j < lapHistories.GetLength(1); j++)
                 {
-                    lapHistories[i, j] = new LapHistory();
+                    lapHistories[i, j] = new LapHistoryData();
                 }
             }
 
@@ -78,6 +78,8 @@ namespace F1_Racing_Hub
                 lapHistories[i, lap].SectorOneTime = historyPacket.LapHistoryData[lap].SectorOneTime;
                 lapHistories[i, lap].SectorTwoTime = historyPacket.LapHistoryData[lap].SectorTwoTime;
                 lapHistories[i, lap].SectorThreeTime = historyPacket.LapHistoryData[lap].SectorThreeTime;
+                if (lapHistories[i, lap].LapTime > 0 && !LapHistoryProc.CheckLapHistoryDataExists(lapHistories[i, lap]))
+                    LapHistoryProc.CreateLapHistoryData(lapHistories[i, lap]);
             }
         }
 
