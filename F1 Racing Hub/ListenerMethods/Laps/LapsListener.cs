@@ -12,8 +12,9 @@ namespace F1_Racing_Hub
     public partial class RacingHubListener
     {
         private Dictionary<uint,LapDataPacket> lapDataPackets = new Dictionary<uint, LapDataPacket>();
-
         private LapHistory[,] lapHistories = new LapHistory[22, 100];
+
+        private LapFrame[] previousLapFrames = new LapFrame[22];
 
         public void AddLapsMethods()
         {
@@ -56,7 +57,10 @@ namespace F1_Racing_Hub
                         Brake = telemetryPacket.CarTelemetryData[i].Brake,
                         Gear = telemetryPacket.CarTelemetryData[i].Gear
                     };
-                    LapFrameProc.CreateLapFrame(frame);
+                    if (CanSaveLapFrame(frame))
+                    {
+                        LapFrameProc.CreateLapFrame(frame);
+                    }
                 }
                 lapDataPackets.Remove(telemetryPacket.FrameIdentifier);
             }
@@ -75,6 +79,20 @@ namespace F1_Racing_Hub
                 lapHistories[i, lap].SectorTwoTime = historyPacket.LapHistoryData[lap].SectorTwoTime;
                 lapHistories[i, lap].SectorThreeTime = historyPacket.LapHistoryData[lap].SectorThreeTime;
             }
+        }
+
+        private bool CanSaveLapFrame(LapFrame frame)
+        {
+            // 10 metres is an temporary arbitrary distance threshold
+            LapFrame prevFrame = previousLapFrames[frame.CarIndex];
+            if (prevFrame == null ||
+                frame.Distance > prevFrame.Distance + 10f ||
+                frame.LapNumber > prevFrame.LapNumber)
+            {
+                previousLapFrames[frame.CarIndex] = frame;
+                return true;
+            }
+            return false;
         }
     }
 }
