@@ -9,23 +9,14 @@ using F1_Racing_Hub.Stored_Procedures;
 
 namespace F1_Racing_Hub
 {
-    public class ListenerObject
+    public partial class RacingHubListener
     {
-        public List<LapFrame> lapFrames = new List<LapFrame>();
-
         private Dictionary<uint,LapDataPacket> lapDataPackets = new Dictionary<uint, LapDataPacket>();
-
-        private Participant[] participants = new Participant[22];
 
         private LapHistory[,] lapHistories = new LapHistory[22, 100];
 
-        private UdpListener listener;
-
-        public ListenerObject()
+        public void AddLapsMethods()
         {
-            for (int i = 0; i < participants.Length; i++)
-                participants[i] = new Participant();
-
             for (int i = 0; i < lapHistories.GetLength(0); i++)
             {
                 for (int j = 0; j < lapHistories.GetLength(1); j++)
@@ -34,29 +25,9 @@ namespace F1_Racing_Hub
                 }
             }
 
-            listener = new UdpListener(IPAddress.Any, 20777);
             listener.Subscribe(HandleLapData);
             listener.Subscribe(HandleTelemetryData);
-            listener.Subscribe(HandleParticipantsData);
             listener.Subscribe(HandleSessionHistoryData);
-        }
-
-        public void HandleParticipantsData(ParticipantsPacket participantsPacket)
-        {
-            for (byte i = 0; i < participantsPacket.Participants.Length; i++)
-            {
-                participants[i].SessionId = participantsPacket.SessionUID;
-                participants[i].CarIndex = i;
-                participants[i].DriverId = participantsPacket.Participants[i].DriverId;
-                participants[i].Name = participantsPacket.Participants[i].Name;
-                participants[i].TeamId = participantsPacket.Participants[i].TeamId;
-                participants[i].Nationality = participantsPacket.Participants[i].NationalityId;
-                participants[i].RaceNumber = participantsPacket.Participants[i].RaceNumber;
-                if (participants[i].RaceNumber > 0 && !ParticipantsProc.CheckParticipantExists(participants[i]))
-                {
-                    ParticipantsProc.CreateParticipant(participants[i]);
-                }
-            }
         }
 
         public void HandleLapData(LapDataPacket lapPacket)
@@ -85,7 +56,6 @@ namespace F1_Racing_Hub
                         Brake = telemetryPacket.CarTelemetryData[i].Brake,
                         Gear = telemetryPacket.CarTelemetryData[i].Gear
                     };
-                    //lapFrames.Add(frame);
                     LapFrameProc.CreateLapFrame(frame);
                 }
                 lapDataPackets.Remove(telemetryPacket.FrameIdentifier);
