@@ -15,7 +15,7 @@ namespace F1_Racing_Hub.Stored_Procedures
                 ("sessionId", participants.SessionId.ToSql()),
                 ("carIndex", participants.CarIndex),
                 ("aiDriverId", participants.DriverId),
-                ("name", (!participants.Name.Trim('\0').Equals("Player")) ? participants.Name : $"Car #{ participants.RaceNumber }"),
+                ("name", (!participants.Name.Equals("Player")) ? participants.Name : $"Car #{ participants.RaceNumber }"),
                 ("teamId", participants.TeamId),
                 ("nationalityId", participants.Nationality),
                 ("raceNumber", participants.RaceNumber)
