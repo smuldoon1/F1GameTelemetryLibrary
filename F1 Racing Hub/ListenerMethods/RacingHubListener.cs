@@ -19,6 +19,7 @@ namespace F1_Racing_Hub
 
             AddParticipantMethods();
             AddLapsMethods();
+            AddSessionMethods();
         }
     }
 }
