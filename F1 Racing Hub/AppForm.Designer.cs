@@ -2,14 +2,14 @@
 
 namespace F1_Racing_Hub
 {
-    partial class Form1
+    partial class AppForm
     {
         /// <summary>
         ///  Required designer variable.
         /// </summary>
         private System.ComponentModel.IContainer components = null;
 
-        public static ListenerObject listenerObject;
+        public static RacingHubListener listenerObject;
 
         /// <summary>
         ///  Clean up any resources being used.
@@ -32,32 +32,19 @@ namespace F1_Racing_Hub
         /// </summary>
         private void InitializeComponent()
         {
-            this.button1 = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
-            // button1
-            // 
-            this.button1.Location = new System.Drawing.Point(342, 106);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(179, 23);
-            this.button1.TabIndex = 1;
-            this.button1.Text = "button1";
-            this.button1.UseVisualStyleBackColor = true;
-            // 
-            // Form1
+            // AppForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(875, 508);
-            this.Controls.Add(this.button1);
-            this.Name = "Form1";
+            this.Name = "AppForm";
             this.Text = "Form1";
             this.ResumeLayout(false);
 
         }
 
         #endregion
-
-        private Button button1;
     }
 }
