@@ -9,13 +9,22 @@ using F1_Racing_Hub.Stored_Procedures;
 
 namespace F1_Racing_Hub
 {
-    public partial class RacingHubListener
+    public class SessionListener : ListenerObject, IListener
     {
-        public Session? currentSession;
+        public Session? currentSession = null;
 
-        public void AddSessionMethods()
+        public SessionListener(ref UdpListener listener) : base(ref listener)
         {
-            listener.Subscribe(HandleSessionData);
+        }
+
+        public void Start()
+        {
+            listener?.Subscribe(HandleSessionData);
+        }
+
+        public void SessionBegin()
+        {
+            currentSession = null;
         }
 
         public void HandleSessionData(SessionPacket sessionPacket)

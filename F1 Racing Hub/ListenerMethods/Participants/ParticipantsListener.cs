@@ -9,16 +9,24 @@ using F1_Racing_Hub.Stored_Procedures;
 
 namespace F1_Racing_Hub
 {
-    public partial class RacingHubListener
+    public partial class ParticipantsListener : ListenerObject, IListener
     {
         private Participant[] participants = new Participant[22];
 
-        public void AddParticipantMethods()
+        public ParticipantsListener(ref UdpListener listener) : base(ref listener)
+        {
+        }
+
+        public void Start()
+        {
+            SessionBegin();
+            listener?.Subscribe(HandleParticipantsData);
+        }
+
+        public void SessionBegin()
         {
             for (int i = 0; i < participants.Length; i++)
                 participants[i] = new Participant();
-
-            listener.Subscribe(HandleParticipantsData);
         }
 
         public void HandleParticipantsData(ParticipantsPacket participantsPacket)

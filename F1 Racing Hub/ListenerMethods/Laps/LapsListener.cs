@@ -9,14 +9,26 @@ using F1_Racing_Hub.Stored_Procedures;
 
 namespace F1_Racing_Hub
 {
-    public partial class RacingHubListener
+    public class LapsListener : ListenerObject, IListener
     {
         private Dictionary<uint,LapDataPacket> lapDataPackets = new Dictionary<uint, LapDataPacket>();
         private LapHistoryData[,] lapHistories = new LapHistoryData[22, 100];
 
         private LapFrame[] previousLapFrames = new LapFrame[22];
 
-        public void AddLapsMethods()
+        public LapsListener(ref UdpListener listener) : base(ref listener)
+        {
+        }
+
+        public void Start()
+        {
+            SessionBegin();
+            listener?.Subscribe(HandleLapData);
+            listener?.Subscribe(HandleTelemetryData);
+            listener?.Subscribe(HandleLapHistoryData);
+        }
+
+        public void SessionBegin()
         {
             for (int i = 0; i < lapHistories.GetLength(0); i++)
             {
@@ -25,10 +37,6 @@ namespace F1_Racing_Hub
                     lapHistories[i, j] = new LapHistoryData();
                 }
             }
-
-            listener.Subscribe(HandleLapData);
-            listener.Subscribe(HandleTelemetryData);
-            listener.Subscribe(HandleSessionHistoryData);
         }
 
         public void HandleLapData(LapDataPacket lapPacket)
@@ -66,7 +74,7 @@ namespace F1_Racing_Hub
             }
         }
 
-        public void HandleSessionHistoryData(SessionHistoryPacket historyPacket)
+        public void HandleLapHistoryData(SessionHistoryPacket historyPacket)
         {
             byte i = historyPacket.CarIndex;
             for (byte lap = 0; lap < historyPacket.TotalLaps; lap++)
@@ -85,6 +93,11 @@ namespace F1_Racing_Hub
 
         private bool CanSaveLapFrame(LapFrame frame)
         {
+            if (RacingHubListener.testLabel != null)
+            {
+                RacingHubListener.testLabel.Text = "Distance: " + frame.Distance.ToString("0.00");
+                RacingHubListener.testLabel.Update();
+            }
             // 10 metres is an temporary arbitrary distance threshold
             LapFrame prevFrame = previousLapFrames[frame.CarIndex];
             if (prevFrame == null ||

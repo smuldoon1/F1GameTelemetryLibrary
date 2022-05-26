@@ -9,17 +9,24 @@ using F1_Racing_Hub.Stored_Procedures;
 
 namespace F1_Racing_Hub
 {
-    public partial class RacingHubListener
+    public class RacingHubListener
     {
-        private UdpListener listener;
+        public static Label? testLabel;
 
         public RacingHubListener()
         {
-            listener = new UdpListener(IPAddress.Any, 20777);
+            var listener = new UdpListener(IPAddress.Any, 20777);
 
-            AddParticipantMethods();
-            AddLapsMethods();
-            AddSessionMethods();
+            var types = AppDomain.CurrentDomain.GetAssemblies()
+                .SelectMany(s => s.GetTypes())
+                .Where(p => typeof(IListener).IsAssignableFrom(p) && !p.IsInterface);
+            foreach (var type in types)
+            {
+#pragma warning disable CS8604
+                var obj = Activator.CreateInstance(Type.GetType(type.FullName), listener);
+#pragma warning restore CS8604
+                type.InvokeMember("Start", System.Reflection.BindingFlags.InvokeMethod, null, obj, Array.Empty<object>());
+            }
         }
     }
 }
