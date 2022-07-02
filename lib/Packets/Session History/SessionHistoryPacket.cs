@@ -1,4 +1,4 @@
-﻿namespace F1GameTelemetry
+﻿namespace F1GameTelemetry_2021
 {
     /// <summary>
     /// Session history packet stores lap times and tyre usage during the session for a specific car.

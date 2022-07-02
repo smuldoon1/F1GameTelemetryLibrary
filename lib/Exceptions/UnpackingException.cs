@@ -1,4 +1,4 @@
-﻿namespace F1GameTelemetry
+﻿namespace F1GameTelemetry_2021
 {
     /// <summary>
     /// The exception that is thrown whenever an error occurs with the unpacker.

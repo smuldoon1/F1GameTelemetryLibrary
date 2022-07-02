@@ -1,4 +1,4 @@
-﻿namespace F1GameTelemetry
+﻿namespace F1GameTelemetry_2021
 {
     /// <summary>
     /// Struct for storing data about each wheel or brake on the car.

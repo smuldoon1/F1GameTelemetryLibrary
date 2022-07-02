@@ -1,4 +1,4 @@
-﻿namespace F1GameTelemetry
+﻿namespace F1GameTelemetry_2021
 {
     /// <summary>
     /// Each packet has a header which should be unpacked first.

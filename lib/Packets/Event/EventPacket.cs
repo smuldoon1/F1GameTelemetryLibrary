@@ -1,4 +1,4 @@
-﻿namespace F1GameTelemetry
+﻿namespace F1GameTelemetry_2021
 {
     /// <summary>
     /// Event packet stores details about certain events that happen during a session.

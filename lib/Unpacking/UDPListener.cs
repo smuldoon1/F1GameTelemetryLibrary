@@ -1,7 +1,7 @@
 ﻿using System.Net;
 using System.Net.Sockets;
 
-namespace F1GameTelemetry
+namespace F1GameTelemetry_2021
 {
     public class UdpListener
     {

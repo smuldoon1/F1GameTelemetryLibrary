@@ -1,4 +1,4 @@
-﻿namespace F1GameTelemetry
+﻿namespace F1GameTelemetry_2021
 {
     /// <summary>
     /// Status information about a particular car. For some or all data in this stuct only the player, AI cars and network players with their UDP telemetry set to Public will non-zero values.
