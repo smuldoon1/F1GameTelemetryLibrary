@@ -9,5 +9,15 @@
         /// Array of lap data for each car.
         /// </summary>
         public LapData[] LapData { get { return lapData; } }
+
+        /// <summary>
+        /// Index of the Personal Best car in time trial.
+        /// </summary>
+        public byte TimeTrialPBVehicleIndex { get { return timeTrialPBVehicleIndex; } }
+
+        /// <summary>
+        /// Index of the Rival car in time trial.
+        /// </summary>
+        public byte TimeTrialRivalVehicleIndex { get { return timeTrialRivalVehicleIndex; } }
     }
 }

@@ -10,6 +10,16 @@
         /// </summary>
         LapData[] lapData = new LapData[F1Globals.MAX_CARS];
 
+        /// <summary>
+        /// Index of the Personal Best car in time trial.
+        /// </summary>
+        byte timeTrialPBVehicleIndex;
+
+        /// <summary>
+        /// Index of the Rival car in time trial.
+        /// </summary>
+        byte timeTrialRivalVehicleIndex;
+
         public LapDataPacket(PacketHeader header, byte[] remainingData)
         {
             this.header = header;
@@ -25,6 +35,8 @@
                 lapData[i] = new LapData();
                 lapData[i].Unpack(unpacker);
             }
+            timeTrialPBVehicleIndex = unpacker.NextByte();
+            timeTrialRivalVehicleIndex = unpacker.NextByte();
 
             unpacker.Finish();
         }
