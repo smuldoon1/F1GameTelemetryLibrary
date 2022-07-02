@@ -69,5 +69,10 @@
         /// Visual tyre compounds used by this driver. Can be different from the actual tyre compounds.
         /// </summary>
         public VisualTyreCompound[] VisualTyreStints { get { return visualTyreStints; } }
+
+        /// <summary>
+        /// The lap number each tyre stint ended on.
+        /// </summary>
+        public byte[] TyreStintEndLaps { get { return tyreStintEndLaps; } }
     }
 }

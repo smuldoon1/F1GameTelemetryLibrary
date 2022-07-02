@@ -70,6 +70,11 @@
         /// </summary>
         VisualTyreCompound[] visualTyreStints = new VisualTyreCompound[F1Globals.MAX_TYRE_STINTS_HISTORY_DATA];
 
+        /// <summary>
+        /// The lap number each tyre stint ended on.
+        /// </summary>
+        byte[] tyreStintEndLaps = new byte[F1Globals.MAX_TYRE_STINTS_HISTORY_DATA];
+
         public void Unpack(Unpacker unpacker)
         {
             position = unpacker.NextByte();
@@ -90,6 +95,10 @@
             for (int i = 0; i < visualTyreStints.Length; i++)
             {
                 visualTyreStints[i] = (VisualTyreCompound)unpacker.NextByte();
+            }
+            for (int i = 0; i < tyreStintEndLaps.Length; i++)
+            {
+                tyreStintEndLaps[i] = unpacker.NextByte();
             }
         }
     }
