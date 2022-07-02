@@ -50,7 +50,7 @@
             LapNumber = unpacker.NextByte();
             PlacesGained = unpacker.NextByte();
 
-            unpacker.Dump(1);
+            unpacker.Dump(5);
         }
     }
 }

@@ -20,7 +20,7 @@
             VehicleIndex = unpacker.NextByte();
             LapTime = unpacker.NextFloat();
 
-            unpacker.Dump(3);
+            unpacker.Dump(7);
         }
     }
 }

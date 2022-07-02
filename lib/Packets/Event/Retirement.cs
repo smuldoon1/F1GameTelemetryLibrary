@@ -14,7 +14,7 @@
         {
             VehicleIndex = unpacker.NextByte();
 
-            unpacker.Dump(7);
+            unpacker.Dump(11);
         }
     }
 }

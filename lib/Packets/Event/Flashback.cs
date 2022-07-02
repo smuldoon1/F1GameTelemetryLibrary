@@ -20,7 +20,7 @@
             FrameIdentifier = unpacker.NextUint();
             SessionTime = unpacker.NextFloat();
 
-            unpacker.Finish();
+            unpacker.Dump(4);
         }
     }
 }

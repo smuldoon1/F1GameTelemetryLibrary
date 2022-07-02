@@ -25,14 +25,26 @@
         /// </summary>
         public bool IsDriverFastestInSession { get; }
 
+        /// <summary>
+        /// Vehicle index of the car in the session with the fastest speed trap speed.
+        /// </summary>
+        public byte FastestVehicleIndexInSession { get; }
+
+        /// <summary>
+        /// Speed of the fastest speed trap in the session.
+        /// </summary>
+        public float FastestSpeedInSession { get; }
+
         public SpeedTrap(Unpacker unpacker)
         {
             VehicleIndex = unpacker.NextByte();
             Speed = unpacker.NextFloat();
             IsOverallFastestInSession = unpacker.NextBool();
             IsDriverFastestInSession = unpacker.NextBool();
+            FastestVehicleIndexInSession = unpacker.NextByte();
+            FastestSpeedInSession = unpacker.NextFloat();
 
-            unpacker.Dump(1);
+            unpacker.Finish();
         }
     }
 }
