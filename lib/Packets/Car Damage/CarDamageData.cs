@@ -56,6 +56,11 @@
         public bool IsDrsFaulty { get { return isDrsFaulty; } }
 
         /// <summary>
+        /// Is there a fault with the energy recovery system?
+        /// </summary>
+        public bool IsErsFaulty { get { return isErsFaulty; } }
+
+        /// <summary>
         /// Amount of damage to the gearbox.
         /// </summary>
         public byte GearBoxDamage { get { return gearBoxDamage; } }
@@ -94,5 +99,15 @@
         /// Amount of wear on the turbo charger.
         /// </summary>
         public byte EngineTCWear { get { return engineTCWear; } }
+
+        /// <summary>
+        /// Has the engine blown?
+        /// </summary>
+        public bool HasEngineBlown { get { return hasEngineBlown; } }
+
+        /// <summary>
+        /// Has the engine blown?
+        /// </summary>
+        public bool HasEngineSeized { get { return hasEngineSeized; } }
     }
 }

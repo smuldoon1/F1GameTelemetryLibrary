@@ -56,6 +56,11 @@
         bool isDrsFaulty;
 
         /// <summary>
+        /// Is there a fault with the energy recovery system?
+        /// </summary>
+        bool isErsFaulty;
+
+        /// <summary>
         /// Amount of damage to the gearbox.
         /// </summary>
         byte gearBoxDamage;
@@ -95,6 +100,16 @@
         /// </summary>
         byte engineTCWear;
 
+        /// <summary>
+        /// Has the engine blown?
+        /// </summary>
+        bool hasEngineBlown;
+
+        /// <summary>
+        /// Has the engine blown?
+        /// </summary>
+        bool hasEngineSeized;
+
         public void Unpack(Unpacker unpacker)
         {
             tyreWear = new TyreData<float>()
@@ -125,6 +140,7 @@
             diffuserDamage = unpacker.NextByte();
             sidepodDamage = unpacker.NextByte();
             isDrsFaulty = unpacker.NextBool();
+            isErsFaulty = unpacker.NextBool();
             gearBoxDamage = unpacker.NextByte();
             engineDamage = unpacker.NextByte();
             engineMGUHWear = unpacker.NextByte();
@@ -133,6 +149,8 @@
             engineICEWear = unpacker.NextByte();
             engineMGUKWear = unpacker.NextByte();
             engineTCWear = unpacker.NextByte();
+            hasEngineBlown = unpacker.NextBool();
+            hasEngineSeized = unpacker.NextBool();
         }
     }
 }
