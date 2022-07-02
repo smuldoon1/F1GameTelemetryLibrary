@@ -155,6 +155,26 @@
         /// </summary>
         Assists allowedAssists = new Assists();
 
+        /// <summary>
+        /// The game mode for this session.
+        /// </summary>
+        public GameMode gameMode;
+
+        /// <summary>
+        /// The rule set being used in this session.
+        /// </summary>
+        public RuleSet ruleSet;
+
+        /// <summary>
+        /// Local time of day in minutes since midnight.
+        /// </summary>
+        public uint timeOfDay;
+
+        /// <summary>
+        /// The distance length of this session.
+        /// </summary>
+        public SessionLength sessionLength;
+
         public SessionPacket(PacketHeader header, byte[] remainingData)
         {
             this.header = header;
@@ -203,6 +223,10 @@
             pitStopWindowLatestLap = unpacker.NextByte();
             pitStopRejoinPosition = unpacker.NextByte();
             allowedAssists.Unpack(unpacker);
+            gameMode = (GameMode)unpacker.NextByte();
+            ruleSet = (RuleSet)unpacker.NextByte();
+            timeOfDay = unpacker.NextUint();
+            sessionLength = (SessionLength)unpacker.NextByte();
 
             unpacker.Finish();
         }

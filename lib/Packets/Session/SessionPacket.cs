@@ -154,5 +154,25 @@
         /// The assists allowed in the session.
         /// </summary>
         public Assists AllowedAssists { get { return allowedAssists; } }
+
+        /// <summary>
+        /// The game mode for this session.
+        /// </summary>
+        public GameMode GameMode { get { return gameMode; } }
+
+        /// <summary>
+        /// The rule set being used in this session.
+        /// </summary>
+        public RuleSet RuleSet { get { return ruleSet; } }
+
+        /// <summary>
+        /// Local time of day in minutes since midnight.
+        /// </summary>
+        public uint TimeOfDay { get { return timeOfDay; } }
+
+        /// <summary>
+        /// The distance length of this session.
+        /// </summary>
+        public SessionLength SessionLength { get { return sessionLength; } }
     }
 }
