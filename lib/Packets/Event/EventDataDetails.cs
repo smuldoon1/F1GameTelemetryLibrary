@@ -14,31 +14,50 @@
         {
             switch (eventCode)
             {
-                case "FTLP":
+                case FASTEST_LAP:
                     return new FastestLap(unpacker);
-                case "RTMT":
+                case RETIREMENT:
                     return new Retirement(unpacker);
-                case "TMPT":
+                case TEAMMATE_IN_PITS:
                     return new TeammateInPits(unpacker);
-                case "RCWN":
+                case RACE_WINNER:
                     return new RaceWinner(unpacker);
-                case "PENA":
+                case PENALTY_ISSUED:
                     return new Penalty(unpacker);
-                case "SPTP":
+                case SPEED_TRAP_TRIGGERED:
                     return new SpeedTrap(unpacker);
-                case "STLG":
+                case START_LIGHTS:
                     return new StartLights(unpacker);
-                case "DTSV":
+                case DRIVE_THROUGH_SERVED:
                     return new DriveThroughPenaltyServed(unpacker);
-                case "SGSV":
+                case STOP_GO_SERVED:
                     return new StopGoPenaltyServed(unpacker);
-                case "FLBK":
+                case FLASHBACK:
                     return new Flashback(unpacker);
-                case "BUTN":
+                case BUTTON_STATUS:
                     return new Buttons(unpacker);
             }
             unpacker.Dump(12);
             return null;
         }
+
+        // Event string codes
+        public const string SESSION_STARTED = "SSTA";
+        public const string SESSION_ENDED = "SEND";
+        public const string FASTEST_LAP = "FTLP";
+        public const string RETIREMENT = "RTMT";
+        public const string DRS_ENABLED = "DRSE";
+        public const string DRS_DISABLED = "DRSD";
+        public const string TEAMMATE_IN_PITS = "TMPT";
+        public const string CHEQUERED_FLAG = "CHQF";
+        public const string RACE_WINNER = "RCWN";
+        public const string PENALTY_ISSUED = "PENA";
+        public const string SPEED_TRAP_TRIGGERED = "SPTP";
+        public const string START_LIGHTS = "STLG";
+        public const string LIGHTS_OUT = "LGOT";
+        public const string DRIVE_THROUGH_SERVED = "DTSV";
+        public const string STOP_GO_SERVED = "SGSV";
+        public const string FLASHBACK = "FLBK";
+        public const string BUTTON_STATUS = "BUTN";
     }
 }
