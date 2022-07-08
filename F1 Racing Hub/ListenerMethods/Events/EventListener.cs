@@ -16,11 +16,7 @@ namespace F1_Racing_Hub
 
         public void HandleEvent(EventPacket eventPacket)
         {
-            if (eventPacket.EventCode == EventDataDetails.BUTTON_STATUS)
-            {
-                if (eventPacket.EventDataDetails is Buttons buttons)
-                    Console.WriteLine(ButtonsToStringPS4(buttons.ButtonStatus));
-            }
+
         }
 
         public static string ButtonsToStringPS4(ButtonFlags flags)
