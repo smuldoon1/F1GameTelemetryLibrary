@@ -71,6 +71,7 @@ namespace F1_Racing_Hub
             };
             foreach (var parameter in parameters)
                 cmd.Parameters.AddWithValue(parameter.Key, parameter.Value);
+            conn.Open();
             return (T)cmd.ExecuteScalar();
         }
     }

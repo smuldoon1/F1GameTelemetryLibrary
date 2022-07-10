@@ -16,7 +16,7 @@ namespace F1_Racing_Hub
         {
             Points = new List<Point>();
             Color = Color.Red;
-            Width = 1;
+            Width = 2;
         }
 
         public void Draw(PaintEventArgs e)

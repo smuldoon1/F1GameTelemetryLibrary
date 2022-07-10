@@ -17,30 +17,30 @@ namespace F1_Racing_Hub
             PictureBox = pictureBox;
             pictureBox.BackColor = Color.Black;
             Series = new List<Series>();
+        }
+
+        public void Draw(object sender, PaintEventArgs e)
+        {
+            Series = new List<Series>();
 
             var laps = Sql.ExecuteArray<Lap>("SELECT sessionId, carIndex, number FROM [F1App].[dbo].[DriverLaps]").ToArray();
 
-            Random rand = new();
-            
             for (int i = 0; i < laps.Length; i++)
             {
-                LapFrame[] frames = Sql.ExecuteArray<LapFrame>($"SELECT speed, distance FROM [F1App].[dbo].[LapFrames] WHERE sessionId = { laps[i].sessionId } AND carIndex = { laps[i].carIndex } AND lapNumber = { laps[i].number }");
+                LapFrame[] frames = Sql.ExecuteArray<LapFrame>($"SELECT speed, distance FROM [F1App].[dbo].[LapFrames] WHERE sessionId = { laps[i].sessionId } AND carIndex = { laps[i].carIndex } AND lapNumber = { laps[i].number } ORDER BY distance");
                 Series.Add(new Series());
-                Series[i].Color = Color.FromArgb(255, rand.Next(255), rand.Next(255), rand.Next(255));
+                string color = Sql.ExecuteScalar<string>($"SELECT T.colour, T.shortName FROM [F1App].[dbo].[Teams] T JOIN [F1App].[dbo].[Participants] P ON P.teamId = T.id WHERE P.sessionId = { laps[i].sessionId } AND P.carIndex = { laps[i].carIndex }");
+                Series[i].Color = Utilities.GetColor(color ?? "FF00FF", 255);
+
                 foreach (var frame in frames)
                 {
                     int x = (int)frame.distance;
                     int y = frame.speed.FromSql();
                     Series[i].Points.Add(new Point(
-                            (int)(x / 7004f * PictureBox.Bounds.Width),
+                            (int)(x / 4318f * PictureBox.Bounds.Width),
                             PictureBox.Bounds.Height - (int)(y / 350f * PictureBox.Bounds.Height)));
                 }
-                Console.WriteLine(Series[i].Points.Count);
             }
-        }
-
-        public void Draw(object sender, PaintEventArgs e)
-        {
             foreach (Series s in Series)
             {
                 s.Draw(e);
@@ -61,6 +61,12 @@ namespace F1_Racing_Hub
             public double distance { get; set; }
 
             public short speed { get; set; }
+
+            public byte gear { get; set; }
+
+            public double steer { get; set; }
+
+            public double throttle { get; set; }
         }
     }
 }
