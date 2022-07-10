@@ -18,5 +18,10 @@ namespace F1_Racing_Hub
             // Add the PictureBox control to the Form.
             this.Controls.Add(liveGraph.PictureBox);
         }
+
+        private void timer1_Tick(object sender, EventArgs e)
+        {
+            Refresh();
+        }
     }
 }

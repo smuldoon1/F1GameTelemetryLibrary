@@ -18,24 +18,22 @@ namespace F1_Racing_Hub
             pictureBox.BackColor = Color.Black;
             Series = new List<Series>();
 
-            string[] lapIds = Sql.ExecuteArray<Lap>("SELECT [id] FROM [F1App].[dbo].[DriverLaps] WHERE [carIndex] = 0").Select(l => l.id.ToString()).ToArray();
+            var laps = Sql.ExecuteArray<Lap>("SELECT sessionId, carIndex, number FROM [F1App].[dbo].[DriverLaps]").ToArray();
 
             Random rand = new();
             
-            for (int i = 0; i < lapIds.Length; i++)
+            for (int i = 0; i < laps.Length; i++)
             {
-                LapFrame[] frames = Sql.ExecuteArray<LapFrame>($"SELECT Speed, Distance FROM [F1App].[dbo].[LapFrames] WHERE [lapId] = '{ lapIds[i] }'");
+                LapFrame[] frames = Sql.ExecuteArray<LapFrame>($"SELECT speed, distance FROM [F1App].[dbo].[LapFrames] WHERE sessionId = { laps[i].sessionId } AND carIndex = { laps[i].carIndex } AND lapNumber = { laps[i].number }");
                 Series.Add(new Series());
                 Series[i].Color = Color.FromArgb(255, rand.Next(255), rand.Next(255), rand.Next(255));
-                int prevX = 0;
                 foreach (var frame in frames)
                 {
-                    int x = (int)frame.Distance;
-                    int y = frame.Speed.FromSql();
+                    int x = (int)frame.distance;
+                    int y = frame.speed.FromSql();
                     Series[i].Points.Add(new Point(
-                            (int)(x / 4318f * PictureBox.Bounds.Width),
+                            (int)(x / 7004f * PictureBox.Bounds.Width),
                             PictureBox.Bounds.Height - (int)(y / 350f * PictureBox.Bounds.Height)));
-                    prevX = x;
                 }
                 Console.WriteLine(Series[i].Points.Count);
             }
@@ -51,14 +49,18 @@ namespace F1_Racing_Hub
 
         public class Lap
         {
-            public Guid id { get; set; }
+            public long sessionId { get; set; }
+
+            public byte carIndex { get; set; }
+
+            public byte number { get; set; }
         }
 
         public class LapFrame
         {
-            public double Distance { get; set; }
+            public double distance { get; set; }
 
-            public short Speed { get; set; }
+            public short speed { get; set; }
         }
     }
 }

@@ -32,7 +32,9 @@ namespace F1_Racing_Hub
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.timer1 = new System.Windows.Forms.Timer(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -44,6 +46,10 @@ namespace F1_Racing_Hub
             this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pictureBox1.TabIndex = 0;
             this.pictureBox1.TabStop = false;
+            // 
+            // timer1
+            // 
+            this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
             // 
             // AppForm
             // 
@@ -62,5 +68,6 @@ namespace F1_Racing_Hub
         #endregion
 
         private PictureBox pictureBox1;
+        private System.Windows.Forms.Timer timer1;
     }
 }

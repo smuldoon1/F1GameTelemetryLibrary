@@ -49,23 +49,12 @@ namespace F1_Racing_Hub
                     if (lapPacket.LapData[i].ResultStatus == ResultStatus.INACTIVE ||
                         lapPacket.LapData[i].ResultStatus == ResultStatus.INVALID)
                         continue;
-                    LapFrame frame = new LapFrame()
-                    {
-                        LapId = lapHistories[i, lapPacket.LapData[i].CurrentLap].Id,
-                        SessionId = telemetryPacket.SessionUID,
-                        CarIndex = i,
-                        LapNumber = lapPacket.LapData[i].CurrentLap,
-                        Distance = lapPacket.LapData[i].LapDistance,
-                        Speed = telemetryPacket.CarTelemetryData[i].Speed,
-                        Throttle = telemetryPacket.CarTelemetryData[i].Throttle,
-                        Steer = telemetryPacket.CarTelemetryData[i].Steer,
-                        Brake = telemetryPacket.CarTelemetryData[i].Brake,
-                        Gear = telemetryPacket.CarTelemetryData[i].Gear
-                    };
-                    //if (CanSaveLapFrame(frame))
-                    {
-                        LapFrameProc.CreateLapFrame(frame);
-                    }
+
+                    var l = lapPacket.LapData[i];
+                    var t = telemetryPacket.CarTelemetryData[i];
+                    Sql.Execute($"INSERT INTO [F1App].[dbo].[LapFrames] " +
+                        $"(sessionId, carIndex, lapNumber, distance, speed, throttle, steer, brake, gear) VALUES " +
+                        $"( { telemetryPacket.SessionUID.ToSql() }, { i }, { l.CurrentLap }, { l.LapDistance }, { t.Speed.ToSql() }, { t.Throttle }, { t.Steer }, { t.Brake }, { t.Gear.ToSql() })");
                 }
                 lapDataPackets.Remove(telemetryPacket.FrameIdentifier);
             }
@@ -76,15 +65,19 @@ namespace F1_Racing_Hub
             byte i = historyPacket.CarIndex;
             for (byte lap = 0; lap < historyPacket.TotalLaps; lap++)
             {
-                lapHistories[i, lap].SessionId = historyPacket.SessionUID;
-                lapHistories[i, lap].CarIndex = i;
-                lapHistories[i, lap].LapNumber = lap;
-                lapHistories[i, lap].LapTime = historyPacket.LapHistoryData[lap].LapTime;
-                lapHistories[i, lap].SectorOneTime = historyPacket.LapHistoryData[lap].SectorOneTime;
-                lapHistories[i, lap].SectorTwoTime = historyPacket.LapHistoryData[lap].SectorTwoTime;
-                lapHistories[i, lap].SectorThreeTime = historyPacket.LapHistoryData[lap].SectorThreeTime;
-                if (lapHistories[i, lap].LapTime > 0 && !LapHistoryProc.CheckLapHistoryDataExists(lapHistories[i, lap]))
-                    LapHistoryProc.CreateLapHistoryData(lapHistories[i, lap]);
+                var lapData = historyPacket.LapHistoryData[lap];
+                Sql.Execute(
+                    $"BEGIN " +
+                        $"IF NOT EXISTS(SELECT sessionId, carIndex, number " +
+                        $"FROM [F1App].[dbo].[DriverLaps] " +
+                        $"WHERE sessionId = { historyPacket.SessionUID.ToSql() } " +
+                        $"AND carIndex = { i } " +
+                        $"AND number = { lap }) " +
+                            $"BEGIN INSERT INTO [F1App].[dbo].[DriverLaps] " +
+                            $"(sessionId, carIndex, number, time, sectorOneTime, sectorTwoTime, sectorThreeTime) " +
+                            $"VALUES({ historyPacket.SessionUID.ToSql() }, { i }, { lap }, { lapData.LapTime.ToSql() }, { lapData.SectorOneTime.ToSql() }, { lapData.SectorTwoTime.ToSql() }, { lapData.SectorThreeTime.ToSql() }) " +
+                        $"END " +
+                    $"END");
             }
         }
 
