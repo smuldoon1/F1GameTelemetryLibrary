@@ -1,4 +1,4 @@
-namespace F1_Racing_Hub.Stored_Procedures
+namespace F1_Racing_Hub
 {
     /// <summary>
     /// Extension methods that allow some data types to be mapped to T-SQL values. If a conversion method does not exist it is likely that the conversion is implicit.
@@ -26,7 +26,7 @@ namespace F1_Racing_Hub.Stored_Procedures
         }
 
         /// <summary>
-        /// Converts an unsigned 32-bit integer to a T-SQl int.
+        /// Converts an unsigned 32-bit integer to a T-SQL int.
         /// </summary>
         /// <param name="value"></param>
         /// <returns></returns>
@@ -46,7 +46,7 @@ namespace F1_Racing_Hub.Stored_Procedures
         }
 
         /// <summary>
-        /// Converts an unsigned 16-bit integer to a T-SQl smallint.
+        /// Converts an unsigned 16-bit integer to a T-SQL smallint.
         /// </summary>
         /// <param name="value"></param>
         /// <returns></returns>
@@ -66,7 +66,7 @@ namespace F1_Racing_Hub.Stored_Procedures
         }
 
         /// <summary>
-        /// Converts a signed byte to a T-SQl tinyint.
+        /// Converts a signed byte to a T-SQL tinyint.
         /// </summary>
         /// <param name="value"></param>
         /// <returns></returns>

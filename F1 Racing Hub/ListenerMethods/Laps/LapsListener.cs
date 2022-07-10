@@ -16,6 +16,8 @@ namespace F1_Racing_Hub
 
         private LapFrame[] previousLapFrames = new LapFrame[22];
 
+        bool[] activeCars = new bool[22];
+
         public void AddLapsMethods()
         {
             for (int i = 0; i < lapHistories.GetLength(0); i++)
@@ -44,6 +46,9 @@ namespace F1_Racing_Hub
 
                 for (byte i = 0; i < telemetryPacket.CarTelemetryData.Length; i++)
                 {
+                    if (lapPacket.LapData[i].ResultStatus == ResultStatus.INACTIVE ||
+                        lapPacket.LapData[i].ResultStatus == ResultStatus.INVALID)
+                        continue;
                     LapFrame frame = new LapFrame()
                     {
                         LapId = lapHistories[i, lapPacket.LapData[i].CurrentLap].Id,
@@ -57,7 +62,7 @@ namespace F1_Racing_Hub
                         Brake = telemetryPacket.CarTelemetryData[i].Brake,
                         Gear = telemetryPacket.CarTelemetryData[i].Gear
                     };
-                    if (CanSaveLapFrame(frame))
+                    //if (CanSaveLapFrame(frame))
                     {
                         LapFrameProc.CreateLapFrame(frame);
                     }
