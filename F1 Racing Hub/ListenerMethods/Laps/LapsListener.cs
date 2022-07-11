@@ -11,20 +11,11 @@ namespace F1_Racing_Hub
     public partial class RacingHubListener
     {
         private Dictionary<uint,LapDataPacket> lapDataPackets = new Dictionary<uint, LapDataPacket>();
-        private LapHistoryData[,] lapHistories = new LapHistoryData[22, 100];
 
         private LapFrame[] previousLapFrames = new LapFrame[22];
 
         public void AddLapsMethods()
         {
-            for (int i = 0; i < lapHistories.GetLength(0); i++)
-            {
-                for (int j = 0; j < lapHistories.GetLength(1); j++)
-                {
-                    lapHistories[i, j] = new LapHistoryData();
-                }
-            }
-
             listener.Subscribe(HandleLapData);
             listener.Subscribe(HandleTelemetryData);
             listener.Subscribe(HandleSessionHistoryData);
@@ -49,9 +40,10 @@ namespace F1_Racing_Hub
 
                     var l = lapPacket.LapData[i];
                     var t = telemetryPacket.CarTelemetryData[i];
-                    Sql.Execute($"INSERT INTO [F1App].[dbo].[LapFrames] " +
-                        $"(sessionId, carIndex, lapNumber, distance, speed, throttle, steer, brake, gear) VALUES " +
-                        $"( { telemetryPacket.SessionUID.ToSql() }, { i }, { l.CurrentLap }, { l.LapDistance }, { t.Speed.ToSql() }, { t.Throttle }, { t.Steer }, { t.Brake }, { t.Gear.ToSql() })");
+                    if (CanSaveLapFrame(new LapFrame(i, l.CurrentLap, l.LapDistance)))
+                        Sql.Execute($"INSERT INTO [F1App].[dbo].[LapFrames] " +
+                            $"(sessionId, carIndex, lapNumber, distance, speed, throttle, steer, brake, gear) VALUES " +
+                            $"( { telemetryPacket.SessionUID.ToSql() }, { i }, { l.CurrentLap }, { l.LapDistance }, { t.Speed.ToSql() }, { t.Throttle }, { t.Steer }, { t.Brake }, { t.Gear.ToSql() })");
                 }
                 lapDataPackets.Remove(telemetryPacket.FrameIdentifier);
             }
@@ -91,6 +83,22 @@ namespace F1_Racing_Hub
                 return true;
             }
             return false;
+        }
+
+        private class LapFrame
+        {
+            public byte CarIndex;
+
+            public byte LapNumber;
+
+            public float Distance;
+
+            public LapFrame(byte carIndex, byte lapNumber, float distance)
+            {
+                CarIndex = carIndex;
+                LapNumber = lapNumber;
+                Distance = distance;
+            }
         }
     }
 }

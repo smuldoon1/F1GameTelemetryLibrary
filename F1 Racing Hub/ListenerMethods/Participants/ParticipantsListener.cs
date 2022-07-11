@@ -32,11 +32,11 @@ namespace F1_Racing_Hub
                         $"IF NOT EXISTS(SELECT sessionId, carIndex " +
                         $"FROM [F1App].[dbo].[Participants] " +
                         $"WHERE sessionId = { participantsPacket.SessionUID.ToSql() } " +
-                        $"AND carIndex = { i } " +
+                        $"AND carIndex = { i }) " +
                         $"BEGIN " +
                             $"INSERT INTO [F1App].[dbo].[Participants] " +
                             $"(sessionId, carIndex, aiDriverId, name, teamId, nationalityId, raceNumber) " +
-                            $"VALUES({ participantsPacket.SessionUID.ToSql() }, { i }, { data.DriverId }, { data.Name }, { data.TeamId }, { data.NationalityId }, { data.RaceNumber }) " +
+                            $"VALUES({ participantsPacket.SessionUID.ToSql() }, { i }, { data.DriverId }, '{ data.Name }', { data.TeamId }, { data.NationalityId }, { data.RaceNumber }) " +
                         $"END " +
                     $"END");
                 }

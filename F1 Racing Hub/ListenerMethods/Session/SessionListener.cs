@@ -23,7 +23,7 @@ namespace F1_Racing_Hub
                     $"BEGIN " +
                         $"IF NOT EXISTS(SELECT id " +
                         $"FROM [F1App].[dbo].[Sessions] " +
-                        $"WHERE id = { sessionPacket.SessionUID.ToSql() } " +
+                        $"WHERE id = { sessionPacket.SessionUID.ToSql() }) " +
                         $"BEGIN " +
                             $"INSERT INTO [F1App].[dbo].[Sessions] " +
                             $"(id, type, trackId) " +
