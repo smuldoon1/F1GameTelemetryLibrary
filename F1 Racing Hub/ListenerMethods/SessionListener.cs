@@ -10,8 +10,6 @@ namespace F1_Racing_Hub
 {
     public partial class RacingHubListener
     {
-        public Session? currentSession;
-
         public void AddSessionMethods()
         {
             listener.Subscribe(HandleSessionData);

@@ -10,13 +10,8 @@ namespace F1_Racing_Hub
 {
     public partial class RacingHubListener
     {
-        private Participant[] participants = new Participant[22];
-
         public void AddParticipantMethods()
         {
-            for (int i = 0; i < participants.Length; i++)
-                participants[i] = new Participant();
-
             listener.Subscribe(HandleParticipantsData);
         }
 
