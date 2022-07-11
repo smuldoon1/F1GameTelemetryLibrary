@@ -58,15 +58,15 @@ namespace F1_Racing_Hub
 
         public class LapFrame
         {
-            public double Distance { get; set; }
+            public float Distance { get; set; }
 
             public short Speed { get; set; }
 
             public byte Gear { get; set; }
 
-            public double Steer { get; set; }
+            public float Steer { get; set; }
 
-            public double Throttle { get; set; }
+            public float Throttle { get; set; }
         }
     }
 }

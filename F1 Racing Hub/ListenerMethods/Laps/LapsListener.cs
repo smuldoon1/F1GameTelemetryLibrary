@@ -5,7 +5,6 @@ using System.Net;
 using System.Text;
 using System.Threading.Tasks;
 using F1GameTelemetry_2021;
-using F1_Racing_Hub.Stored_Procedures;
 
 namespace F1_Racing_Hub
 {
@@ -15,8 +14,6 @@ namespace F1_Racing_Hub
         private LapHistoryData[,] lapHistories = new LapHistoryData[22, 100];
 
         private LapFrame[] previousLapFrames = new LapFrame[22];
-
-        bool[] activeCars = new bool[22];
 
         public void AddLapsMethods()
         {
@@ -73,7 +70,8 @@ namespace F1_Racing_Hub
                         $"WHERE sessionId = { historyPacket.SessionUID.ToSql() } " +
                         $"AND carIndex = { i } " +
                         $"AND number = { lap }) " +
-                            $"BEGIN INSERT INTO [F1App].[dbo].[DriverLaps] " +
+                        $"BEGIN " +
+                            $"INSERT INTO [F1App].[dbo].[DriverLaps] " +
                             $"(sessionId, carIndex, number, time, sectorOneTime, sectorTwoTime, sectorThreeTime) " +
                             $"VALUES({ historyPacket.SessionUID.ToSql() }, { i }, { lap }, { lapData.LapTime.ToSql() }, { lapData.SectorOneTime.ToSql() }, { lapData.SectorTwoTime.ToSql() }, { lapData.SectorThreeTime.ToSql() }) " +
                         $"END " +
@@ -83,10 +81,10 @@ namespace F1_Racing_Hub
 
         private bool CanSaveLapFrame(LapFrame frame)
         {
-            // 10 metres is an temporary arbitrary distance threshold
+            // 1 metre is an temporary arbitrary distance threshold
             LapFrame prevFrame = previousLapFrames[frame.CarIndex];
             if (prevFrame == null ||
-                frame.Distance > prevFrame.Distance + 10f ||
+                frame.Distance > prevFrame.Distance + 1f ||
                 frame.LapNumber > prevFrame.LapNumber)
             {
                 previousLapFrames[frame.CarIndex] = frame;

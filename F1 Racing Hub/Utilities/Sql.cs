@@ -36,7 +36,10 @@ namespace F1_Racing_Hub
                 {
                     IEnumerable<PropertyInfo> p = properties.Where(x => x.Name.Equals(reader.GetName(i), StringComparison.OrdinalIgnoreCase));
                     if (p.Any())
-                        p.First().SetValue(t, reader.GetValue(i));
+                    {
+                        var propertyType = p.First().PropertyType;
+                        p.First().SetValue(t, Convert.ChangeType(reader.GetValue(i), propertyType));
+                    }
                 }
                 results.Add(t);
             }

@@ -5,7 +5,6 @@ using System.Net;
 using System.Text;
 using System.Threading.Tasks;
 using F1GameTelemetry_2021;
-using F1_Racing_Hub.Stored_Procedures;
 
 namespace F1_Racing_Hub
 {

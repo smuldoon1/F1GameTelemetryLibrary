@@ -5,7 +5,6 @@ using System.Net;
 using System.Text;
 using System.Threading.Tasks;
 using F1GameTelemetry_2021;
-using F1_Racing_Hub.Stored_Procedures;
 
 namespace F1_Racing_Hub
 {
@@ -25,16 +24,21 @@ namespace F1_Racing_Hub
         {
             for (byte i = 0; i < participantsPacket.Participants.Length; i++)
             {
-                participants[i].SessionId = participantsPacket.SessionUID;
-                participants[i].CarIndex = i;
-                participants[i].DriverId = participantsPacket.Participants[i].DriverId;
-                participants[i].Name = participantsPacket.Participants[i].Name;
-                participants[i].TeamId = participantsPacket.Participants[i].TeamId;
-                participants[i].Nationality = participantsPacket.Participants[i].NationalityId;
-                participants[i].RaceNumber = participantsPacket.Participants[i].RaceNumber;
-                if (participants[i].RaceNumber > 0 && !ParticipantsProc.CheckParticipantExists(participants[i]))
+                ParticipantData data = participantsPacket.Participants[i];
+                if (data.RaceNumber > 0)
                 {
-                    ParticipantsProc.CreateParticipant(participants[i]);
+                    Sql.Execute(
+                    $"BEGIN " +
+                        $"IF NOT EXISTS(SELECT sessionId, carIndex " +
+                        $"FROM [F1App].[dbo].[Participants] " +
+                        $"WHERE sessionId = { participantsPacket.SessionUID.ToSql() } " +
+                        $"AND carIndex = { i } " +
+                        $"BEGIN " +
+                            $"INSERT INTO [F1App].[dbo].[Participants] " +
+                            $"(sessionId, carIndex, aiDriverId, name, teamId, nationalityId, raceNumber) " +
+                            $"VALUES({ participantsPacket.SessionUID.ToSql() }, { i }, { data.DriverId }, { data.Name }, { data.TeamId }, { data.NationalityId }, { data.RaceNumber }) " +
+                        $"END " +
+                    $"END");
                 }
             }
         }
