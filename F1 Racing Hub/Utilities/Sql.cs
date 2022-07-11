@@ -34,7 +34,7 @@ namespace F1_Racing_Hub
                 T t = new();
                 for (int i = 0; i < reader.FieldCount; i++)
                 {
-                    IEnumerable<PropertyInfo> p = properties.Where(x => x.Name == reader.GetName(i));
+                    IEnumerable<PropertyInfo> p = properties.Where(x => x.Name.Equals(reader.GetName(i), StringComparison.OrdinalIgnoreCase));
                     if (p.Any())
                         p.First().SetValue(t, reader.GetValue(i));
                 }

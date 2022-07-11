@@ -27,15 +27,15 @@ namespace F1_Racing_Hub
 
             for (int i = 0; i < laps.Length; i++)
             {
-                LapFrame[] frames = Sql.ExecuteArray<LapFrame>($"SELECT speed, distance FROM [F1App].[dbo].[LapFrames] WHERE sessionId = { laps[i].sessionId } AND carIndex = { laps[i].carIndex } AND lapNumber = { laps[i].number } ORDER BY distance");
+                LapFrame[] frames = Sql.ExecuteArray<LapFrame>($"SELECT speed, distance FROM [F1App].[dbo].[LapFrames] WHERE sessionId = { laps[i].SessionId } AND carIndex = { laps[i].CarIndex } AND lapNumber = { laps[i].Number } ORDER BY distance");
                 Series.Add(new Series());
-                string color = Sql.ExecuteScalar<string>($"SELECT T.colour, T.shortName FROM [F1App].[dbo].[Teams] T JOIN [F1App].[dbo].[Participants] P ON P.teamId = T.id WHERE P.sessionId = { laps[i].sessionId } AND P.carIndex = { laps[i].carIndex }");
+                string color = Sql.ExecuteScalar<string>($"SELECT T.colour, T.shortName FROM [F1App].[dbo].[Teams] T JOIN [F1App].[dbo].[Participants] P ON P.teamId = T.id WHERE P.sessionId = { laps[i].SessionId } AND P.carIndex = { laps[i].CarIndex }");
                 Series[i].Color = Utilities.GetColor(color ?? "FF00FF", 255);
 
                 foreach (var frame in frames)
                 {
-                    int x = (int)frame.distance;
-                    int y = frame.speed.FromSql();
+                    int x = (int)frame.Distance;
+                    int y = frame.Speed.FromSql();
                     Series[i].Points.Add(new Point(
                             (int)(x / 4318f * PictureBox.Bounds.Width),
                             PictureBox.Bounds.Height - (int)(y / 350f * PictureBox.Bounds.Height)));
@@ -49,24 +49,24 @@ namespace F1_Racing_Hub
 
         public class Lap
         {
-            public long sessionId { get; set; }
+            public long SessionId { get; set; }
 
-            public byte carIndex { get; set; }
+            public byte CarIndex { get; set; }
 
-            public byte number { get; set; }
+            public byte Number { get; set; }
         }
 
         public class LapFrame
         {
-            public double distance { get; set; }
+            public double Distance { get; set; }
 
-            public short speed { get; set; }
+            public short Speed { get; set; }
 
-            public byte gear { get; set; }
+            public byte Gear { get; set; }
 
-            public double steer { get; set; }
+            public double Steer { get; set; }
 
-            public double throttle { get; set; }
+            public double Throttle { get; set; }
         }
     }
 }
