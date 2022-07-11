@@ -12,6 +12,8 @@ namespace F1_Racing_Hub
         public PictureBox PictureBox { get; }
         public List<Series> Series { get; set; }
 
+        private string sessionId = "";
+
         public LiveGraph(PictureBox pictureBox)
         {
             PictureBox = pictureBox;
@@ -23,7 +25,7 @@ namespace F1_Racing_Hub
         {
             Series = new List<Series>();
 
-            var laps = Sql.ExecuteArray<Lap>("SELECT L.sessionId, L.carIndex, L.number, S.trackLength FROM [F1App].[dbo].[DriverLaps] L JOIN [F1App].[dbo].[Sessions] S ON L.sessionId = S.id").ToArray();
+            var laps = Sql.ExecuteArray<Lap>($"SELECT L.sessionId, L.carIndex, L.number, S.trackLength FROM [F1App].[dbo].[DriverLaps] L JOIN [F1App].[dbo].[Sessions] S ON L.sessionId = S.id WHERE L.sessionId = '{ sessionId }'").ToArray();
 
             for (int i = 0; i < laps.Length; i++)
             {
@@ -45,6 +47,11 @@ namespace F1_Racing_Hub
             {
                 s.Draw(e);
             }
+        }
+
+        public void SetSession(string sessionId)
+        {
+            this.sessionId = sessionId;
         }
 
         public class Lap
