@@ -24,8 +24,8 @@ namespace F1_Racing_Hub
                         $"WHERE id = { sessionPacket.SessionUID.ToSql() }) " +
                         $"BEGIN " +
                             $"INSERT INTO [F1App].[dbo].[Sessions] " +
-                            $"(id, type, trackId) " +
-                            $"VALUES({ sessionPacket.SessionUID.ToSql() }, { (byte)sessionPacket.SessionType }, { sessionPacket.TrackId }) " +
+                            $"(id, type, trackId, trackLength, createdOn) " +
+                            $"VALUES({ sessionPacket.SessionUID.ToSql() }, { (byte)sessionPacket.SessionType }, { sessionPacket.TrackId }, { sessionPacket.TrackLength }, '{ DateTime.Now }') " +
                         $"END " +
                     $"END");
         }

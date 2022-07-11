@@ -40,7 +40,7 @@ namespace F1_Racing_Hub
 
                     var l = lapPacket.LapData[i];
                     var t = telemetryPacket.CarTelemetryData[i];
-                    if (CanSaveLapFrame(new LapFrame(i, l.CurrentLap, l.LapDistance)))
+                    //if (CanSaveLapFrame(new LapFrame(i, l.CurrentLap, l.LapDistance)))
                         Sql.Execute($"INSERT INTO [F1App].[dbo].[LapFrames] " +
                             $"(sessionId, carIndex, lapNumber, distance, speed, throttle, steer, brake, gear) VALUES " +
                             $"( { telemetryPacket.SessionUID.ToSql() }, { i }, { l.CurrentLap }, { l.LapDistance }, { t.Speed.ToSql() }, { t.Throttle }, { t.Steer }, { t.Brake }, { t.Gear.ToSql() })");

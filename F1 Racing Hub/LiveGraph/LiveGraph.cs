@@ -23,7 +23,7 @@ namespace F1_Racing_Hub
         {
             Series = new List<Series>();
 
-            var laps = Sql.ExecuteArray<Lap>("SELECT sessionId, carIndex, number FROM [F1App].[dbo].[DriverLaps]").ToArray();
+            var laps = Sql.ExecuteArray<Lap>("SELECT L.sessionId, L.carIndex, L.number, S.trackLength FROM [F1App].[dbo].[DriverLaps] L JOIN [F1App].[dbo].[Sessions] S ON L.sessionId = S.id").ToArray();
 
             for (int i = 0; i < laps.Length; i++)
             {
@@ -37,7 +37,7 @@ namespace F1_Racing_Hub
                     int x = (int)frame.Distance;
                     int y = frame.Speed.FromSql();
                     Series[i].Points.Add(new Point(
-                            (int)(x / 4318f * PictureBox.Bounds.Width),
+                            (int)(x / (float)laps[i].TrackLength * PictureBox.Bounds.Width),
                             PictureBox.Bounds.Height - (int)(y / 350f * PictureBox.Bounds.Height)));
                 }
             }
@@ -54,6 +54,8 @@ namespace F1_Racing_Hub
             public byte CarIndex { get; set; }
 
             public byte Number { get; set; }
+
+            public int TrackLength { get; set; }
         }
 
         public class LapFrame
