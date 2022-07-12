@@ -77,6 +77,16 @@ namespace F1_Racing_Hub
             SetGraphMetric("Gear", radioButton4.Checked);
         }
 
+        private void radioButton6_CheckedChanged(object sender, EventArgs e)
+        {
+            SetGraphMetric("EngineRPM", radioButton5.Checked);
+        }
+
+        private void radioButton5_CheckedChanged(object sender, EventArgs e)
+        {
+            SetGraphMetric("Brake", radioButton5.Checked);
+        }
+
         private void SetGraphMetric(string metric, bool isChecked)
         {
             if (isChecked)

@@ -44,16 +44,22 @@ namespace F1_Racing_Hub
                     switch (selectedMetric)
                     {
                         case "Speed":
-                            y = frame.Speed.FromSql();
+                            y = frame.Speed.FromSql() + 10f;
                             break;
                         case "Throttle":
-                            y = frame.Throttle;
+                            y = frame.Throttle + 0.1f;
                             break;
                         case "Steer":
-                            y = frame.Steer + 1;
+                            y = frame.Steer + 1.1f;
                             break;
                         case "Gear":
-                            y = frame.Gear.FromSql() + 1;
+                            y = frame.Gear.FromSql() + 1.5f;
+                            break;
+                        case "Brake":
+                            y = frame.Brake + 0.1f;
+                            break;
+                        case "EngineRPM":
+                            y = frame.EngineRPM + 100f;
                             break;
                         default:
                             return;
@@ -102,21 +108,27 @@ namespace F1_Racing_Hub
             public float Steer { get; set; }
 
             public float Throttle { get; set; }
+
+            public float Brake { get; set; }
+
+            public short EngineRPM { get; set; }
         }
 
         public Dictionary<string, GraphMetric> graphMetrics = new()
         {
-            { "Speed" , new GraphMetric { minValue = 0, maxValue = 350 } },
-            { "Throttle" , new GraphMetric { minValue = 0, maxValue = 1 } },
-            { "Steer" , new GraphMetric { minValue = -1, maxValue = 1 } },
-            { "Gear" , new GraphMetric { minValue = -1, maxValue = 8 } }
+            { "Speed" , new GraphMetric { minValue = -10, maxValue = 340 } },
+            { "Throttle" , new GraphMetric { minValue = -0.1f, maxValue = 1.1f } },
+            { "Steer" , new GraphMetric { minValue = -1.1f, maxValue = 1.1f } },
+            { "Gear" , new GraphMetric { minValue = -1.5f, maxValue = 8.5f } },
+            { "Brake", new GraphMetric { minValue = -0.1f, maxValue = 1.1f } },
+            { "EngineRPM", new GraphMetric { minValue = -100, maxValue = 15100 } }
         };
 
         public struct GraphMetric
         {
-            public int minValue;
-            public int maxValue;
-            public int Range { get { return maxValue - minValue; } }
+            public float minValue;
+            public float maxValue;
+            public float Range { get { return maxValue - minValue; } }
         }
     }
 }

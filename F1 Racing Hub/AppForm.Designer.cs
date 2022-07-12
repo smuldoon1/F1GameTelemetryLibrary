@@ -35,6 +35,8 @@ namespace F1_Racing_Hub
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.comboBox1 = new System.Windows.Forms.ComboBox();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.radioButton6 = new System.Windows.Forms.RadioButton();
+            this.radioButton5 = new System.Windows.Forms.RadioButton();
             this.radioButton4 = new System.Windows.Forms.RadioButton();
             this.radioButton3 = new System.Windows.Forms.RadioButton();
             this.radioButton2 = new System.Windows.Forms.RadioButton();
@@ -65,39 +67,66 @@ namespace F1_Racing_Hub
             // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.radioButton6);
+            this.groupBox1.Controls.Add(this.radioButton5);
             this.groupBox1.Controls.Add(this.radioButton4);
             this.groupBox1.Controls.Add(this.radioButton3);
             this.groupBox1.Controls.Add(this.radioButton2);
             this.groupBox1.Controls.Add(this.radioButton1);
             this.groupBox1.Location = new System.Drawing.Point(12, 341);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(200, 124);
+            this.groupBox1.Size = new System.Drawing.Size(200, 197);
             this.groupBox1.TabIndex = 2;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Graph Metric";
             this.groupBox1.Enter += new System.EventHandler(this.groupBox1_Enter);
+            // 
+            // radioButton6
+            // 
+            this.radioButton6.AutoSize = true;
+            this.radioButton6.Enabled = false;
+            this.radioButton6.Location = new System.Drawing.Point(6, 147);
+            this.radioButton6.Name = "radioButton6";
+            this.radioButton6.Size = new System.Drawing.Size(89, 19);
+            this.radioButton6.TabIndex = 8;
+            this.radioButton6.TabStop = true;
+            this.radioButton6.Text = "Engine RPM";
+            this.radioButton6.UseVisualStyleBackColor = true;
+            this.radioButton6.CheckedChanged += new System.EventHandler(this.radioButton6_CheckedChanged);
+            // 
+            // radioButton5
+            // 
+            this.radioButton5.AutoSize = true;
+            this.radioButton5.Location = new System.Drawing.Point(6, 72);
+            this.radioButton5.Name = "radioButton5";
+            this.radioButton5.Size = new System.Drawing.Size(65, 19);
+            this.radioButton5.TabIndex = 7;
+            this.radioButton5.TabStop = true;
+            this.radioButton5.Text = "Braking";
+            this.radioButton5.UseVisualStyleBackColor = true;
+            this.radioButton5.CheckedChanged += new System.EventHandler(this.radioButton5_CheckedChanged);
             // 
             // radioButton4
             // 
             this.radioButton4.AutoSize = true;
             this.radioButton4.Location = new System.Drawing.Point(6, 97);
             this.radioButton4.Name = "radioButton4";
-            this.radioButton4.Size = new System.Drawing.Size(49, 19);
+            this.radioButton4.Size = new System.Drawing.Size(66, 19);
             this.radioButton4.TabIndex = 6;
             this.radioButton4.TabStop = true;
-            this.radioButton4.Text = "Gear";
+            this.radioButton4.Text = "Gearing";
             this.radioButton4.UseVisualStyleBackColor = true;
             this.radioButton4.CheckedChanged += new System.EventHandler(this.radioButton4_CheckedChanged);
             // 
             // radioButton3
             // 
             this.radioButton3.AutoSize = true;
-            this.radioButton3.Location = new System.Drawing.Point(6, 72);
+            this.radioButton3.Location = new System.Drawing.Point(6, 122);
             this.radioButton3.Name = "radioButton3";
-            this.radioButton3.Size = new System.Drawing.Size(51, 19);
+            this.radioButton3.Size = new System.Drawing.Size(68, 19);
             this.radioButton3.TabIndex = 5;
             this.radioButton3.TabStop = true;
-            this.radioButton3.Text = "Steer";
+            this.radioButton3.Text = "Steering";
             this.radioButton3.UseVisualStyleBackColor = true;
             this.radioButton3.CheckedChanged += new System.EventHandler(this.radioButton3_CheckedChanged);
             // 
@@ -139,7 +168,7 @@ namespace F1_Racing_Hub
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(875, 477);
+            this.ClientSize = new System.Drawing.Size(1413, 550);
             this.Controls.Add(this.comboBox2);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.comboBox1);
@@ -164,5 +193,7 @@ namespace F1_Racing_Hub
         private RadioButton radioButton2;
         private RadioButton radioButton1;
         private ComboBox comboBox2;
+        private RadioButton radioButton5;
+        private RadioButton radioButton6;
     }
 }
