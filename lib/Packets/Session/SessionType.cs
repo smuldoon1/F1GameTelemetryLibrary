@@ -17,4 +17,44 @@
         RACE_THREE = 12,
         TIME_TRIAL = 13
     }
+
+    public static class SessionTypeExtensions
+    {
+        public static string ToString(this SessionType sessionType)
+        {
+            switch (sessionType)
+            {
+                case SessionType.UNKNOWN:
+                    return "Unknown";
+                case SessionType.PRACTICE_1:
+                    return "FP11";
+                case SessionType.PRACTICE_2:
+                    return "FP2";
+                case SessionType.PRACTICE_3:
+                    return "FP3";
+                case SessionType.SHORT_PRACTICE:
+                    return "Practice";
+                case SessionType.QUALIFYING_1:
+                    return "Q1";
+                case SessionType.QUALIFYING_2:
+                    return "Q2";
+                case SessionType.QUALIFYING_3:
+                    return "Q3";
+                case SessionType.SHORT_QUALIFYING:
+                    return "Qualifying";
+                case SessionType.ONE_SHOT_QUALIFYING:
+                    return "OSQ";
+                case SessionType.RACE:
+                    return "Race";
+                case SessionType.RACE_TWO:
+                    return "Race 2";
+                case SessionType.RACE_THREE:
+                    return "Race 3";
+                case SessionType.TIME_TRIAL:
+                    return "Time Trial";
+                default:
+                    return "Invalid";
+            }
+        }
+    }
 }

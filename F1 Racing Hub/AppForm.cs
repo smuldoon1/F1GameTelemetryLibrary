@@ -48,7 +48,7 @@ namespace F1_Racing_Hub
 
             public override string ToString()
             {
-                return $"{ (F1GameTelemetry_2021.SessionType)Type } | { Name } | { CreatedOn }";
+                return $"{ F1GameTelemetry_2021.SessionTypeExtensions.ToString((F1GameTelemetry_2021.SessionType)Type) } | { Name } | { CreatedOn }";
             }
         }
 

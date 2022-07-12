@@ -14,10 +14,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\lib\F1GameTelemetryLibrary.csproj" />
-  </ItemGroup>
-
-  <ItemGroup>
     <Reference Include="F1GameTelemetryLibrary">
       <HintPath>..\lib\obj\Debug\net6.0\F1GameTelemetryLibrary.dll</HintPath>
     </Reference>
