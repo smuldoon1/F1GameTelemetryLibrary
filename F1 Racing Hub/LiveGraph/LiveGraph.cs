@@ -14,14 +14,20 @@ namespace F1_Racing_Hub
         public string selectedMetric { get; set; } = "Speed";
 
         private string sessionId = "";
+        private int trackLength;
         private ComboBox lapNumberComboBox;
+        private Label trackLengthLabel;
+        private Label minYAxisLabel;
+        private Label maxYAxisLabel;
 
-        public LiveGraph(PictureBox pictureBox, ComboBox lapNumberComboBox)
+        public LiveGraph(PictureBox pictureBox, ComboBox lapNumber, Label trackLength, Label minYAxis, Label maxYAxis)
         {
             PictureBox = pictureBox;
-            //pictureBox.BackColor = Color.Black;
             Series = new List<Series>();
-            this.lapNumberComboBox = lapNumberComboBox;
+            lapNumberComboBox = lapNumber;
+            trackLengthLabel = trackLength;
+            minYAxisLabel = minYAxis;
+            maxYAxisLabel = maxYAxis;
         }
 
         public void Draw(object sender, PaintEventArgs e)
@@ -29,6 +35,8 @@ namespace F1_Racing_Hub
             Series = new List<Series>();
 
             var laps = Sql.ExecuteArray<Lap>($"SELECT L.sessionId, L.carIndex, L.number, S.trackLength FROM [F1App].[dbo].[DriverLaps] L JOIN [F1App].[dbo].[Sessions] S ON L.sessionId = S.id WHERE L.sessionId = '{ sessionId }' AND L.number = '{ lapNumberComboBox.SelectedItem }'").ToArray();
+            if (laps.Count() > 0)
+                trackLengthLabel.Text = laps.First().TrackLength.ToString() + " m";
 
             for (int i = 0; i < laps.Length; i++)
             {
@@ -64,10 +72,14 @@ namespace F1_Racing_Hub
                         default:
                             return;
                     }
+
                     GraphMetric gm = graphMetrics[selectedMetric];
+                    minYAxisLabel.Text = gm.minValue.ToString();
+                    maxYAxisLabel.Text = gm.maxValue.ToString();
+                    float gap = gm.Range * 0.05f;
                     Series[i].Points.Add(new Point(
                             (int)(x / (float)laps[i].TrackLength * PictureBox.Bounds.Width),
-                            PictureBox.Bounds.Height - (int)((y - gm.minValue) / gm.Range * PictureBox.Bounds.Height)));
+                            PictureBox.Bounds.Height - (int)((y - gm.minValue + gap) / (gm.Range + gap * 2f) * PictureBox.Bounds.Height)));
                 }
             }
             foreach (Series s in Series)
@@ -116,19 +128,19 @@ namespace F1_Racing_Hub
 
         public Dictionary<string, GraphMetric> graphMetrics = new()
         {
-            { "Speed" , new GraphMetric { minValue = -10, maxValue = 350 } },
-            { "Throttle" , new GraphMetric { minValue = -0.1f, maxValue = 1.1f } },
-            { "Steer" , new GraphMetric { minValue = -1.1f, maxValue = 1.1f } },
-            { "Gear" , new GraphMetric { minValue = -1.5f, maxValue = 8.5f } },
-            { "Brake", new GraphMetric { minValue = -0.1f, maxValue = 1.1f } },
-            { "EngineRPM", new GraphMetric { minValue = -100, maxValue = 15100 } }
+            { "Speed" , new GraphMetric { minValue = 0, maxValue = 350 } },
+            { "Throttle" , new GraphMetric { minValue = 0, maxValue = 1 } },
+            { "Steer" , new GraphMetric { minValue = -1, maxValue = 1 } },
+            { "Gear" , new GraphMetric { minValue = -1, maxValue = 8 } },
+            { "Brake" , new GraphMetric { minValue = 0, maxValue = 1 } },
+            { "EngineRPM" , new GraphMetric { minValue = 0, maxValue = 15000 } }
         };
 
         public struct GraphMetric
         {
-            public float minValue;
-            public float maxValue;
-            public float Range { get { return maxValue - minValue; } }
+            public int minValue;
+            public int maxValue;
+            public int Range { get { return maxValue - minValue; } }
         }
     }
 }

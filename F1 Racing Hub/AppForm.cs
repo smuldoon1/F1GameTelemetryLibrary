@@ -7,7 +7,7 @@ namespace F1_Racing_Hub
         public AppForm()
         {
             InitializeComponent();
-            liveGraph = new LiveGraph(pictureBox1, comboBox2);
+            liveGraph = new LiveGraph(pictureBox1, comboBox2, label2, label4, label5);
             listenerObject = new RacingHubListener();
         }
 
