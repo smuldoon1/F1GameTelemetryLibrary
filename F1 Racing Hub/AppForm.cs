@@ -7,7 +7,7 @@ namespace F1_Racing_Hub
         public AppForm()
         {
             InitializeComponent();
-            liveGraph = new LiveGraph(pictureBox1);
+            liveGraph = new LiveGraph(pictureBox1, comboBox2);
             listenerObject = new RacingHubListener();
         }
 
@@ -17,6 +17,7 @@ namespace F1_Racing_Hub
 
             // Add the PictureBox control to the Form.
             this.Controls.Add(liveGraph.PictureBox);
+            
             ComboBoxSession[] sessions = Sql.ExecuteArray<ComboBoxSession>("SELECT S.id, T.name, S.type, S.createdOn FROM [F1App].[dbo].[Sessions] S JOIN [F1App].[dbo].[Tracks] T ON S.trackId = T.id ORDER BY S.createdOn DESC");
             comboBox1.Items.AddRange(sessions);
             comboBox1.SelectedIndex = 0;
@@ -83,6 +84,11 @@ namespace F1_Racing_Hub
                 liveGraph.selectedMetric = metric;
                 Refresh();
             }
+        }
+
+        private void comboBox2_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            Refresh();
         }
     }
 }

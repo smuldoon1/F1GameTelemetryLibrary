@@ -14,19 +14,21 @@ namespace F1_Racing_Hub
         public string selectedMetric { get; set; } = "Speed";
 
         private string sessionId = "";
+        private ComboBox lapNumberComboBox;
 
-        public LiveGraph(PictureBox pictureBox)
+        public LiveGraph(PictureBox pictureBox, ComboBox lapNumberComboBox)
         {
             PictureBox = pictureBox;
             pictureBox.BackColor = Color.Black;
             Series = new List<Series>();
+            this.lapNumberComboBox = lapNumberComboBox;
         }
 
         public void Draw(object sender, PaintEventArgs e)
         {
             Series = new List<Series>();
 
-            var laps = Sql.ExecuteArray<Lap>($"SELECT L.sessionId, L.carIndex, L.number, S.trackLength FROM [F1App].[dbo].[DriverLaps] L JOIN [F1App].[dbo].[Sessions] S ON L.sessionId = S.id WHERE L.sessionId = '{ sessionId }'").ToArray();
+            var laps = Sql.ExecuteArray<Lap>($"SELECT L.sessionId, L.carIndex, L.number, S.trackLength FROM [F1App].[dbo].[DriverLaps] L JOIN [F1App].[dbo].[Sessions] S ON L.sessionId = S.id WHERE L.sessionId = '{ sessionId }' AND L.number = '{ lapNumberComboBox.SelectedItem }'").ToArray();
 
             for (int i = 0; i < laps.Length; i++)
             {
@@ -71,6 +73,11 @@ namespace F1_Racing_Hub
         public void SetSession(string sessionId)
         {
             this.sessionId = sessionId;
+            var laps = Sql.ExecuteArray<Lap>($"SELECT DISTINCT DL.number FROM [F1App].[dbo].[DriverLaps] DL JOIN [F1App].[dbo].[LapFrames] LF ON DL.number = LF.lapNumber WHERE DL.sessionId = '{ sessionId }'").ToArray();
+            lapNumberComboBox.Items.Clear();
+            lapNumberComboBox.Items.AddRange(laps.Select(l => (object)l.Number).ToArray());
+            if (lapNumberComboBox.Items.Count > 0)
+                lapNumberComboBox.SelectedIndex = 0;
         }
 
         public class Lap
