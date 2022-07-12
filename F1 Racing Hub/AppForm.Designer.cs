@@ -167,7 +167,7 @@ namespace F1_Racing_Hub
             this.comboBox2.FormattingEnabled = true;
             this.comboBox2.Location = new System.Drawing.Point(1019, 158);
             this.comboBox2.Name = "comboBox2";
-            this.comboBox2.Size = new System.Drawing.Size(56, 23);
+            this.comboBox2.Size = new System.Drawing.Size(45, 23);
             this.comboBox2.TabIndex = 3;
             this.comboBox2.SelectedIndexChanged += new System.EventHandler(this.comboBox2_SelectedIndexChanged);
             // 

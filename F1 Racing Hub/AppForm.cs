@@ -42,13 +42,13 @@ namespace F1_Racing_Hub
 
             public string Name { get; set; }
 
-            public string Type { get; set; }
+            public byte Type { get; set; }
 
             public DateTime CreatedOn { get; set; }
 
             public override string ToString()
             {
-                return Name + " (" + Type + ")" + " - " + CreatedOn.ToString();
+                return $"{ (F1GameTelemetry_2021.SessionType)Type } | { Name } | { CreatedOn }";
             }
         }
 
