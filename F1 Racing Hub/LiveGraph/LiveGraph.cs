@@ -19,7 +19,7 @@ namespace F1_Racing_Hub
         public LiveGraph(PictureBox pictureBox, ComboBox lapNumberComboBox)
         {
             PictureBox = pictureBox;
-            pictureBox.BackColor = Color.Black;
+            //pictureBox.BackColor = Color.Black;
             Series = new List<Series>();
             this.lapNumberComboBox = lapNumberComboBox;
         }
