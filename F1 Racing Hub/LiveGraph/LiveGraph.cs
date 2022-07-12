@@ -44,22 +44,22 @@ namespace F1_Racing_Hub
                     switch (selectedMetric)
                     {
                         case "Speed":
-                            y = frame.Speed.FromSql() + 10f;
+                            y = frame.Speed.FromSql();
                             break;
                         case "Throttle":
-                            y = frame.Throttle + 0.1f;
+                            y = frame.Throttle;
                             break;
                         case "Steer":
-                            y = frame.Steer + 1.1f;
+                            y = frame.Steer;
                             break;
                         case "Gear":
-                            y = frame.Gear.FromSql() + 1.5f;
+                            y = frame.Gear.FromSql();
                             break;
                         case "Brake":
-                            y = frame.Brake + 0.1f;
+                            y = frame.Brake;
                             break;
                         case "EngineRPM":
-                            y = frame.EngineRPM + 100f;
+                            y = frame.EngineRPM;
                             break;
                         default:
                             return;
@@ -67,7 +67,7 @@ namespace F1_Racing_Hub
                     GraphMetric gm = graphMetrics[selectedMetric];
                     Series[i].Points.Add(new Point(
                             (int)(x / (float)laps[i].TrackLength * PictureBox.Bounds.Width),
-                            PictureBox.Bounds.Height - (int)(y / gm.Range * PictureBox.Bounds.Height)));
+                            PictureBox.Bounds.Height - (int)((y - gm.minValue) / gm.Range * PictureBox.Bounds.Height)));
                 }
             }
             foreach (Series s in Series)
@@ -116,7 +116,7 @@ namespace F1_Racing_Hub
 
         public Dictionary<string, GraphMetric> graphMetrics = new()
         {
-            { "Speed" , new GraphMetric { minValue = -10, maxValue = 340 } },
+            { "Speed" , new GraphMetric { minValue = -10, maxValue = 350 } },
             { "Throttle" , new GraphMetric { minValue = -0.1f, maxValue = 1.1f } },
             { "Steer" , new GraphMetric { minValue = -1.1f, maxValue = 1.1f } },
             { "Gear" , new GraphMetric { minValue = -1.5f, maxValue = 8.5f } },
