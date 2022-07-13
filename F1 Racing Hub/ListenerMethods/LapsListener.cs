@@ -42,8 +42,8 @@ namespace F1_Racing_Hub
                     var t = telemetryPacket.CarTelemetryData[i];
                     //if (CanSaveLapFrame(new LapFrame(i, l.CurrentLap, l.LapDistance)))
                         Sql.Execute($"INSERT INTO [F1App].[dbo].[LapFrames] " +
-                            $"(sessionId, carIndex, lapNumber, distance, speed, throttle, steer, brake, gear) VALUES " +
-                            $"( { telemetryPacket.SessionUID.ToSql() }, { i }, { l.CurrentLap }, { l.LapDistance }, { t.Speed.ToSql() }, { t.Throttle }, { t.Steer }, { t.Brake }, { t.Gear.ToSql() })");
+                            $"(sessionId, carIndex, lapNumber, distance, speed, throttle, steer, brake, gear, engineRPM, clutch, drs, engineTemp, brakeTempRL, brakeTempRR, brakeTempFL, brakeTempFR, tyreSurfaceTempRL, tyreSurfaceTempRR, tyreSurfaceTempFL, tyreSurfaceTempFR, tyreInnerTempRL, tyreInnerTempRR, tyreInnerTempFL, tyreInnerTempFR, tyrePressureRL, tyrePressureRR, tyrePressureFL, tyrePressureFR) VALUES " +
+                            $"( { telemetryPacket.SessionUID.ToSql() }, { i }, { l.CurrentLap }, { l.LapDistance }, { t.Speed.ToSql() }, { t.Throttle }, { t.Steer }, { t.Brake }, { t.Gear.ToSql() }, { t.EngineRPM.ToSql() }, { t.Clutch }, { (t.Drs == false ? 0 : 1) }, { t.EngineTemperature.ToSql() }, { t.BrakeTemperatures.rearLeft.ToSql() }, { t.BrakeTemperatures.rearRight.ToSql() }, { t.BrakeTemperatures.frontLeft.ToSql() }, { t.BrakeTemperatures.frontRight.ToSql() }, { t.TyreSurfaceTemperatures.rearLeft }, { t.TyreSurfaceTemperatures.rearRight }, { t.TyreSurfaceTemperatures.frontLeft }, { t.TyreSurfaceTemperatures.frontRight }, { t.TyreInnerTemperature.rearLeft }, { t.TyreInnerTemperature.rearRight }, { t.TyreInnerTemperature.frontLeft }, { t.TyreInnerTemperature.frontRight }, { t.TyrePressures.rearLeft }, { t.TyrePressures.rearRight }, { t.TyrePressures.frontLeft }, { t.TyrePressures.frontRight })");
                 }
                 lapDataPackets.Remove(telemetryPacket.FrameIdentifier);
             }
