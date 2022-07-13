@@ -72,10 +72,12 @@ namespace F1_Racing_Hub
                         default:
                             return;
                     }
+                    if (selectedMetric != "Brake" && y == 0)
+                        continue;
 
                     GraphMetric gm = graphMetrics[selectedMetric];
-                    minYAxisLabel.Text = gm.minValue.ToString();
-                    maxYAxisLabel.Text = gm.maxValue.ToString();
+                    minYAxisLabel.Text = gm.minValue.ToString() + gm.unit ?? "";
+                    maxYAxisLabel.Text = gm.maxValue.ToString() + gm.unit ?? "";
                     float gap = gm.Range * 0.05f;
                     Series[i].Points.Add(new Point(
                             (int)(x / (float)laps[i].TrackLength * PictureBox.Bounds.Width),
@@ -128,18 +130,19 @@ namespace F1_Racing_Hub
 
         public Dictionary<string, GraphMetric> graphMetrics = new()
         {
-            { "Speed" , new GraphMetric { minValue = 0, maxValue = 350 } },
+            { "Speed" , new GraphMetric { minValue = 0, maxValue = 350, unit = "kph" } },
             { "Throttle" , new GraphMetric { minValue = 0, maxValue = 1 } },
             { "Steer" , new GraphMetric { minValue = -1, maxValue = 1 } },
             { "Gear" , new GraphMetric { minValue = -1, maxValue = 8 } },
             { "Brake" , new GraphMetric { minValue = 0, maxValue = 1 } },
-            { "EngineRPM" , new GraphMetric { minValue = 0, maxValue = 15000 } }
+            { "EngineRPM" , new GraphMetric { minValue = 0, maxValue = 15000, unit = "rpm"} }
         };
 
         public struct GraphMetric
         {
             public int minValue;
             public int maxValue;
+            public string? unit;
             public int Range { get { return maxValue - minValue; } }
         }
     }

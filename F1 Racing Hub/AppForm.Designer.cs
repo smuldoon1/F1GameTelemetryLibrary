@@ -66,7 +66,7 @@ namespace F1_Racing_Hub
             // comboBox1
             // 
             this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Location = new System.Drawing.Point(1019, 129);
+            this.comboBox1.Location = new System.Drawing.Point(100, 73);
             this.comboBox1.Name = "comboBox1";
             this.comboBox1.Size = new System.Drawing.Size(383, 23);
             this.comboBox1.TabIndex = 1;
@@ -80,9 +80,9 @@ namespace F1_Racing_Hub
             this.groupBox1.Controls.Add(this.radioButton3);
             this.groupBox1.Controls.Add(this.radioButton2);
             this.groupBox1.Controls.Add(this.radioButton1);
-            this.groupBox1.Location = new System.Drawing.Point(13, 471);
+            this.groupBox1.Location = new System.Drawing.Point(13, 454);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(200, 175);
+            this.groupBox1.Size = new System.Drawing.Size(200, 192);
             this.groupBox1.TabIndex = 2;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Graph Metric";
@@ -91,7 +91,6 @@ namespace F1_Racing_Hub
             // radioButton6
             // 
             this.radioButton6.AutoSize = true;
-            this.radioButton6.Enabled = false;
             this.radioButton6.Location = new System.Drawing.Point(6, 147);
             this.radioButton6.Name = "radioButton6";
             this.radioButton6.Size = new System.Drawing.Size(89, 19);
@@ -165,7 +164,7 @@ namespace F1_Racing_Hub
             // comboBox2
             // 
             this.comboBox2.FormattingEnabled = true;
-            this.comboBox2.Location = new System.Drawing.Point(1019, 158);
+            this.comboBox2.Location = new System.Drawing.Point(532, 73);
             this.comboBox2.Name = "comboBox2";
             this.comboBox2.Size = new System.Drawing.Size(45, 23);
             this.comboBox2.TabIndex = 3;
@@ -174,7 +173,7 @@ namespace F1_Racing_Hub
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(100, 434);
+            this.label1.Location = new System.Drawing.Point(100, 426);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(27, 15);
             this.label1.TabIndex = 4;
@@ -183,7 +182,7 @@ namespace F1_Racing_Hub
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(913, 434);
+            this.label2.Location = new System.Drawing.Point(913, 426);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(38, 15);
             this.label2.TabIndex = 5;
@@ -192,7 +191,7 @@ namespace F1_Racing_Hub
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(42, 434);
+            this.label3.Location = new System.Drawing.Point(512, 434);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(52, 15);
             this.label3.TabIndex = 6;
@@ -219,7 +218,7 @@ namespace F1_Racing_Hub
             // label6
             // 
             this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(967, 132);
+            this.label6.Location = new System.Drawing.Point(48, 76);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(46, 15);
             this.label6.TabIndex = 9;
@@ -228,7 +227,7 @@ namespace F1_Racing_Hub
             // label7
             // 
             this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(967, 161);
+            this.label7.Location = new System.Drawing.Point(500, 76);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(26, 15);
             this.label7.TabIndex = 10;
