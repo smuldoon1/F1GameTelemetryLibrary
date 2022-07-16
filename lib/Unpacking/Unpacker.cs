@@ -1,4 +1,6 @@
-﻿namespace F1GameTelemetry_2021
+﻿using System.Text;
+
+namespace F1GameTelemetry_2021
 {
     public class Unpacker
     {
@@ -285,12 +287,9 @@
                 throw NullError();
             try
             {
-                char[] chars = new char[length];
-                for (int i = 0; i < length; i++)
-                {
-                    chars[i] = (char)packedData[pointer++];
-                }
-                return new string(chars).Trim('\0');
+                string s = UTF8Encoding.UTF8.GetString(packedData, pointer, length);
+                pointer += length;
+                return s.Trim('\0');
             }
             catch (ArgumentException)
             {

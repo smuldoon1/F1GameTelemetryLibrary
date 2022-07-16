@@ -102,8 +102,8 @@ namespace F1_Racing_Hub
                 lapNumberComboBox.SelectedIndex = 0;
 
             driverListView.Items.Clear();
-            var driverInfo = Sql.ExecuteArray<DriverInfo>($"SELECT P.name, T.shortName, P.raceNumber FROM [F1App].[dbo].[Participants] P JOIN [F1App].[dbo].[Teams] T ON P.teamId = T.id WHERE sessionId = { sessionId }").ToList();
-            driverInfo.ForEach(d => driverListView.Items.Add(new ListViewItem(new string[] { d.Name, "#" + d.RaceNumber, d.ShortName })));  
+            var driverInfo = Sql.ExecuteArray<DriverInfo>($"SELECT P.name, T.shortName AS teamName, P.raceNumber FROM [F1App].[dbo].[Participants] P JOIN [F1App].[dbo].[Teams] T ON P.teamId = T.id WHERE sessionId = { sessionId }").ToList();
+            driverInfo.ForEach(d => driverListView.Items.Add(new ListViewItem(new string[] { d.Name, "#" + d.RaceNumber, d.TeamName })));  
         }
 
         public class Lap
@@ -138,7 +138,7 @@ namespace F1_Racing_Hub
         {
             public string Name { get; set; }
 
-            public string ShortName { get; set; }
+            public string TeamName { get; set; }
 
             public int RaceNumber { get; set; }
         }
