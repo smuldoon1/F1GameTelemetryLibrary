@@ -7,8 +7,11 @@ namespace F1_Racing_Hub
         public AppForm()
         {
             InitializeComponent();
-            liveGraph = new LiveGraph(pictureBox1, comboBox2, label2, label4, label5);
+            liveGraph = new LiveGraph(pictureBox1, comboBox2, label2, label4, label5, listView1);
             listenerObject = new RacingHubListener();
+            listView1.Columns.Add("DriverName", "Driver", 150);
+            listView1.Columns.Add("DriverNumber", "No.", 40);
+            listView1.Columns.Add("DriverTeam", "Team", 135);
         }
 
         private void AppForm_Load(object sender, EventArgs e)
@@ -79,7 +82,7 @@ namespace F1_Racing_Hub
 
         private void radioButton6_CheckedChanged(object sender, EventArgs e)
         {
-            SetGraphMetric("EngineRPM", radioButton5.Checked);
+            SetGraphMetric("EngineRPM", radioButton6.Checked);
         }
 
         private void radioButton5_CheckedChanged(object sender, EventArgs e)
@@ -99,6 +102,11 @@ namespace F1_Racing_Hub
         private void comboBox2_SelectedIndexChanged(object sender, EventArgs e)
         {
             Refresh();
+        }
+
+        private void listView1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }

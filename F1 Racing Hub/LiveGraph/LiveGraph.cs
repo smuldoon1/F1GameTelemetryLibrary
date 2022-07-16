@@ -19,8 +19,9 @@ namespace F1_Racing_Hub
         private Label trackLengthLabel;
         private Label minYAxisLabel;
         private Label maxYAxisLabel;
+        private ListView driverListView;
 
-        public LiveGraph(PictureBox pictureBox, ComboBox lapNumber, Label trackLength, Label minYAxis, Label maxYAxis)
+        public LiveGraph(PictureBox pictureBox, ComboBox lapNumber, Label trackLength, Label minYAxis, Label maxYAxis, ListView driverList)
         {
             PictureBox = pictureBox;
             Series = new List<Series>();
@@ -28,6 +29,7 @@ namespace F1_Racing_Hub
             trackLengthLabel = trackLength;
             minYAxisLabel = minYAxis;
             maxYAxisLabel = maxYAxis;
+            driverListView = driverList;
         }
 
         public void Draw(object sender, PaintEventArgs e)
@@ -67,7 +69,7 @@ namespace F1_Racing_Hub
                             y = frame.Brake;
                             break;
                         case "EngineRPM":
-                            y = frame.EngineRPM;
+                            y = frame.EngineRPM.FromSql();
                             break;
                         default:
                             return;
@@ -98,6 +100,10 @@ namespace F1_Racing_Hub
             lapNumberComboBox.Items.AddRange(laps.Select(l => (object)l.Number).ToArray());
             if (lapNumberComboBox.Items.Count > 0)
                 lapNumberComboBox.SelectedIndex = 0;
+
+            driverListView.Items.Clear();
+            var driverInfo = Sql.ExecuteArray<DriverInfo>($"SELECT name, teamId, raceNumber FROM [F1App].[dbo].[Participants] WHERE sessionId = { sessionId }").ToList();
+            driverInfo.ForEach(d => driverListView.Items.Add(new ListViewItem(new string[] { d.Name, "#" + d.RaceNumber, d.TeamId.ToString() })));  
         }
 
         public class Lap
@@ -126,6 +132,15 @@ namespace F1_Racing_Hub
             public float Brake { get; set; }
 
             public short EngineRPM { get; set; }
+        }
+
+        private class DriverInfo
+        {
+            public string Name { get; set; }
+
+            public int TeamId { get; set; }
+
+            public int RaceNumber { get; set; }
         }
 
         public Dictionary<string, GraphMetric> graphMetrics = new()

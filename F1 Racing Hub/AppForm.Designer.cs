@@ -49,6 +49,7 @@ namespace F1_Racing_Hub
             this.label5 = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
             this.label7 = new System.Windows.Forms.Label();
+            this.listView1 = new System.Windows.Forms.ListView();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
@@ -233,11 +234,22 @@ namespace F1_Racing_Hub
             this.label7.TabIndex = 10;
             this.label7.Text = "Lap";
             // 
+            // listView1
+            // 
+            this.listView1.FullRowSelect = true;
+            this.listView1.Location = new System.Drawing.Point(1070, 129);
+            this.listView1.Name = "listView1";
+            this.listView1.Size = new System.Drawing.Size(331, 441);
+            this.listView1.TabIndex = 11;
+            this.listView1.UseCompatibleStateImageBehavior = false;
+            this.listView1.View = System.Windows.Forms.View.Details;
+            // 
             // AppForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1413, 738);
+            this.Controls.Add(this.listView1);
             this.Controls.Add(this.label7);
             this.Controls.Add(this.label6);
             this.Controls.Add(this.label5);
@@ -279,5 +291,6 @@ namespace F1_Racing_Hub
         private Label label5;
         private Label label6;
         private Label label7;
+        private ListView listView1;
     }
 }
