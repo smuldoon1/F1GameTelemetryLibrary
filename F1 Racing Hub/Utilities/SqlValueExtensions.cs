@@ -84,5 +84,10 @@ namespace F1_Racing_Hub
         {
             return unchecked((sbyte)(value + sbyte.MinValue));
         }
+
+        public static string ToSql(this DateTime dateTime)
+        {
+            return dateTime.ToString("yyyyMMdd HH:mm:ss");
+        }
     }
 }

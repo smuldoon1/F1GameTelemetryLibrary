@@ -23,7 +23,8 @@ namespace F1_Racing_Hub
             
             ComboBoxSession[] sessions = Sql.ExecuteArray<ComboBoxSession>("SELECT S.id, T.name, S.type, S.createdOn FROM [F1App].[dbo].[Sessions] S JOIN [F1App].[dbo].[Tracks] T ON S.trackId = T.id ORDER BY S.createdOn DESC");
             comboBox1.Items.AddRange(sessions);
-            comboBox1.SelectedIndex = 0;
+            if (sessions.Length > 0)
+                comboBox1.SelectedIndex = 0;
         }
 
         private void timer1_Tick(object sender, EventArgs e)

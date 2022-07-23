@@ -145,12 +145,12 @@ namespace F1_Racing_Hub
 
         public Dictionary<string, GraphMetric> graphMetrics = new()
         {
-            { "Speed" , new GraphMetric { minValue = 0, maxValue = 350, unit = "kph" } },
-            { "Throttle" , new GraphMetric { minValue = 0, maxValue = 1 } },
-            { "Steer" , new GraphMetric { minValue = -1, maxValue = 1 } },
-            { "Gear" , new GraphMetric { minValue = -1, maxValue = 8 } },
-            { "Brake" , new GraphMetric { minValue = 0, maxValue = 1 } },
-            { "EngineRPM" , new GraphMetric { minValue = 0, maxValue = 15000, unit = "rpm"} }
+            { "Speed" , new GraphMetric(0, 350, "kph") },
+            { "Throttle" , new GraphMetric(0, 1) },
+            { "Steer" , new GraphMetric(-1, 1) },
+            { "Gear" , new GraphMetric(-1, 8) },
+            { "Brake" , new GraphMetric(0, 1) },
+            { "EngineRPM" , new GraphMetric(0, 15000, "rpm") }
         };
 
         public struct GraphMetric
@@ -158,7 +158,15 @@ namespace F1_Racing_Hub
             public int minValue;
             public int maxValue;
             public string? unit;
+
             public int Range { get { return maxValue - minValue; } }
+
+            public GraphMetric(int minValue, int maxValue, string? unit = null)
+            {
+                this.minValue = minValue;
+                this.maxValue = maxValue;
+                this.unit = unit;
+            }
         }
     }
 }
